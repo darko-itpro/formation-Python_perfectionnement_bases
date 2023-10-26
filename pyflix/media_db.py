@@ -11,6 +11,8 @@ place.
 
 import sqlite3 as sqlite
 from collections import namedtuple
+from pathlib import Path
+from pylib import settings
 
 SQL_CREATE_EPISODES_TABLE = "CREATE TABLE IF NOT EXISTS episodes ("\
                             "e_number INT NOT NULL, "\
@@ -45,11 +47,11 @@ class TvShow:
     """
     TV Show DAO (Data Access Object) for a single show
     """
-    def __init__(self, name="test"):
+    def __init__(self, name:str):
         self._name = name.title()
 
         import re
-        self._db_name = re.sub("[ .()]", "_", name) + '.db'  # Voir regex
+        self._db_name = Path(settings.ROOT_PATH, re.sub("[ .()]", "_", name)).with_suffix('.db')  # Voir regex
         self._connect = sqlite.connect(self._db_name)
 
         try:
@@ -96,8 +98,8 @@ class TvShow:
             with self._connect:
                 cur = self._connect.cursor()
                 cur.execute(SQL_ADD_EPISODE, (ep_number, season_number, title, duration, year))
-        except sqlite.IntegrityError:
-            raise ValueError(f"Episode {title} s{season_number}e{ep_number} exists")
+        except sqlite.IntegrityError as ext:
+            raise ValueError(f"Episode {title} s{season_number}e{ep_number} exists") from ext
 
     def get_episodes(self, season=None):
         """
