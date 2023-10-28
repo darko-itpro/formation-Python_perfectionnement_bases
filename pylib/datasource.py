@@ -8,7 +8,6 @@ arborescence fonctionnelle.
 import random
 random.seed()
 
-
 def get_season(user=None) -> list:
     """
     Fonction permettant d'accéder à la saison d'une série. Sans paramètre (ou avec `None`, retourne

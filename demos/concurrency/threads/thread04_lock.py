@@ -19,10 +19,12 @@ class Oven:
         logging.info(f"Ready to cook {dish}")
 
         #with self._lock:
+        #self._lock.acquire()
         logging.info(f"Putting {dish} into oven")
         self._dish = dish
         time.sleep(duration)
         logging.info(f"Taking out {self._dish} from oven")
+        #self._lock.release()
 
 
 meal1 = ("Bred", 8)
