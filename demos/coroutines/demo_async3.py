@@ -12,8 +12,7 @@ async def main():
     tasks = []
     for i in range(5):
 
-        tasks.append(big_work(i))
+        tasks.append(big_work(f"Job {i}"))
     await asyncio.gather(*tasks)
-asyncio.run(main())
 
 asyncio.run(main())
