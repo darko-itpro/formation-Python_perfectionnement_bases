@@ -1,0 +1,38 @@
+"""
+Démonstration du passage au multiprocessing
+
+Il s'agit de l'exemple avec les threads avec join afin d'illustrer la proximité de la syntaxe
+du multiprocessing.
+"""
+
+import demos.concurrency.logger_conf
+import logging
+from threading import Thread
+# from multiprocessing import Process
+import time
+
+pasta = ("pasta", 9)
+meat = ("steak", 4)
+
+def cooking(dish, duration):
+    logging.info(f"Cooking {dish} started")
+    time.sleep(duration)
+    logging.info(f"Cooking {dish} done")
+
+if __name__ == "__main__":
+    logging.info("Main    : before creating thread")
+    start_time = time.time()
+    logging.info("Main    : wait for our cooking to finish")
+
+    pasta_cook = Thread(target=cooking, args=pasta)
+    meat_cook = Thread(target=cooking, args=meat)
+
+    logging.info("Main    : before running thread")
+    pasta_cook.start()
+    meat_cook.start()
+
+    pasta_cook.join()
+    meat_cook.join()
+
+    end_time = time.time()
+    logging.info(f"Main    : Collecting after {end_time - start_time:.2f} seconds, ready to serve")
