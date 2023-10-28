@@ -16,8 +16,8 @@ def load_from_filenames(dir_path):
 
         if result:
             yield episode_name[:result.start()].replace("_", " "), \
-                result.group("season"), result.group("episode"), \
-                episode_name[result.end():].replace("_", " ")
+                episode_name[result.end():].replace("_", " "), \
+                result.group("episode"), result.group("season")
 
 
 def load_from_csv(file_path):
@@ -33,4 +33,5 @@ def load_from_csv(file_path):
             raise ValueError("Unexpected CSV structure")
 
         for episode in csv_file:
-            yield tuple(episode.strip().split(";"))
+            show, season, number, title, duration, year = episode.strip().split(";")
+            yield show, title, number, season, duration, year
