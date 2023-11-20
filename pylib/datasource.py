@@ -5,6 +5,7 @@ Ces données sont hétéroclytes, évidemment, dans un "vrai" projet, elles sera
 arborescence fonctionnelle.
 """
 
+from pathlib import Path
 import random
 random.seed()
 
@@ -23,7 +24,6 @@ def get_season(user=None) -> list:
     dictionnaire contenant les clefs `title`, `duration` et `viewed`. Si l'épisode n'a pas été vu,
     cette dernière peut être absente.
     """
-    from pathlib import Path
     file_path = Path(__file__).resolve().parent.parent / "assets" / "bbts12.csv"
 
     with open(file_path) as bbt_file:
