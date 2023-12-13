@@ -20,19 +20,22 @@ SQL_CREATE_EPISODES_TABLE = "CREATE TABLE IF NOT EXISTS episodes ("\
                             "title TEXT NOT NULL, "\
                             "duration INT, "\
                             "year INT, "\
-                            "PRIMARY KEY (e_number , season))"
+                            "PRIMARY KEY (e_number , season))"\
+                            ";"
 SQL_CREATE_SHOW_TABLE = "CREATE TABLE IF NOT EXISTS show ("\
                         "key TEXT NOT NULL, "\
                         "value TEXT NOT NULL, "\
-                        "PRIMARY KEY (key))"
+                        "PRIMARY KEY (key))"\
+                        ";"
 
-SQL_ADD_SHOW_DATA = "INSERT INTO show values (?, ?)"
-SQL_GET_SHOW_DATA = "SELECT value FROM show WHERE key = ?"
+SQL_ADD_SHOW_DATA = "INSERT INTO show values (?, ?);"
+SQL_GET_SHOW_DATA = "SELECT value FROM show WHERE key = ?;"
 
-SQL_ADD_EPISODE = "INSERT INTO episodes values(?, ?, ?, ?, ?)"
-SQL_GET_EPISODE = "SELECT title, season, e_number, duration, year FROM episodes where season = ? and e_number = ?"
-SQL_GET_ALL_EPISODES = "SELECT title, season, e_number, duration, year FROM episodes ORDER BY season, e_number"
-SQL_GET_EPISODES_FOR_SEASON = "SELECT title, season, e_number, duration, year FROM episodes where season = ? ORDER BY e_number"
+SQL_ADD_EPISODE = "INSERT INTO episodes values(?, ?, ?, ?, ?);"
+SQL_GET_EPISODE = "SELECT title, season, e_number, duration, year FROM episodes where season = ? and e_number = ?;"
+SQL_GET_ALL_EPISODES = "SELECT title, season, e_number, duration, year FROM episodes ORDER BY season, e_number;"
+SQL_GET_EPISODES_FOR_SEASON = "SELECT title, season, e_number, duration, year FROM episodes where season = ? ORDER BY e_number;"
+SQL_COUNT_EPISODES = "SELECT COUNT(*) FROM episodes;"
 
 KEY_SHOW_NAME = "name"
 
@@ -122,3 +125,14 @@ class TvShow:
     @property
     def episodes(self):
         return self.get_episodes()
+
+    def __len__(self):
+        cur = self._connect.cursor()
+        cur.execute(SQL_COUNT_EPISODES)
+        return cur.fetchone()[0]
+
+    def __contains__(self, item: Episode):
+        cur = self._connect.cursor()
+        cur.execute(SQL_GET_EPISODE, (item.season_number, item.number))
+        return True if cur.fetchone else False
+
