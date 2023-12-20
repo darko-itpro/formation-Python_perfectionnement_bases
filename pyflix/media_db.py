@@ -48,7 +48,7 @@ Episode = namedtuple("Episode", ('title', 'season_number', 'number', 'duration',
 
 class TvShow:
     """
-    TV Show DAO (Data Access Object) for a single show
+    TV Show DAO (Data Access Object) pour une série.
     """
     def __init__(self, name:str):
         self._name = name.title()
@@ -135,4 +135,43 @@ class TvShow:
         cur = self._connect.cursor()
         cur.execute(SQL_GET_EPISODE, (item.season_number, item.number))
         return True if cur.fetchone else False
+
+    def __iter__(self):
+        return TvShowIterator(self._db_name)
+
+
+class TvShowIterator:
+    """
+    Itérateur sur les épisodes d'une seule série
+    """
+    def __init__(self, datasource):
+        """
+        L'implémentation de cet itérateur charge tous les épisodes dans un attribut local. Une
+        alternative serait de paginer à l'aide d'un thread par exemple.
+        """
+        self._datasource = Path(datasource)
+        if not self._datasource.exists():
+            raise ValueError(f'File {datasource} does not exist')
+
+        self._connect = sqlite.connect(self._datasource)
+        cur = self._connect.cursor()
+        cur.execute(SQL_GET_ALL_EPISODES)
+
+        self._episodes = [Episode(*episode_data)
+                for episode_data in cur.fetchall()]
+
+        self._connect.close()
+
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        next_episode = self._episodes.pop(0)
+        if next_episode:
+            return next_episode
+        else:
+            raise StopIteration()
+
+
 
