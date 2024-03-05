@@ -23,7 +23,7 @@ def receiver():
 
 
 from pathlib import Path
-from pyflix.loaders import file_helpers as fh
+from pylib.pyflix.loaders import file_helpers as fh
 @coroutine
 def loader(paths:list):
     for path in (Path(p).resolve() for p in paths):
