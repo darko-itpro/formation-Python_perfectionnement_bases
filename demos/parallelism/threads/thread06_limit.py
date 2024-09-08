@@ -1,5 +1,5 @@
 
-import demos.concurrency.logger_conf
+import demos.parallelism.logger_conf
 import logging
 from threading import Thread
 import time

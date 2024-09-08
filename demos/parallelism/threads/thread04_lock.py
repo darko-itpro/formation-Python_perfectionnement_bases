@@ -4,7 +4,7 @@ Démonstration des threads 04
 Quatrième exemple avec les threads, problème de concurrence.
 """
 
-import demos.concurrency.logger_conf
+import demos.parallelism.logger_conf
 import logging
 import threading
 import time

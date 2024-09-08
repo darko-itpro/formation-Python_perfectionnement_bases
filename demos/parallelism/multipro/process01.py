@@ -5,7 +5,7 @@ Il s'agit de l'exemple avec les threads avec join afin d'illustrer la proximité
 du multiprocessing.
 """
 
-import demos.concurrency.logger_conf
+import demos.parallelism.logger_conf
 import logging
 from threading import Thread
 # from multiprocessing import Process

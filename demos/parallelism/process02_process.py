@@ -5,7 +5,7 @@ Second exemple avec les threads, la durée est celle du programme principal
 avant ajout des `.join()` où alors les actions se déroulent en parallèle.
 """
 
-import demos.concurrency.logger_conf
+import demos.parallelism.logger_conf
 import logging
 import multiprocessing
 import time

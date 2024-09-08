@@ -1,10 +1,11 @@
 """
-Démonstration des threads 03
+Démonstration des threads 02
 
-Troisième exemple avec les threads, le début d'un des threads est retardé grâce à Timer.
+Second exemple avec les threads, la durée est celle du programme principal
+avant ajout des `.join()` où alors les actions se déroulent en parallèle.
 """
 
-import demos.concurrency.logger_conf
+import demos.parallelism.logger_conf
 import logging
 import threading
 import time
@@ -22,15 +23,11 @@ start_time = time.time()
 logging.info("Main    : wait for our cooking to finish")
 
 pasta_cook = threading.Thread(target=cooking, args=pasta)
-meat_cook = threading.Timer(pasta[1] - meat[1], cooking, args=meat)
+meat_cook = threading.Thread(target=cooking, args=meat)
 
 logging.info("Main    : before running thread")
 pasta_cook.start()
 meat_cook.start()
 
-pasta_cook.join()
-meat_cook.join()
-
 end_time = time.time()
-
 logging.info(f"Main    : Collecting after {end_time - start_time:.2f} seconds, ready to serve")

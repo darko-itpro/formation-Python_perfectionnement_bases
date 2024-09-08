@@ -4,7 +4,7 @@ Démonstration des threads 02 bis
 Second exemple bis avec les threads, basé sur
 """
 
-import demos.concurrency.logger_conf
+import demos.parallelism.logger_conf
 import logging
 import threading
 import time
@@ -13,7 +13,7 @@ pasta = ("pasta", 9)
 meat = ("steak", 4)
 
 class Burner(threading.Thread):
-    def __int__(self):
+    def __init__(self):
         super().__init__(daemon=True)
         self._reset_burner()
 
