@@ -24,7 +24,7 @@ est la suivante :
  pour le parcours et la manipulation de fichiers.
  * **demos** : est un package contenant des fichiers de démonstration et
  d'illustration.
- * **stage** : est votre répertoire de travail. Il est destiné à contenir le
+ * **exos** : est votre répertoire de travail. Il est destiné à contenir le
  code que vous allez produire durant la formation et vous permettre de le
  retrouver dans cet emplacement unique.
  * **pylib** : est un répertoire contenant du code qui sera utilisé par vos
