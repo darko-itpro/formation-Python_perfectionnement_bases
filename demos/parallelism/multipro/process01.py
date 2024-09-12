@@ -7,7 +7,7 @@ du multiprocessing.
 
 import demos.parallelism.logger_conf
 import logging
-from threading import Thread
+from threading import Thread as Task
 # from multiprocessing import Process
 import time
 
@@ -24,8 +24,8 @@ if __name__ == "__main__":
     start_time = time.time()
     logging.info("Main    : wait for our cooking to finish")
 
-    pasta_cook = Thread(target=cooking, args=pasta)
-    meat_cook = Thread(target=cooking, args=meat)
+    pasta_cook = Task(target=cooking, args=pasta)
+    meat_cook = Task(target=cooking, args=meat)
 
     logging.info("Main    : before running thread")
     pasta_cook.start()
