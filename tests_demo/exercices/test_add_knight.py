@@ -1,3 +1,4 @@
+import pytest
 from exercices.exo_02 import add_knight
 
 def test_add_knight_without_kingdom():
@@ -20,3 +21,8 @@ def test_something():
 
     assert len(aquilonia) == 1
     assert len(gotham) == 1
+
+def test_duplicate_must_raise():
+    kingdom = ["Arthur", "Lancelot"]
+    with pytest.raises(ValueError):
+       add_knight("Arthur", kingdom)
