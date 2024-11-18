@@ -1,11 +1,16 @@
 import asyncio
+import random
 
-async def main():
-    print('Hello ...')
-    await asyncio.sleep(1)
-    print('... World!')
+async def some_work(name):
+    print(f'Started {name} ...')
+    delay = random.uniform(0, 1.5)
+    await asyncio.sleep(delay)
+    print(f'... and finished {name}')
 
-asyncio.run(main())
 
-#loop = asyncio.get_event_loop()
-#loop.run_until_complete(main())
+if __name__ == '__main__':
+    asyncio.run(some_work("main"))
+
+# Historiquement, mais maintenant déprécié :
+# loop = asyncio.get_event_loop()
+# loop.run_until_complete("main")

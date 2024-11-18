@@ -9,8 +9,11 @@ async def some_work(name):
     print(f'... and finished {name} after {delay:.2f} seconds')
 
 async def main():
+    tasks = []
     for i in range(5):
-        await some_work(i)
+        tasks.append(asyncio.create_task(some_work(i)))
+
+    await asyncio.wait(tasks)
 
 
 if __name__ == '__main__':
