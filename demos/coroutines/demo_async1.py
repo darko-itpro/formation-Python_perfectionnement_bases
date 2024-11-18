@@ -11,6 +11,6 @@ async def some_work(name):
 if __name__ == '__main__':
     asyncio.run(some_work("main"))
 
-# Historiquement, mais maintenant déprécié :
+# Historically, now deprecated :
 # loop = asyncio.get_event_loop()
 # loop.run_until_complete("main")
