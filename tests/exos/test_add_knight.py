@@ -10,13 +10,10 @@ def test_add_knight_to_empty_kingdom():
 
 def test_add_knight_to_new_kingdom():
     knight = "Lancelot"
-    warrior = "Conan"
 
     camelot = add_knight(knight)
-    aquilonia = add_knight("Conan")
 
     assert camelot == ["Lancelot"]
-    assert aquilonia == ["Conan"]
 
 def test_add_knight_to_kingdom_with_king():
     camelot = ["Arthur"]
@@ -25,4 +22,14 @@ def test_add_knight_to_kingdom_with_king():
     camelot = add_knight(knight, camelot)
 
     assert camelot == ["Arthur", "Lancelot"]
+
+def test_add_knight_to_new_kingdoms():
+    knight = "Lancelot"
+    warrior = "Conan"
+
+    camelot = add_knight(knight)
+    aquilonia = add_knight(warrior)
+
+    assert camelot == ["Lancelot"]
+    assert aquilonia == ["Conan"]
 
