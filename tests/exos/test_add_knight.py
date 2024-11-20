@@ -1,3 +1,4 @@
+import pytest
 from exos.exo_02 import add_knight
 
 def test_add_knight_to_empty_kingdom():
@@ -33,3 +34,6 @@ def test_add_knight_to_new_kingdoms():
     assert camelot == ["Lancelot"]
     assert aquilonia == ["Conan"]
 
+def test_exception_raised():
+    with pytest.raises(ZeroDivisionError):
+        5 / 0
