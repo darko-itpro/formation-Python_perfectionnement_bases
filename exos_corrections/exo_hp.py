@@ -6,3 +6,13 @@ potter_movies = [["The Philosopher's Stone", 152, True],
                  ["the Half-Blood Prince", 153, True],
                  ["the Deathly Hallows – Part 1", 126, False],
                  ("the Deathly Hallows – Part 2", 130, False)]
+
+movies_titles = [title for title, *_ in potter_movies]
+print(movies_titles)
+
+titles_to_view = [title for title, _, viewed in potter_movies if not viewed]
+print(titles_to_view)
+
+duration = sum([duration for _, duration, _ in potter_movies])
+
+print("Durée : {:02}h{:02}".format(*divmod(sum([duration for _, duration, _ in potter_movies]), 60)))
