@@ -18,7 +18,7 @@ class TvShow:
         self._episodes = []
 
     @classmethod
-    def something(cls):
+    def wit_episodes(cls, name:str, episodes:list):
         pass
 
     @property
