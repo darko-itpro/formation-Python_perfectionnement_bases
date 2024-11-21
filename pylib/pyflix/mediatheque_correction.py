@@ -12,6 +12,20 @@ class Episode:
 
         return (self.number, self.season_number) == (other.number, other.season_number)
 
+class EpisodesIterator:
+    def __init__(self, episodes):
+        self._episodes = episodes.copy()
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self._episodes:
+            return self._episodes.pop(0)
+        else:
+            raise StopIteration('End of iteration')
+
+
 class TvShow:
     def __init__(self, name:str):
         self.name = name.title()
@@ -24,6 +38,9 @@ class TvShow:
     @property
     def episodes(self):
         return self._episodes.copy()
+
+    def __iter__(self):
+        return EpisodesIterator(self.episodes)
 
     def add_episode(self, title:str, number:int, season_number:int, duration:int=None, year:int=None):
         new_episode = Episode(title, number, season_number, duration, year)
@@ -39,6 +56,9 @@ class Playlist:
     def __init__(self, name):
         self.name = name
         self.episodes = []
+
+    def __iter__(self):
+        return EpisodesIterator(self.episodes)
 
     def add_episode(self, episode):
         self.episodes.append(episode)
