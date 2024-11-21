@@ -17,16 +17,20 @@ class ChangeDir:
     def __exit__(self, exc_type, exc_val, exc_tb):
         os.chdir(self.origin)
 
-print(os.getcwd())
-dir_changer = ChangeDir('/opt')
-os.chdir("..")
-print(os.getcwd())
-
-with dir_changer:
+def truc():
     print(os.getcwd())
-    with ChangeDir('/home'):
-        with dir_changer:
-            print(os.getcwd())
+    dir_changer = ChangeDir('/opt')
+    os.chdir("..")
     print(os.getcwd())
 
-print(os.getcwd())
+    with dir_changer:
+        print(os.getcwd())
+        with ChangeDir('/home'):
+            with dir_changer:
+                print(os.getcwd())
+        print(os.getcwd())
+
+    print(os.getcwd())
+
+import cProfile
+cProfile.run('truc', 'restats')
