@@ -6,7 +6,6 @@ class Episode:
         self.duration = int(duration) if duration is not None else None
         self.year = int(year) if year is not None else None
 
-
 class TvShow:
     def __init__(self, name):
         self.name = name
