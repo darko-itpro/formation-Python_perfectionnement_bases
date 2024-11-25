@@ -20,6 +20,7 @@ def test_add_new_kigdom():
     camelot = add_knight("Lancelot")
     assert len(camelot) == 1
 
+
 def test_add_two_knights_to_new_kingdom():
     camelot = add_knight("Lancelot")
     camelot = add_knight("Robin", camelot)

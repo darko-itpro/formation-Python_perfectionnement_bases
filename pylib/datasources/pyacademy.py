@@ -9,3 +9,4 @@ def load_grades(course:str):
     else:
         raise ValueError("No course found")
 
+print("lib loaded")
