@@ -1,8 +1,3 @@
-"""
-Démonstration des threads 05
-
-Exemple d'utilisation de semaphore
-"""
 from contextlib import closing
 
 import demos.parallelism.logger_conf
@@ -37,7 +32,7 @@ available_orders = random.randint(40, 60)
 while available_orders:
     # Picking one random menu item to simulate an order
     new_client_order = random.choice(menu)
-    logging.info(f"sending order {new_client_order[0]}")
+    logging.info(f"sending order {new_client_order[0]} for client {available_orders}")
     in_process = threading.Thread(target=kitchen.cook, args=new_client_order)
     in_process.start()
 

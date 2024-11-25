@@ -1,8 +1,8 @@
 import logging
 
 def repas():
-    yield "entrée"
-    yield "plat"
+    yield "appetiser"
+    yield "main course"
     yield "dessert"
 
 def ticket():

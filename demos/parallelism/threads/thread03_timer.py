@@ -1,7 +1,5 @@
 """
-Démonstration des threads 03
-
-Troisième exemple avec les threads, le début d'un des threads est retardé grâce à Timer.
+Third example delaying a thread with timer.
 """
 
 import demos.parallelism.logger_conf

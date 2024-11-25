@@ -1,8 +1,6 @@
 """
-Démonstration des threads 02
-
-Second exemple avec les threads, la durée est celle du programme principal
-avant ajout des `.join()` où alors les actions se déroulent en parallèle.
+Second example with threads, the total duration is the duration of the main program.
+If a `.join()` is provided, the duration is the duration of the longest thread.
 """
 
 import demos.parallelism.logger_conf

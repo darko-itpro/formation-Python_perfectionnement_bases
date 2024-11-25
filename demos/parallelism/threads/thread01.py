@@ -1,7 +1,5 @@
 """
-Démonstration des threads 01
-
-Premier exemple sans threads, la durée est la durée totale.
+First example without threads, total duration is the sum of all durations.
 """
 
 import demos.parallelism.logger_conf

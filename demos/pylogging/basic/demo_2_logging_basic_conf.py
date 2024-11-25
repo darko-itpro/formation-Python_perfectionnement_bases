@@ -1,20 +1,14 @@
-"""
-Module de démonstration de l'usage d'un logger avec une configuration *basique*.
-
-IL y a 3 configurations de logger, testez en commentant et décommentant les configurations.
-"""
-
 import logging
 
-# configuration du lvl de log
+# config with a level
 logging.basicConfig(level=logging.INFO)
 
-# configuration du lvl de log et du format, le temps reformaté pour l'heure seule
+# config with a level and format
 # logging.basicConfig(level=logging.INFO,
 #                     format="%(asctime)s - %(levelname)s - %(message)s",
 #                     datefmt="%H:%M:%S")
 
-# configuration du lvl de log et du format dans un fichier en utilisant le format temps standard
+# config with a level, format and file
 # logging.basicConfig(filename="file.log", encoding='utf-8',
 #                     level=logging.INFO,
 #                     format="%(asctime)s - %(levelname)s - %(message)s")

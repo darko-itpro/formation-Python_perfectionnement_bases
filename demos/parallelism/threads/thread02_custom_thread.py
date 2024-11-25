@@ -1,7 +1,5 @@
 """
-Démonstration des threads 02 bis
-
-Second exemple bis avec les threads, basé sur
+Same second example with custom threads.
 """
 
 import demos.parallelism.logger_conf
@@ -36,12 +34,12 @@ class Burner(threading.Thread):
             self._reset_burner()
 
 
+burner1 = Burner()
+burner2 = Burner()
+
 logging.info("Main    : before creating thread")
 start_time = time.time()
 logging.info("Main    : wait for our cooking to finish")
-
-burner1 = Burner()
-burner2 = Burner()
 
 logging.info("Main    : before running thread")
 burner1.cook(*pasta)

@@ -1,5 +1,5 @@
 """
-Ce module est une source de données pour les différents exercices.
+This module is a datasource for different cases studied.
 """
 
 from pathlib import Path
@@ -19,18 +19,17 @@ def load_season(show_name=None, season_number=None):
 
 def get_season(user=None) -> list:
     """
-    Fonction permettant d'accéder à la saison d'une série. Sans paramètre (ou avec `None`, retourne
-    la liste des titres de la saison. Avec, retourne une liste d'épisodes sous forme de
-    dictionnaires.
+    Function to get a season of a Tv Show. Without any parameter (so, with `None`), returns a list
+    of titles of the episodes of the season. With a parameter, returns the list as a dict.
 
-    Le nombre d'épisodes vus/non vus est aléatoire. Lors de la génération de la liste, chaque
-    épisode a 80 % de chances d'être vu. Dès qu'un épisode n'a pas été vu, les suivants sont tous
-    non-vus. Un épisode non vu a 60 % de chances de ne pas avoir la clef `viewed`.
+    The number of viewed/not viewed episodes is random. Each episode has 80% chances to be viewed.
+    Once an episode is viewed, all the following episodes are viewed. A non-viewed episode have
+    60% chances to be without the kew `viewed`.
 
-    :param user: un identifiant d'utilisateur.
-    :return: Si un identifant est donné, une liste d'épisodes où un épisode est représenté par un
-    dictionnaire contenant les clefs `title`, `duration` et `viewed`. Si l'épisode n'a pas été vu,
-    cette dernière peut être absente.
+    :param user: a user ID (any value but `None`).
+    :return: If an id is provided, a list of episodes where each episode is a dict with the keys
+    `title`, `duration` and `viewed`. if the episode was not viewed, the `viewed` key may be
+    missing.
     """
     file_path = Path(__file__).resolve().parent.parent.parent / "assets" / "bbts12.csv"
 
@@ -47,12 +46,12 @@ def get_season(user=None) -> list:
 
 def _randomize_viewed(season: list) -> None:
     """
-    Ajoute de manière aléatoire une clef `viewed` à une liste d'épisodes.
+    Randomly adds a key `viewed` to a list of episodes.
 
-    Un épisode a 80% de chance d'être vu. Dès qu'un épisode n'est pas vu, les suivants sont
-    également non-vus. Un épisode non-vu a 60% de chances de ne pas avoir la clef `viewed`.
+    An episode has 80% chances to be `viewed`. Once an episode is set to `not viewed`, all the
+    following are also not viewed. `Not viewed` episodes have 60% chances to have the key missing.
 
-    :param season: Une liste de dictionnaires
+    :param season: A list of dicts.
     """
     is_viewed = True
 
@@ -69,10 +68,10 @@ def _randomize_viewed(season: list) -> None:
 
 def _process_line(episode_line: str):
     """
-    Extrait et transtype les données à partir d'une ligne type csv.
+    Reads and
 
-    :param episode_line: Une ligne type csv
-    :return: Un N-uplet (nom saison, saison, numéro d'épisode, titre d'épisode, durée, année)
+    :param episode_line: A line from a csv file
+    :return: A tuple (season name, season number, episode number, episode title, duration, year).
     """
     show, season, episode, title, duration, year = episode_line.rstrip().split(';')
     return show, title, int(season), int(episode), int(duration), int(year)

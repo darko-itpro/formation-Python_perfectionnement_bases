@@ -1,8 +1,8 @@
 """
-Démonstration du passage au multiprocessing
+Switching to multiprocessing
 
-Il s'agit de l'exemple avec les threads avec join afin d'illustrer la proximité de la syntaxe
-du multiprocessing.
+This is the same program as the first threads demo. It is meant to show how easy it may be to
+replace threads wit processes.
 """
 
 import demos.parallelism.logger_conf

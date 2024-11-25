@@ -1,7 +1,5 @@
 """
-Démonstration des threads 04
-
-Quatrième exemple avec les threads, problème de concurrence.
+Fourth example with a concurrency problem.
 """
 
 import demos.parallelism.logger_conf

@@ -1,15 +1,15 @@
 """
-Cecli est un module de fonctions utiles pour l'usage du terminal.
+Useful features for CLI usage
 """
 
 def display_shows(shows:dict):
     """
-    Affiche dans le terminal les informations d'un dictionnaire de séries.
+    Displays in the terminal informations from a dict of shows
 
-    La série doit avoir un attribut `name` et un attribut `episodes` contenant
-    des objets ayant eux-même un attribut `title`.
+    The show must have a `name` and `epiosdes` attribute. Episode objects must have a `title`
+    attribute.
 
-    :param shows: Dictionnaire dont les valeurs sont des objets série.
+    :param shows: dict of episodes
     """
     for show in shows.values():
         print("\n-----")
@@ -17,11 +17,10 @@ def display_shows(shows:dict):
 
 def display_show(show):
     """
-    Affiche dans le terminal les informations d'une série. La série doit avoir
-    un attribut `name` et un attribut `episodes` contenant des objets ayant
-    eux-même un attribut `title`.
+    Displays a TV Show.
 
-    :param show: Dictionnaire dont les valeurs sont des objets série.
+    The show must have a `name` and `epiosdes` attribute. Episode objects must have a `title`
+    attribute.
     """
     print(show.name)
     for episode in show.episodes:
