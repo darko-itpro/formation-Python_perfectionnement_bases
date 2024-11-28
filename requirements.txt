@@ -1,2 +1,2 @@
 jupyterlab>=4.3,<4.4
-celery>=5.4,<5.5
+celery[redis]>=5.4,<5.5
