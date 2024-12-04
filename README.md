@@ -64,6 +64,8 @@ suivantes :
    avancé `ipython`.
  * [jupyter-lab](https://jupyter.org/) : est une évolution du projet Jupyter. Normalement on
    utilise l'un ou l'autre. Les deux sont présents dans le contexte de formation.
+ * [celery](https://docs.celeryq.dev/) : utilisé pour l'asynchronisme. Nécessite
+   [RabbitMQ](https://www.rabbitmq.com/) et [Redis](https://redis.io/).
  
 ## Ressources
 

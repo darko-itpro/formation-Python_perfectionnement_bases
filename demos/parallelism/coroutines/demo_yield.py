@@ -12,7 +12,7 @@ def ticket():
         yield number
 
 
-from demos.coroutines.cordeco import coroutine
+from demos.parallelism.coroutines.cordeco import coroutine
 
 @coroutine
 def receiver():
