@@ -12,10 +12,10 @@ import time
 
 class Oven:
     def __init__(self):
-        self._dish = None
+        self._dish:str|None = None
         self._lock = threading.Lock()
 
-    def cook_meal(self, dish, duration):
+    def cook_meal(self, dish:str, duration:int):
         logging.info(f"Ready to cook {dish}")
 
         #with self._lock:

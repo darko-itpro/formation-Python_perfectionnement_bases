@@ -19,12 +19,11 @@ def cooking(dish, duration):
 
 logging.info("Main    : before creating thread")
 start_time = time.time()
-logging.info("Main    : wait for our cooking to finish")
 
 pasta_cook = threading.Thread(target=cooking, args=pasta)
 meat_cook = threading.Timer(pasta[1] - meat[1], cooking, args=meat)
 
-logging.info("Main    : before running thread")
+logging.info("Main    : cooking started")
 pasta_cook.start()
 meat_cook.start()
 
