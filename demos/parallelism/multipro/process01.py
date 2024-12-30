@@ -14,7 +14,7 @@ import time
 pasta = ("pasta", 9)
 meat = ("steak", 4)
 
-def cooking(dish, duration):
+def cooking(dish:str, duration:int):
     logging.info(f"Cooking {dish} started")
     time.sleep(duration)
     logging.info(f"Cooking {dish} done")

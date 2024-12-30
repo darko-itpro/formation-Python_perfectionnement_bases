@@ -5,7 +5,7 @@ import logging
 from multiprocessing import Process as Task
 import time
 
-def countdown(n):
+def countdown(n:int):
     while n > 0:
         n -= 1
 
