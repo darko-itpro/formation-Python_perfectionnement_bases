@@ -17,7 +17,7 @@ def main():
     countdown(value)
     countdown(value)
     end_time = time.time()
-    logging.info(f"Main    : Collecting after {end_time - start_time:.2f}")
+    logging.info("Main    : Collecting after %.2f", end_time - start_time)
 
     print(" ----- ")
 
@@ -35,7 +35,7 @@ def main():
     second_thread.join()
 
     end_time = time.time()
-    logging.info(f"Main    : Collecting after {end_time - start_time:.2f}")
+    logging.info("Main    : Collecting after %.2f", end_time - start_time)
 
 if __name__ == '__main__':
     main()

@@ -20,16 +20,16 @@ menu = [
 ]
 
 def cooking(dish, duration, call_event=None):
-    logging.info(f"Cooking {dish} started")
+    logging.info("Cooking %s started", dish)
     time.sleep(duration)
-    logging.info(f"Cooking {dish} done")
+    logging.info("Cooking %s done", dish)
 
     if call_event:
         call_event.set()
 
-    logging.info(f"Cleaning for {dish}")
+    logging.info("Cleaning for %s", dish)
     time.sleep(2)
-    logging.info(f"Cleaning for {dish} done")
+    logging.info("Cleaning for %s done", dish)
 
 
 if __name__ == "__main__":

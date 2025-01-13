@@ -13,9 +13,9 @@ pasta = ("pasta", 9)
 meat = ("steak", 4)
 
 def cooking(dish, duration):
-    logging.info(f"Cooking {dish} started")
+    logging.info("Cooking %s started", dish)
     time.sleep(duration)
-    logging.info(f"Cooking {dish} done")
+    logging.info("Cooking %s done", dish)
 
 logging.info("Main    : before creating thread")
 start_time = time.time()
@@ -32,4 +32,4 @@ meat_cook.join()
 
 end_time = time.time()
 
-logging.info(f"Main    : Collecting after {end_time - start_time:.2f} seconds, ready to serve")
+logging.info("Main    : Collecting after %.2f seconds, ready to serve", end_time - start_time)

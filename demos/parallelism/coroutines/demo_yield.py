@@ -1,3 +1,4 @@
+import demos.parallelism.logger_conf
 import logging
 
 def repas():

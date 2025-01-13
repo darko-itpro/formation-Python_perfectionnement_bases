@@ -25,9 +25,9 @@ class KitchenTeam:
 
     def cook(self, dish, duration):
         with self._team:
-            logging.info(f"Order {dish} started, ready in {duration}.")
+            logging.info("Order %s started, ready in %d.", dish, duration)
             time.sleep(duration)
-            logging.info(f"{dish} cooked")
+            logging.info("%s cooked", dish)
 
 kitchen = KitchenTeam(4)
 
@@ -37,7 +37,7 @@ available_orders = random.randint(40, 60)
 while available_orders:
     # Picking one random menu item to simulate an order
     new_client_order = random.choice(menu)
-    logging.info(f"sending order {new_client_order[0]}")
+    logging.info("sending order %s", new_client_order[0])
     in_process = threading.Thread(target=kitchen.cook, args=new_client_order)
     in_process.start()
 

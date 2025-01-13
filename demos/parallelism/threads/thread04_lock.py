@@ -16,14 +16,14 @@ class Oven:
         self._lock = threading.Lock()
 
     def cook_meal(self, dish:str, duration:int):
-        logging.info(f"Ready to cook {dish}")
+        logging.info("Ready to cook %s", dish)
 
         #with self._lock:
         #self._lock.acquire()
-        logging.info(f"Putting {dish} into oven")
+        logging.info("Putting %s into oven", dish)
         self._dish = dish
         time.sleep(duration)
-        logging.info(f"Taking out {self._dish} from oven")
+        logging.info("Taking out %s from oven", self._dish)
         #self._lock.release()
 
 
