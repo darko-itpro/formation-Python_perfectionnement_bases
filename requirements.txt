@@ -1,0 +1,8 @@
+ipython==9.2.0
+pytest==8.3.5
+pytz==2025.2
+flake8==7.2.0
+pylint==3.3.6
+jupyterlab==4.4.1
+celery==5.5.2
+rich==14.0.0
