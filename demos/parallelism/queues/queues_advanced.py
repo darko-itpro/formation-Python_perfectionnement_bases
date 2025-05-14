@@ -1,7 +1,5 @@
 import time
 
-import pya.concurrency.logger_conf
-
 import logging
 import threading
 import queue

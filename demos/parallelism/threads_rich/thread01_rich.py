@@ -19,13 +19,14 @@ def cooking(dish:str, duration:int):
 
 
 console = Console()
-with (console.status("[bold green]Cooking will start...[/bold green]", spinner="aesthetic")
-      as status):
+with console.status("[bold green]Cooking will start...[/bold green]",
+                    spinner="aesthetic") as status:
     time.sleep(1)
     start_time = time.time()
 
     status.update(f"[bold green]Cooking {pasta[0]}[/bold green]")
     cooking(*pasta)
+
     status.update(f"[bold green]Cooking {meat[0]}[/bold green]")
     cooking(*meat)
 
