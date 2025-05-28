@@ -37,7 +37,7 @@ class Burner(threading.Thread):
             time.sleep(self._duration)
             logging.info("Cooking %s done", self._dish)
 
-            self._reset_burner()
+        self._reset_burner()
 
 
 if __name__ == "__main__":
@@ -51,7 +51,7 @@ if __name__ == "__main__":
     burner1.cook(*pasta)
     burner2.cook(*meat)
 
-    burner1.join()
-    burner2.join()
+#    burner1.join()
+#    burner2.join()
     end_time = time.time()
     logging.info("Main    : Collecting after %.2f seconds, ready to serve", end_time - start_time)
