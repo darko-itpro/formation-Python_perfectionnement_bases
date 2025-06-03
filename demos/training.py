@@ -10,7 +10,7 @@ class TrainingSession:
         self.subject = subject
         self.duration = duration
         self.students = []
-        self.max_seats = None
+        self.max_seats = max_seats
 
         if self.duration < 1:
             raise ValueError(f"Training duration must be greater than or equal to 1, got {self.duration}")
