@@ -8,4 +8,3 @@ def load_grades(course:str):
         return [19, 14, 3, 15, 8, 12, 13, 14, 16]
     else:
         raise ValueError("No course found")
-
