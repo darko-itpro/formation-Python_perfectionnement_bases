@@ -14,18 +14,26 @@ def empty_show():
 def playlist():
     return Playlist("Ma playlist")
 
+# @pytest.fixture
+# def service_user():
+#     user = db.create_user(name)
+#     yield user
+#     db.delete_user(name)
 
+
+@pytest.mark.episodes
 def test_got_episodes_attr(empty_show):
     assert hasattr(empty_show, "add_episode")
     assert callable(getattr(empty_show, "add_episode"))
 
     assert len(empty_show.episodes) == 0
 
+@pytest.mark.episodes
 def test_can_add_episodes(empty_show):
     empty_show.add_episode("To the moon", 2, 3)
     assert empty_show.episodes[0].title == "To the moon"
 
-
+@pytest.mark.episodes(value=123)
 def test_duplicate_episode_must_raise(empty_show):
     empty_show.add_episode("To the moon", 2, 3)
     with pytest.raises(ValueError, match="Duplicate episode"):
