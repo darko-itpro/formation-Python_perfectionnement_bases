@@ -17,19 +17,20 @@ def cooking(dish, duration):
     time.sleep(duration)
     logging.info("Cooking %s done", dish)
 
-logging.info("Main    : before creating thread")
-start_time = time.time()
+if __name__ == "__main__":
+    logging.info("Main    : before creating thread")
+    start_time = time.time()
 
-pasta_cook = threading.Thread(target=cooking, args=pasta)
-meat_cook = threading.Timer(pasta[1] - meat[1], cooking, args=meat)
+    pasta_cook = threading.Thread(target=cooking, args=pasta)
+    meat_cook = threading.Timer(pasta[1] - meat[1], cooking, args=meat)
 
-logging.info("Main    : cooking started")
-pasta_cook.start()
-meat_cook.start()
+    logging.info("Main    : cooking started")
+    pasta_cook.start()
+    meat_cook.start()
 
-pasta_cook.join()
-meat_cook.join()
+    pasta_cook.join()
+    meat_cook.join()
 
-end_time = time.time()
+    end_time = time.time()
 
-logging.info("Main    : Collecting after %.2f seconds, ready to serve", end_time - start_time)
+    logging.info("Main    : Collecting after %.2f seconds, ready to serve", end_time - start_time)

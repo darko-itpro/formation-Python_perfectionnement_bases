@@ -26,18 +26,14 @@ class Oven:
         logging.info("Taking out %s from oven", self._dish)
         #self._lock.release()
 
+if __name__ == '__main__':
+    pastry_01 = ("Bred", 8)
+    pastry_02 = ("Cake", 4)
 
-meal1 = ("Bred", 8)
-meal2 = ("Cake", 4)
+    oven = Oven()
 
-oven = Oven()
+    bread_cooker = threading.Thread(target=oven.cook_meal, args=pastry_01)
+    cake_cooker = threading.Thread(target=oven.cook_meal, args=pastry_02)
 
-bread_cooker = threading.Thread(target=oven.cook_meal, args=meal1)
-cake_cooker = threading.Thread(target=oven.cook_meal, args=meal2)
-
-bread_cooker.start()
-cake_cooker.start()
-
-# for _ in range(20):
-#     print(f"{oven._dish} in the oven")
-#     time.sleep(1)
+    bread_cooker.start()
+    cake_cooker.start()
