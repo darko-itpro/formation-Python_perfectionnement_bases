@@ -1,6 +1,7 @@
 from pathlib import Path
 import re
 
+from pylib import settings
 
 def load_from_filenames(dir_path):
     """
@@ -35,3 +36,26 @@ def load_from_csv(file_path):
         for episode in csv_file:
             show, season, number, title, duration, year = episode.strip().split(";")
             yield show, title, number, season, duration, year
+
+
+sources = [settings.ROOT_PATH / "assets" / "files",
+           settings.ROOT_PATH / "assets" / 'showslist.csv']
+
+
+def load_from_sources(sources:list):
+    """
+    Générateur qui fournit les informations média série à partir d'une liste de sources.
+
+    :param sources: Liste chemins soit vers des fichiers csv soit vers des répertoires.
+    """
+    for source in sources:
+        source = Path(source)
+
+        if source.is_file():
+            yield from load_from_csv(source)
+        elif source.is_dir():
+            yield from load_from_filenames(source)
+
+if __name__ == "__main__":
+    for i in load_from_sources(sources):
+        print(i)
