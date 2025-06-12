@@ -35,6 +35,16 @@ class TvShow:
         self.name = name
         self._episodes = []
 
+    @classmethod
+    def with_episodes(cls, name:str, episodes:list): # TvShow.with_episodes('myshow', [])
+        # episodes liste de tuples (title, season_number, number, duration, year)
+
+        my_show = cls(name)
+        for episode in episodes:
+            my_show.add_episode(*episode)
+
+        return my_show
+
     def __iter__(self):
         return EpisodesIterator(self.episodes)
 
