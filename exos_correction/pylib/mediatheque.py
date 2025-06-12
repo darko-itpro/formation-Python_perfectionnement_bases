@@ -15,10 +15,28 @@ class Episode:
     def __str__(self):
         return f"Episode '{self.title}', s{self.season_number}e{self.number}"
 
+
+class EpisodesIterator:
+    def __init__(self, episodes):
+        self._episodes = episodes.copy()
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        try:
+            return self._episodes.pop(0)
+        except IndexError:
+            raise StopIteration
+
+
 class TvShow:
     def __init__(self, name):
         self.name = name
         self._episodes = []
+
+    def __iter__(self):
+        return EpisodesIterator(self.episodes)
 
     @property
     def duration(self):
@@ -48,6 +66,9 @@ class Playlist:
     def __init__(self, name):
         self.name = name
         self.episodes = []
+
+    def __iter__(self):
+        return EpisodesIterator(self.episodes)
 
     def add_episode(self, episode):
         self.episodes.append(episode)

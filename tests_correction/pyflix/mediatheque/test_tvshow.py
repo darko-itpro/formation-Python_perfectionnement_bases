@@ -18,32 +18,37 @@ def test_has_empty_attribute_episodes():
     assert hasattr(show, 'episodes')
     assert len(show.episodes) == 0
 
-def test_can_add_episode():
-    show = TvShow('for all mankind')
+
+@pytest.fixture
+def show():
+    return TvShow('for all mankind')
+
+
+@pytest.fixture
+def show_with_one_episode(show):
     show.add_episode('To the moon', 1, 1)
-    assert len(show.episodes) == 1
-    assert show.episodes[0].title == 'To the moon'
+    return show
+
+def test_can_add_episode(show_with_one_episode):
+    assert len(show_with_one_episode.episodes) == 1
+    assert show_with_one_episode.episodes[0].title == 'To the moon'
 
 
-def test_duplicate_must_raise():
-    show = TvShow('for all mankind')
+def test_duplicate_must_raise(show):
     show.add_episode('To the moon', 1, 1)
     with pytest.raises(ValueError):
         show.add_episode('To the moon', 1, 1)
 
-def test_assign_eppisodes_must_raise():
-    show = TvShow('for all mankind')
+def test_assign_eppisodes_must_raise(show):
     with pytest.raises(AttributeError):
         show.episodes = []
 
-def test_episodes_should_not_be_added():
-    show = TvShow('for all mankind')
+def test_episodes_should_not_be_added(show):
     show.add_episode('To the moon', 1, 1)
     show.episodes.append("toto")
     assert len(show.episodes) == 1
 
-def test_update_title_must_match_case():
-    show = TvShow('all mankind')
+def test_update_title_must_match_case(show):
     show.name = "for all manKinD"
     assert show.name == "For All Mankind"
 
