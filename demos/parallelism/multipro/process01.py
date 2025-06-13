@@ -7,8 +7,8 @@ du multiprocessing.
 
 import demos.parallelism.logger_conf
 import logging
-from threading import Thread as Task
-# from multiprocessing import Process
+#from threading import Thread as Task
+from multiprocessing import Process as Task
 import time
 
 pasta = ("pasta", 9)

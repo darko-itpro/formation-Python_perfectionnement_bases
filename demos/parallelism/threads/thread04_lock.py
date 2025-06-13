@@ -18,13 +18,13 @@ class Oven:
     def cook_meal(self, dish:str, duration:int):
         logging.info("Ready to cook %s", dish)
 
-        #with self._lock:
-        #self._lock.acquire()
-        logging.info("Putting %s into oven", dish)
-        self._dish = dish
-        time.sleep(duration)
-        logging.info("Taking out %s from oven", self._dish)
-        #self._lock.release()
+        with self._lock:
+            #self._lock.acquire()
+            logging.info("Putting %s into oven", dish)
+            self._dish = dish
+            time.sleep(duration)
+            logging.info("Taking out %s from oven", self._dish)
+            #self._lock.release()
 
 if __name__ == '__main__':
     pastry_01 = ("Bred", 8)
