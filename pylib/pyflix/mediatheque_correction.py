@@ -1,15 +1,21 @@
 class Episode:
     def __init__(self, title:str, number:int, season_number:int, duration:int=None, year:int=None):
-        self.title = title
+        self.title = title.title()
         self.number = number
         self.season_number = season_number
         self.duration = int(duration) if duration is not None else None
         self.year = int(year) if year is not None else None
 
+    def __eq__(self, other):
+        if not isinstance(other, self.__class__):
+            return False
+
+        return (self.number, self.season_number) == (other.number, other.season_number)
+
 
 class TvShow:
     def __init__(self, name):
-        self.name = name
+        self.name = name.title()
         self.episodes = []
 
     def add_episode(self, title:str, number:int, season_number:int, duration:int=None, year:int=None):
