@@ -18,6 +18,15 @@ class TvShow:
         self.name = name
         self._episodes = []
 
+    def __len__(self): # len(tvshow)
+        return len(self._episodes)
+
+    def __contains__(self, episode:Episode): # item in tvshow
+        return episode in self._episodes
+
+    def __getitem__(self, item): # tvshow[kekchose]
+        pass
+
     @property
     def duration(self):
         return sum((episode.duration
