@@ -17,7 +17,7 @@ class Episode:
 @dataclass(frozen=True)
 class TvShow:
     name:str
-    episodes:list = field(default_factory=list)
+    episodes:list = field(default_factory=list, init=False)
 
     def add_episode(self, title:str, number:int, season_number:int, duration:int=None, year:int=None):
         new_episode = Episode(title, number, season_number, duration, year)
@@ -29,7 +29,7 @@ class TvShow:
 @dataclass(frozen=True)
 class Playlist:
     name:str
-    episodes:list = field(default_factory=list)
+    episodes:list = field(default_factory=list, init=False)
 
     def add_episode(self, episode):
         self.episodes.append(episode)
