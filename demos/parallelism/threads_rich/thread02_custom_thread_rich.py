@@ -27,6 +27,10 @@ class Burner(threading.Thread):
     def dish(self):
         return self._dish
 
+    @property
+    def duration(self):
+        return self._duration
+
     def _reset_burner(self):
         self._dish = None
         self._duration = 0
@@ -56,17 +60,18 @@ if __name__ == "__main__":
 
     console.log("Main    : cooking started")
 
-    with Progress() as progress:
-        progress1 = progress.add_task(f"[red]Cooking {burner1.dish}...", total=100)
-        progress2 = progress.add_task(f"[red]Cooking {burner2.dish}...", total=100)
+    burner1.cook(*pasta)
+    burner2.cook(*meat)
 
-        burner1.cook(*pasta)
-        burner2.cook(*meat)
+    with Progress() as progress:
+        progress1 = progress.add_task(f"[red]Cooking {burner1.dish}...", total=burner1.duration)
+        progress2 = progress.add_task(f"[red]Cooking {burner2.dish}...", total=burner2.duration)
+
 
         while not progress.finished:
-            
-
-
+            progress.update(progress1, advance=1)
+            progress.update(progress2, advance=1)
+            time.sleep(1)
 
     burner1.join()
     burner2.join()
