@@ -19,6 +19,7 @@ def cooking(dish:str, duration:int):
 
 
 console = Console()
+console.clear()
 with console.status("[bold green]Cooking will start...[/bold green]",
                     spinner="aesthetic") as status:
     time.sleep(1)

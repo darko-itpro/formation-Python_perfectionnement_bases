@@ -45,9 +45,6 @@ while available_orders:
     wait_time = random.randint(0, 5)
     time.sleep(wait_time)
 
-    # Chaos addition
-    if wait_time == max and wait_time > 1: max -= 1
-    if wait_time == 0: max += 1
     available_orders -= 1
     if not available_orders:
         logging.warning("Last order sent, kitchen closing")
