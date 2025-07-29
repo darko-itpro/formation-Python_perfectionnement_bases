@@ -20,6 +20,9 @@ def cooking(dish:str, duration:int):
 
 console = Console()
 console.clear()
+
+console.rule("Starting…")
+
 with console.status("[bold green]Cooking will start...[/bold green]",
                     spinner="aesthetic") as status:
     time.sleep(1)
@@ -32,4 +35,7 @@ with console.status("[bold green]Cooking will start...[/bold green]",
     cooking(*meat)
 
 end_time = time.time()
-console.print(f"Main    : Collecting after {end_time - start_time:.2f} seconds, ready to serve")
+
+console.rule("Processing done")
+
+console.print(f"Main    : Collecting after [bold]{end_time - start_time:.2f} seconds[/bold], ready to serve")

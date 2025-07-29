@@ -55,6 +55,9 @@ if __name__ == "__main__":
 
     console = Console()
 
+    console.clear()
+    console.rule("Starting…")
+
     console.log("Main    : before creating thread")
     start_time = time.time()
 
@@ -63,6 +66,8 @@ if __name__ == "__main__":
     burner1.cook(*pasta)
     burner2.cook(*meat)
 
+    console.print()
+    console.rule("Progress…")
     with Progress() as progress:
         progress1 = progress.add_task(f"[red]Cooking {burner1.dish}...", total=burner1.duration)
         progress2 = progress.add_task(f"[red]Cooking {burner2.dish}...", total=burner2.duration)
@@ -73,7 +78,11 @@ if __name__ == "__main__":
             progress.update(progress2, advance=1)
             time.sleep(1)
 
+    console.log("Main    : processing done")
+
+    console.print()
+    console.rule("Processing done")
     burner1.join()
     burner2.join()
     end_time = time.time()
-    console.log(f"Main    : Collecting after {end_time - start_time} seconds, ready to serve")
+    console.print(f"Main    : Collecting after [bold]{end_time - start_time} seconds[/bold], ready to serve")
