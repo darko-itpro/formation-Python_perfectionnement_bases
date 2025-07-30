@@ -1,3 +1,7 @@
+"""
+Usage de la SharedMemory avec liste d'entiers
+"""
+
 from multiprocessing.shared_memory import SharedMemory
 from multiprocessing import Process
 

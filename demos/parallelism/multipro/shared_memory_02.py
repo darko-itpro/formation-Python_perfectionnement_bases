@@ -1,3 +1,8 @@
+"""
+Usage de la SharedMemory avec un process.
+Passage par argument.
+"""
+
 from multiprocessing import Process
 from multiprocessing.shared_memory import SharedMemory
 
