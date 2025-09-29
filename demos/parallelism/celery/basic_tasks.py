@@ -1,5 +1,10 @@
 """
-À exécuter avec
+Nous utilisons Redis, la dépendance doit être installée :
+```bash
+pip install -U "celery[redis]"
+```
+
+Ensuite lancer Celery avec
 ```bash
 celery -A demos.parallelism.celery.basic_tasks:app worker --concurrency=4 --loglevel=INFO
 ```
