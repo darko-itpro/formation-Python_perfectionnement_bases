@@ -1,5 +1,5 @@
 # Formation Python Perfectionnement
-## Les généralités
+## Généralités
 
 This is the practical cases for Python training I provide. Intended for french trainee, the rest
 of the explanations are in french.
@@ -10,11 +10,24 @@ mes stagiaires.
 [![License](https://img.shields.io/github/license/darko-itpro/training-python.svg?style=plastic)](https://github.com/darko-itpro/training-python/blob/master/LICENSE)
 
 
-Ces sources sont organisées pour proposer des exemples de code sur les thèmes couverts par les formations
-Python Perfectionnement. Elles respectent avec quelques adaptations l'organisation d'un package.
+Ces sources sont organisées pour proposer des exemples de code sur les thèmes couverts par les
+formations Python Perfectionnement. Elles respectent avec quelques adaptations l'organisation d'un
+package *flat*.
 
-## Récupérez le projet
-Le projet peut être dans l'arborescence que vous souhaitez sur votre disque.
+## Procédure d'installation
+### Branche dédiée à la formation
+Pour mes formations, je prépare une branche dédiée à laquelle j'ajoute les illustrations et les
+corrections d'exercices. Faites donc attention aux potentiels conflits. 
+
+### Récupérez le projet
+Le projet peut être dans l'arborescence que vous souhaitez sur votre disque. Vous pouvez soit cloner
+le projet soit le récupérer sous forme d'une archive.
+
+Si vous récupérez le projet sous forme d'une archive, vous êtes indépendants du référentiel de
+sources. Vous pourrez récupérer les corrections sous forme d'une autre archive.
+
+Si vous clonez le projet, il y aura le risque d'un conflit. L'idéal sera de créer votre branche de
+travail.
 
 ## Structure du projet
 Ce projet est un projet de formation. Sa structure ne suit donc pas la
@@ -53,10 +66,12 @@ nécessaires sont listées ci-après.
 ## Dépendances du projet
 Les dépendances suceptibles d'être utilisées pour cette formation sont les
 suivantes :
- * [ipython](https://jupyter.org/) : il s'agit d'un shell intéractif avancé préféré au shell
+ * [ipython](https://jupyter.org/) : il s'agit d'un shell intéractif avancé encore préféré au shell
    intéractif standard.
  * [Pytest](https://docs.pytest.org/) : utilisé pour la partie tests unitaires
- * [Pytz](https://pypi.org/project/pytz/) : utilisé pour la gestion des TimeZone des dates
+ * [Pytz](https://pypi.org/project/pytz/) : utilisé pour la gestion des TimeZone des dates. Bien
+   que dépréciée depuis Python 3.9, elle est présente à but d'illustration d'une
+   dépendance *de prod* 
  * [flake8](https://flake8.pycqa.org/) : outil de validation statique de code
  * [pylint](https://pypi.org/project/pylint/) : outil d'analyse statique de code
  * [jupyter](https://jupyter.org/) : Jupyter sera utilisé pour ses notebooks, documents
@@ -66,6 +81,7 @@ suivantes :
    utilise l'un ou l'autre. Les deux sont présents dans le contexte de formation.
  * [celery](https://docs.celeryq.dev/) : utilisé pour l'asynchronisme. Nécessite
    [RabbitMQ](https://www.rabbitmq.com/) et [Redis](https://redis.io/).
+ * [rich](https://github.com/Textualize/rich) : permet d'avoir un texte *riche* dans le terminal. 
  
 ## Ressources
 
