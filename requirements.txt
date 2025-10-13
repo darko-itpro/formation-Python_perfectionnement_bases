@@ -7,4 +7,3 @@ jupyterlab>=4.4
 celery>=5.5.2
 rich>=14.0.0
 pytest-cov>=6.1.1
-scikit-learn>=1.7
