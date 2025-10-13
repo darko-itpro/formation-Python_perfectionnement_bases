@@ -26,7 +26,8 @@ class Training:
     max_seats: int = field(default=12)
 
 from collections import namedtuple
-Training = namedtuple("Training", ('subject', 'description', 'price', 'duration', 'max_seats'), defaults=[12])
+Training = namedtuple("Training", ('subject', 'description', 'price', 'duration', 'max_seats'),
+                      defaults=[12])
 
 
 class StudentsIterator:
@@ -48,7 +49,7 @@ class StudentsIterator:
 class TrainingSession:
     def __init__(self, training: Training, start_date: datetime, duration: int):
         self._training = training
-        self._start_date = start_date
+        self.start_date = start_date
         self.duration = duration
         self._coach = None
         self._students = []
@@ -79,6 +80,11 @@ class TrainingSession:
     @property
     def description(self):
         return self._training.description
+
+    @property
+    def available_seats(self):
+        available_seats = self._training.max_seats - len(self._students)
+        return available_seats if available_seats >= 0 else 0
 
     @property
     def students(self):
