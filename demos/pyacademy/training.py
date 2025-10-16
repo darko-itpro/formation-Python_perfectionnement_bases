@@ -23,9 +23,13 @@ class Training:
         self.price = price
         self.duration = duration
         self.max_seats = max_seats
-        self.students = []
+        self._students = []
+
+    @property
+    def students(self):
+        return self._students.copy()
 
     def add_student(self, student:Student):
-        if student in self.students:
+        if student in self._students:
             raise DuplicateStudentError(f"Student {student.name} already in training")
-        self.students.append(student)
+        self._students.append(student)
