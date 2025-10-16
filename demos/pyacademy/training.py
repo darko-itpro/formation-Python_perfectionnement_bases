@@ -17,8 +17,8 @@ class Student:
 
 
 class Training:
-    def __init__(self, subject, description, price, duration, max_seats=12):
-        self.subject = subject
+    def __init__(self, subject:str, description, price, duration, max_seats=12):
+        self.subject = subject.title()
         self.description = description
         self.price = price
         self.duration = duration
