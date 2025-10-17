@@ -7,10 +7,26 @@ class Episode:
         self.year = int(year) if year is not None else None
 
 
+class EpisodesIterator:
+    def __init__(self, episodes:list):
+        self._episodes = episodes.copy()
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        try:
+            return self._episodes.pop(0)
+        except IndexError:
+            raise StopIteration()
+
 class TvShow:
     def __init__(self, name):
         self.name = name
         self.episodes = []
+
+    def __iter__(self):
+        return EpisodesIterator(self.episodes.copy())
 
     def add_episode(self, title:str, number:int, season_number:int, duration:int=None, year:int=None):
         new_episode = Episode(title, number, season_number, duration, year)
@@ -23,6 +39,9 @@ class Playlist:
     def __init__(self, name):
         self.name = name
         self.episodes = []
+
+    def __iter__(self):
+        return EpisodesIterator(self.episodes)
 
     def add_episode(self, episode):
         self.episodes.append(episode)
