@@ -7,8 +7,9 @@ pip install -U "celery[redis]"
 Ensuite lancer Celery avec
 ```bash
 celery -A demos.parallelism.celery.basic_tasks:app worker --concurrency=4 --loglevel=INFO
-```
 
+celery flower --broker=amqp://guest:guest@127.0.0.1:5672//  --broker-api=http://guest:guest@127.0.0.1:15672/api/ --result-backend=redis://127.0.0.1:6379/0 --port=5555
+```
 """
 
 import time

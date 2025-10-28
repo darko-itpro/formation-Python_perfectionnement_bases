@@ -12,7 +12,8 @@ class TvShow:
         self.name = name
         self.episodes = []
 
-    def add_episode(self, title:str, number:int, season_number:int, duration:int=None, year:int=None):
+    def add_episode(self, title:str, season_number:int, number:int,
+                    duration:int=None, year:int=None):
         new_episode = Episode(title, number, season_number, duration, year)
         if new_episode in self.episodes:
             raise ValueError(f'Duplicate episode "{new_episode.title}"')

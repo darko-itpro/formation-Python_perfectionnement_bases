@@ -54,7 +54,7 @@ class TvShow:
         self._name = name.title()
 
         import re
-        self._db_name = Path(settings.ROOT_PATH, re.sub("[ .()]", "_", name)).with_suffix('.db')  # Voir regex
+        self._db_name = Path(settings.DATA_PATH, re.sub("[ .()]", "_", name)).with_suffix('.db')  # Voir regex
         self._connect = sqlite.connect(self._db_name)
 
         try:
@@ -85,14 +85,14 @@ class TvShow:
     def name(self):
         return self._name
 
-    def add_episode(self, title: str, ep_number: int, season_number: int,
+    def add_episode(self, title: str, season_number: int, ep_number: int,
                     duration: int = None, year: int = None):
         """
         Ajoute un épisode à la collection.
 
         :param title: titre de l'épisode
-        :param ep_number: numério de l'épisode
         :param season_number: numéro de saison de l'épisode
+        :param ep_number: numério de l'épisode
         :param duration: durée en minutes d'un épisode, optionnel - non utilisé
         :param year: année de l'épisode, optionnel - non utilisé
         :raises ValueError: si l'épisode existe déjà
