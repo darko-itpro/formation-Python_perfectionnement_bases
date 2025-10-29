@@ -81,6 +81,11 @@ class TvShow:
     def __str__(self):
         return 'Media DB Connector ({})'.format(self._db_name)
 
+    def __repr__(self):
+        class_name = type(self).__name__
+        # or: class_name = self.__class__.__name__
+        return f"{class_name}(name={self._name!r})"
+
     @property
     def name(self):
         return self._name
