@@ -1,17 +1,11 @@
 """
 Module de gestion de connexion à une base de données.
-
-Note sur la présence de la fonction print :
-Un objet ne doit pas avoir une instruction print car on ignore son contexte
-d'exécution. Néanmoins, un objet comme la DAO doit conserver des "traces" des
-évènements. Ceci passe communément par des loggers. Ce code étant destiné à des
-formations ne traitant en général pas les loggers, un print est utilisé à la
-place.
 """
 
 import sqlite3 as sqlite
 from collections import namedtuple
 from pathlib import Path
+import logging
 from pylib import settings
 
 SQL_CREATE_EPISODES_TABLE = "CREATE TABLE IF NOT EXISTS episodes ("\
@@ -32,10 +26,22 @@ SQL_ADD_SHOW_DATA = "INSERT INTO show values (?, ?);"
 SQL_GET_SHOW_DATA = "SELECT value FROM show WHERE key = ?;"
 
 SQL_ADD_EPISODE = "INSERT INTO episodes values(?, ?, ?, ?, ?);"
-SQL_GET_EPISODE = "SELECT title, season, e_number, duration, year FROM episodes where season = ? and e_number = ?;"
-SQL_GET_ALL_EPISODES = "SELECT title, season, e_number, duration, year FROM episodes ORDER BY season, e_number;"
-SQL_GET_EPISODES_FOR_SEASON = "SELECT title, season, e_number, duration, year FROM episodes where season = ? ORDER BY e_number;"
-SQL_COUNT_EPISODES = "SELECT COUNT(*) FROM episodes;"
+SQL_GET_EPISODE = ("SELECT title, season, e_number, duration, year "
+                   "FROM episodes "
+                   "where season = ? and e_number = ?;")
+SQL_GET_ALL_EPISODES = ("SELECT title, season, e_number, duration, year "
+                        "FROM episodes "
+                        "ORDER BY season, e_number;")
+SQL_GET_EPISODES_FOR_SEASON = ("SELECT title, season, e_number, duration, year "
+                               "FROM episodes "
+                               "where season = ? "
+                               "ORDER BY e_number;")
+SQL_GET_EPISODES_BETWEEN = ("SELECT  title, season, e_number, duration, year "
+                            "FROM episodes "
+                            "where season >= ? and episode >= ? "
+                            "ORDER BY season, e_number;")
+SQL_COUNT_EPISODES = ("SELECT COUNT(*) "
+                      "FROM episodes;")
 
 KEY_SHOW_NAME = "name"
 
@@ -75,8 +81,8 @@ class TvShow:
             self._connect.close()
 
         except sqlite.Error as e:
-            print("Could not close database")  # Voir docstring à propos du print
-            print(e)  # Voir docstring à propos du print
+            logging.error("Could not close database")
+            logging.error(e)
 
     def __str__(self):
         return 'Media DB Connector ({})'.format(self._db_name)
@@ -131,6 +137,13 @@ class TvShow:
     def episodes(self):
         return self.get_episodes()
 
+    @property
+    def duration(self) -> int:
+        cur = self._connect.cursor()
+        cur.execute(SQL_GET_ALL_EPISODES)
+        return sum((episode_data[3]
+                    for episode_data in cur.fetchall()))
+
     def __len__(self):
         cur = self._connect.cursor()
         cur.execute(SQL_COUNT_EPISODES)
@@ -139,7 +152,31 @@ class TvShow:
     def __contains__(self, item: Episode):
         cur = self._connect.cursor()
         cur.execute(SQL_GET_EPISODE, (item.season_number, item.number))
-        return True if cur.fetchone else False
+        return bool(cur.fetchone)
+
+    def __getitem__(self, item):
+        cur = self._connect.cursor()
+
+        if isinstance(item, slice):
+            start_season, start_episode = item.start if item.start else (0, 0)
+            end_season, end_episode = item.stop if item.stop else (None, None)
+
+            cur.execute(SQL_GET_ALL_EPISODES)
+            episodes = [Episode(*episode_data) for episode_data in cur.fetchall()]
+            episodes = [episode for episode in episodes
+                        if (episode.season_number, episode.number) > (start_season, start_episode)]
+
+            #  TODO: Deal with upper limit
+
+            return episodes
+
+        else:
+            season_number, number = item
+            cur.execute(SQL_GET_EPISODE, (season_number, number))
+            if episode_data := cur.fetchone():
+                return Episode(*episode_data)
+
+            raise KeyError(f"No episode for season {season_number} number {number}")
 
     def __iter__(self):
         return TvShowIterator(self._db_name)
@@ -172,11 +209,7 @@ class TvShowIterator:
         return self
 
     def __next__(self):
-        next_episode = self._episodes.pop(0)
-        if next_episode:
-            return next_episode
-        else:
-            raise StopIteration()
-
-
-
+        try:
+            return self._episodes.pop(0)
+        except IndexError as exc:
+            raise StopIteration() from exc
