@@ -81,7 +81,8 @@ suivantes :
    utilise l'un ou l'autre. Les deux sont présents dans le contexte de formation.
  * [celery](https://docs.celeryq.dev/) : utilisé pour l'asynchronisme. Nécessite
    [RabbitMQ](https://www.rabbitmq.com/) et [Redis](https://redis.io/).
- * [rich](https://github.com/Textualize/rich) : permet d'avoir un texte *riche* dans le terminal. 
+ * [rich](https://github.com/Textualize/rich) : permet d'avoir un texte *riche* dans le terminal.
+ * [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) pour la documentation.
  
 ## Ressources
 

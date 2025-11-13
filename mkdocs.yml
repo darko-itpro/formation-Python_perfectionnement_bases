@@ -1,0 +1,46 @@
+site_name: Python, perfectionnement
+repo_url: https://github.com/darko-itpro/formation-Python_perfectionnement_bases
+plugins:
+theme:
+  name: material
+  features:
+    - navigation.indexes
+markdown_extensions:
+  - attr_list
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+nav:
+  - Home: index.md
+  - En français:
+    - fr/index.md
+    - Exercices:
+        - fr/activities/index.md
+        - fr/activities/context_managers/index.md
+  - In English:
+    - en/index.md
+    - Reference manual:
+        - en/manual/index.md
+        - Context Managers: en/manual/context_managers.md
+    - Activities:
+        - en/activities/index.md
+        - Object Oriented Programming:
+          - en/activities/oop/iterators.md
+          - en/activities/oop/properties.md
+        - Decorators:
+          - en/activities/decorators/index.md
+          - en/activities/decorators/closures.md
+          - en/activities/decorators/decorators_1.md
+          - en/activities/decorators/decorators_2.md
+          - en/activities/decorators/decorators_3.md
+          - en/activities/decorators/decorators_4.md
+        - Context Managers:
+          - en/activities/context_managers/index.md
+          - en/activities/context_managers/activity_1.md
+          - en/activities/context_managers/activity_2.md
+          - en/activities/context_managers/activity_3.md
