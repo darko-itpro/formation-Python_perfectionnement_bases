@@ -1,10 +1,3 @@
-"""
-Démonstration des threads 02
-
-Second exemple avec les threads, la durée est celle du programme principal
-avant ajout des `.join()` où alors les actions se déroulent en parallèle.
-"""
-
 import demos.parallelism.logger_conf
 import logging
 import threading

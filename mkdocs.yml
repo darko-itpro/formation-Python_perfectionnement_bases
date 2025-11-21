@@ -19,6 +19,13 @@ nav:
   - Home: index.md
   - En français:
     - fr/index.md
+    - Documentation des démos:
+        - fr/demos/index.md
+        - Le parallélisme:
+            - Le multithreading: fr/demos/parallelism/threads.md
+            - Le multiprocessing: fr/demos/parallelism/processes.md
+    - Rappels et aide mémoire:
+        - Les itérateurs: fr/manual/iterators.md
     - Exercices:
         - fr/activities/index.md
         - fr/activities/context_managers/index.md

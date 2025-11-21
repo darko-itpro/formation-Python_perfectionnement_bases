@@ -1,9 +1,3 @@
-"""
-Démonstration des threads 01
-
-Premier exemple sans threads, la durée est la durée totale.
-"""
-
 import demos.parallelism.logger_conf
 import logging
 import time

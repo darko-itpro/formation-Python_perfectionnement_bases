@@ -1,8 +1,3 @@
-"""
-Usage de la SharedMemory avec un process.
-Accès par identifiant.
-"""
-
 from multiprocessing import Process
 from multiprocessing.shared_memory import SharedMemory
 

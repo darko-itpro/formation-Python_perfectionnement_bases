@@ -1,9 +1,3 @@
-"""
-Démonstration des threads 02 bis
-
-Second exemple bis avec les threads, basé sur
-"""
-
 import demos.parallelism.logger_conf
 import logging
 import threading

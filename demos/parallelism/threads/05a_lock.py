@@ -1,9 +1,3 @@
-"""
-Démonstration des threads 04
-
-Quatrième exemple avec les threads, problème de concurrence.
-"""
-
 import demos.parallelism.logger_conf
 import logging
 import threading

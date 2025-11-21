@@ -1,10 +1,3 @@
-"""
-Démonstration des threads 05
-
-Exemple d'utilisation de semaphore
-"""
-from contextlib import closing
-
 import demos.parallelism.logger_conf
 import logging
 import threading

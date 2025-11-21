@@ -1,7 +1,3 @@
-"""
-Principe de base de l'objet SharedMemory
-"""
-
 from multiprocessing.shared_memory import SharedMemory
 
 sh_mem = SharedMemory(size=1024, create=True)
