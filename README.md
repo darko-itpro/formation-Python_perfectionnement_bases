@@ -1,8 +1,8 @@
 # Formation Python Perfectionnement
-## Généralités
 
-This is the practical cases for Python training I provide. Intended for french trainee, the rest
-of the explanations are in french.
+🇬🇧 [English version here](README_en.md) 🇬🇧
+
+## Généralités
 
 Ce référentiel complète la formation Python Perfectionnement que je propose et est donc destiné à
 mes stagiaires.
@@ -61,6 +61,12 @@ Une partie de la formation peut reposer sur des notebooks Jupyter.
 Les dépendances nécessaires au projet ne sont pas déclarées car la création
 d'un fichier requirements fait parti de ces formations. Les dépendances
 nécessaires sont listées ci-après.
+ 
+### Makefile
+Si vous êtes sur un environnement POSIX (Linux ou MacOs) ou plus généralement si vous utilisez
+l'outil `make`, vous pouvez utiliser le `makefile` fourni :
+ * `make clean` : supprime le répertoire `site` (créé pour la documentation) et le fichier de log à la 
+   racine.
  
 ## Dépendances du projet
 Les dépendances suceptibles d'être utilisées pour cette formation sont les

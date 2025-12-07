@@ -39,6 +39,11 @@ Jupyter notebooks will also be used during this session.
 This codebase requires some dependencies but they are not declared in a file because their 
 management is part of the training. The required dependencies are listed down bellow.
 
+### Makefile
+If you are using a POSIX environment (Linux or MacOs) or generally speaking is you know `make`, you
+can use the provided `makefile`:
+ * `make clean`: delete the `site` folder (target for the documentation) and the log file.
+ 
 ## Project dependencies
 This project dependencies are:
  * [ipython](https://jupyter.org/): an *advaced* interacive shell preffered over the standard one.
