@@ -33,9 +33,13 @@ nav:
     - en/index.md
     - Reference manual:
         - en/manual/index.md
+        - Iterators: en/manual/iterators.md
         - Context Managers: en/manual/context_managers.md
     - Activities:
-        - en/activities/index.md
+        - Reminders:
+          - en/activities/bases/rappels_1.md
+          - en/activities/bases/rappels_2.md
+          - en/activities/bases/rappels_3.md
         - Object Oriented Programming:
           - en/activities/oop/iterators.md
           - en/activities/oop/properties.md
