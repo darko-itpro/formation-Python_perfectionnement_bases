@@ -1,4 +1,4 @@
-# Décorateurs 01
+# Décorateurs 1
 
 ## Introduction
 En Python, il est possible de mesurer la durée d’exécution d’un code de la manière suivante :

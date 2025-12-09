@@ -25,16 +25,36 @@ nav:
             - Le multithreading: fr/demos/parallelism/threads.md
             - Le multiprocessing: fr/demos/parallelism/processes.md
     - Rappels et aide mémoire:
+        - POO Avancée: fr/manual/poo.md
         - Les itérateurs: fr/manual/iterators.md
+        - Context Managers: fr/manual/context_managers.md
+        - Les décorateurs: fr/manual/decorators.md
     - Exercices:
-        - fr/activities/index.md
+      - Rappels:
+        - fr/activities/rappels_1.md
+        - fr/activities/rappels_2.md
+        - fr/activities/rappels_3.md
+      - Programmation Orientée Objet:
+        - fr/activities/iterators.md
+        - fr/activities/properties.md
+      - Decorators:
+        - fr/activities/decorators/closures.md
+        - fr/activities/decorators/decorators_1.md
+        - fr/activities/decorators/decorators_2.md
+        - fr/activities/decorators/decorators_3.md
+        - fr/activities/decorators/decorators_4.md
+      - Context Managers:
         - fr/activities/context_managers/index.md
+        - fr/activities/context_managers/activity_1.md
+        - fr/activities/context_managers/activity_2.md
+        - fr/activities/context_managers/activity_3.md
   - In English:
     - en/index.md
     - Reference manual:
-        - en/manual/index.md
+        - Advanced OOP: en/manual/oop.md
         - Iterators: en/manual/iterators.md
         - Context Managers: en/manual/context_managers.md
+        - Decorators: en/manual/decorators.md
     - Activities:
         - Reminders:
           - en/activities/bases/rappels_1.md
