@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../poo/">
+        <link rel="prev" href="../../demos/parallelism/processes/">
       
       
-        <link rel="next" href="../context_managers/">
+        <link rel="next" href="../iterators/">
       
       
         
@@ -23,7 +23,7 @@
     
     
       
-        <title>Les itérateurs - Python, perfectionnement</title>
+        <title>POO Avancée - Python, perfectionnement</title>
       
     
     
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#les-iterateurs" class="md-skip">
+        <a href="#programmation-orientee-objet-avancee" class="md-skip">
           Skip to content
         </a>
       
@@ -100,7 +100,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Les itérateurs
+              POO Avancée
             
           </span>
         </div>
@@ -562,34 +562,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../poo/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    POO Avancée
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -609,7 +581,7 @@
   <span class="md-ellipsis">
     
   
-    Les itérateurs
+    POO Avancée
   
 
     
@@ -627,7 +599,7 @@
   <span class="md-ellipsis">
     
   
-    Les itérateurs
+    POO Avancée
   
 
     
@@ -653,24 +625,130 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#definitions" class="md-nav__link">
+  <a href="#les-properties" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Définitions
+        Les properties
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Les properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#utilisation-sous-forme-de-decorateur" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Utilisation sous forme de décorateur
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Utilisation sous forme de décorateur">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#declaration-de-laccesseur-getter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Déclaration de l’accesseur (getter)
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#iteration-sur-une-collection" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#declaration-du-mutateur-setter" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Itération sur une collection
+        Déclaration du mutateur (setter)
       
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#declaration-du-suppresseur-deletter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Déclaration du suppresseur (deletter)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation-reelle-dune-property" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implémentation réelle d'une property
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ajouter-fonctionnalites-de-conteneur-a-une-classe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ajouter fonctionnalités de conteneur à une classe
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ajouter fonctionnalités de conteneur à une classe">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#taille-du-conteneur" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Taille du conteneur
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interroger-sur-la-presence-dun-element" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interroger sur la présence d'un élément
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acceder-a-un-element-par-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Accéder à un élément par sélection
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -678,6 +756,34 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iterators/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les itérateurs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -2436,24 +2542,130 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#definitions" class="md-nav__link">
+  <a href="#les-properties" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Définitions
+        Les properties
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Les properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#utilisation-sous-forme-de-decorateur" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Utilisation sous forme de décorateur
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Utilisation sous forme de décorateur">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#declaration-de-laccesseur-getter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Déclaration de l’accesseur (getter)
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#iteration-sur-une-collection" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#declaration-du-mutateur-setter" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Itération sur une collection
+        Déclaration du mutateur (setter)
       
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#declaration-du-suppresseur-deletter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Déclaration du suppresseur (deletter)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation-reelle-dune-property" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implémentation réelle d'une property
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ajouter-fonctionnalites-de-conteneur-a-une-classe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ajouter fonctionnalités de conteneur à une classe
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ajouter fonctionnalités de conteneur à une classe">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#taille-du-conteneur" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Taille du conteneur
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interroger-sur-la-presence-dun-element" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interroger sur la présence d'un élément
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acceder-a-un-element-par-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Accéder à un élément par sélection
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2477,28 +2689,104 @@
   
 
 
-<h1 id="les-iterateurs">Les itérateurs</h1>
-<h2 id="definitions">Définitions</h2>
-<p>Un <strong>itérateur</strong> est un objet qui permet de retourner le prochain élément d’un <strong>itérable</strong>. Les 
-exemples les plus simples d’itérateurs sont les séquences mais aussi les générateurs.</p>
-<p>Un <strong>itérable</strong> est un objet implantant la méthode spéciale <code>__iter__</code>  qui doit retourner un 
-itérateur. Un <strong>itérateur</strong> est un objet implantant la méthode spéciale <code>__next__</code>. Cette méthode 
-doit retourner l’élément suivant ou lever une exception de type <code>StopIteration</code>.</p>
-<h2 id="iteration-sur-une-collection">Itération sur une collection</h2>
-<p>Principe de base :
+<h1 id="programmation-orientee-objet-avancee">Programmation Orientée Objet Avancée</h1>
+<h2 id="les-properties">Les properties</h2>
+<p>Les properties permettent d'exposer un attribut tout en contrôlant sa modification. Ils permettent de renforcer le principe d'encapsulation consistant à masquer l'implémentation.
+Rappelez-vous qu'une propertie ne se limite pas à un <em>passe-plat</em> vers un attribut <em>privé</em>.</p>
+<p>Soit une propertie <code>prop</code> d’une classe <code>MyClass</code> instanciée en <code>my_object</code>.</p>
+<h3 id="utilisation-sous-forme-de-decorateur">Utilisation sous forme de décorateur</h3>
+<h4 id="declaration-de-laccesseur-getter">Déclaration de l’accesseur (getter)</h4>
 <div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">MyClass</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_current_value</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">return</span> <span class="bp">self</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">students</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_current_value</span><span class="p">]</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_current_value</span> <span class="o">+=</span> <span class="mi">1</span>
-            <span class="k">return</span> <span class="n">value</span>
-        <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">StopIteration</span><span class="p">(</span><span class="s2">&quot;End of collection&quot;</span><span class="p">)</span>
+<span class="nd">@property</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">prop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">value</span>
+</code></pre></div>
+<p>L'appel se fera par :
+<div class="highlight"><pre><span></span><code><span class="n">my_object</span> <span class="o">=</span> <span class="n">MyClass</span><span class="p">()</span>
+<span class="n">my_object</span><span class="o">.</span><span class="n">prop</span>
 </code></pre></div></p>
+<h4 id="declaration-du-mutateur-setter">Déclaration du mutateur (setter)</h4>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">MyClass</span><span class="p">:</span>
+
+<span class="nd">@property</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">prop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">value</span>
+
+<span class="nd">@prop</span><span class="o">.</span><span class="n">setter</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">prop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_value</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">new_value</span>
+</code></pre></div>
+<p>L'appel se fera par :
+<div class="highlight"><pre><span></span><code><span class="n">my_object</span> <span class="o">=</span> <span class="n">MyClass</span><span class="p">()</span>
+<span class="n">my_object</span><span class="o">.</span><span class="n">prop</span> <span class="o">=</span> <span class="n">value</span>
+</code></pre></div></p>
+<h4 id="declaration-du-suppresseur-deletter">Déclaration du suppresseur (deletter)</h4>
+<p><div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">MyClass</span><span class="p">:</span>
+
+<span class="nd">@property</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">prop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">value</span>
+
+<span class="nd">@prop</span><span class="o">.</span><span class="n">deletter</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">prop</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+    <span class="k">pass</span>
+</code></pre></div>
+Le suppresseur sera appelé lors des instructions de type :
+<div class="highlight"><pre><span></span><code><span class="n">my_object</span> <span class="o">=</span> <span class="n">MyClass</span><span class="p">()</span>
+<span class="k">del</span> <span class="n">my_object</span><span class="o">.</span><span class="n">prop</span>
+</code></pre></div></p>
+<h3 id="implementation-reelle-dune-property">Implémentation réelle d'une property</h3>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">MyClass</span><span class="p">:</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_get_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_set_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_value</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">new_value</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_del_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="n">prop</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_get_value</span><span class="p">,</span> <span class="n">_set_value</span><span class="p">,</span> <span class="n">_del_value</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h2 id="ajouter-fonctionnalites-de-conteneur-a-une-classe">Ajouter fonctionnalités de <em>conteneur</em> à une classe</h2>
+<h3 id="taille-du-conteneur">Taille du conteneur</h3>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">MyClass</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">42</span> <span class="c1"># Doit retourner un entier</span>
+</code></pre></div>
+<p>Usage :
+<div class="highlight"><pre><span></span><code><span class="nb">len</span><span class="p">(</span><span class="n">my_object</span><span class="p">)</span>
+</code></pre></div></p>
+<h3 id="interroger-sur-la-presence-dun-element">Interroger sur la présence d'un élément</h3>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">MyClass</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+    <span class="k">return</span> <span class="kc">True</span>
+</code></pre></div>
+<p>Usage :
+<div class="highlight"><pre><span></span><code><span class="n">value</span> <span class="ow">in</span> <span class="n">my_object</span>
+</code></pre></div></p>
+<h3 id="acceder-a-un-element-par-selection">Accéder  à un élément par sélection</h3>
+<p>En anglais, on utilise le terme de <em>subscripting</em> dont la traduction est <em>sélection</em> ou <em>indiçage</em>. Il permet d'accéder à un élément d'une collection par indice ou clef en fonction des cas d'usage.</p>
+<p>Trois metodes permettent d'accéder, modifier ou supprimer un élément par sélection.
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">MyClass</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">value</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">new_value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value_from_key</span> <span class="o">=</span> <span class="n">new_value</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__delitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="k">pass</span>
+</code></pre></div></p>
+<p>Usages :
+<div class="highlight"><pre><span></span><code><span class="n">my_object</span><span class="p">[</span><span class="n">element_id</span><span class="p">]</span>
+<span class="n">my_object</span><span class="p">[</span><span class="n">element_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+<span class="k">del</span> <span class="n">my_object</span><span class="p">[</span><span class="n">element_id</span><span class="p">]</span>
+</code></pre></div></p>
+<hr />
 
 
 

@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../poo/">
+        <link rel="prev" href="../context_managers/">
       
       
-        <link rel="next" href="../context_managers/">
+        <link rel="next" href="../../activities/rappels_1/">
       
       
         
@@ -23,7 +23,7 @@
     
     
       
-        <title>Les itérateurs - Python, perfectionnement</title>
+        <title>Les décorateurs - Python, perfectionnement</title>
       
     
     
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#les-iterateurs" class="md-skip">
+        <a href="#les-decorateurs" class="md-skip">
           Skip to content
         </a>
       
@@ -100,7 +100,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Les itérateurs
+              Les décorateurs
             
           </span>
         </div>
@@ -590,37 +590,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Les itérateurs
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../iterators/" class="md-nav__link">
         
   
   
@@ -636,48 +609,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#definitions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Définitions
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#iteration-sur-une-collection" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Itération sur une collection
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -715,10 +646,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../decorators/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les décorateurs
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -734,6 +692,159 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#notion-de-closure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notion de Closure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Notion de Closure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generalites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Généralités
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modifier-lenvironnement-dexecution-dune-closure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modifier l'environnement d'exécution d'une closure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acceder-aux-variables-de-lenvironnement-dexecution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Accéder aux variables de l'environnement d'exécution
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vers-les-decorateurs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vers les décorateurs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Vers les décorateurs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#structure-generale-des-decorateurs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Structure générale des décorateurs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#passage-darguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passage d'arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#valeur-en-retour" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Valeur en retour
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decorateur-parametre" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Décorateur paramétré
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conserver-la-syntaxe-simple-avec-le-decorateur-parametre" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conserver la syntaxe simple avec le décorateur paramétré
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bonus-remplacer-les-metadonnees-du-wrapper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bonus : remplacer les métadonnées du wrapper
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -2436,21 +2547,132 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#definitions" class="md-nav__link">
+  <a href="#notion-de-closure" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Définitions
+        Notion de Closure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Notion de Closure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generalites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Généralités
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#iteration-sur-une-collection" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#modifier-lenvironnement-dexecution-dune-closure" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Itération sur une collection
+        Modifier l'environnement d'exécution d'une closure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acceder-aux-variables-de-lenvironnement-dexecution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Accéder aux variables de l'environnement d'exécution
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vers-les-decorateurs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vers les décorateurs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Vers les décorateurs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#structure-generale-des-decorateurs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Structure générale des décorateurs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#passage-darguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passage d'arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#valeur-en-retour" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Valeur en retour
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decorateur-parametre" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Décorateur paramétré
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conserver-la-syntaxe-simple-avec-le-decorateur-parametre" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conserver la syntaxe simple avec le décorateur paramétré
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bonus-remplacer-les-metadonnees-du-wrapper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bonus : remplacer les métadonnées du wrapper
       
     </span>
   </a>
@@ -2477,27 +2699,131 @@
   
 
 
-<h1 id="les-iterateurs">Les itérateurs</h1>
-<h2 id="definitions">Définitions</h2>
-<p>Un <strong>itérateur</strong> est un objet qui permet de retourner le prochain élément d’un <strong>itérable</strong>. Les 
-exemples les plus simples d’itérateurs sont les séquences mais aussi les générateurs.</p>
-<p>Un <strong>itérable</strong> est un objet implantant la méthode spéciale <code>__iter__</code>  qui doit retourner un 
-itérateur. Un <strong>itérateur</strong> est un objet implantant la méthode spéciale <code>__next__</code>. Cette méthode 
-doit retourner l’élément suivant ou lever une exception de type <code>StopIteration</code>.</p>
-<h2 id="iteration-sur-une-collection">Itération sur une collection</h2>
-<p>Principe de base :
-<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">MyClass</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_current_value</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">return</span> <span class="bp">self</span>
+<h1 id="les-decorateurs">Les décorateurs</h1>
+<h2 id="notion-de-closure">Notion de Closure</h2>
+<h3 id="generalites">Généralités</h3>
+<p>Une fonction retournée par une fonction retient le contexte dans lequel elle a été créée :
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">outer</span><span class="p">(</span><span class="n">param</span><span class="p">):</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">param</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">inner</span><span class="p">(</span><span class="n">modif</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">value</span> <span class="o">*</span> <span class="n">modif</span>
+</code></pre></div></p>
+<p>Va s'utiliser :
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">my_answer</span> <span class="o">=</span> <span class="n">outer</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">my_answer</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="mi">420</span>
+</code></pre></div></p>
+<h3 id="modifier-lenvironnement-dexecution-dune-closure">Modifier l'environnement d'exécution d'une closure</h3>
+<p>Comme pour toute variable, les variables définis dans la fonction externe ne sont visibles qu'en lecture seule pour la fonction interne.
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">outer</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">inner</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;inner func for </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">nonlocal</span> <span class="n">count</span>
+        <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">students</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_current_value</span><span class="p">]</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_current_value</span> <span class="o">+=</span> <span class="mi">1</span>
-            <span class="k">return</span> <span class="n">value</span>
-        <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">StopIteration</span><span class="p">(</span><span class="s2">&quot;End of collection&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">inner</span>
+</code></pre></div></p>
+<h3 id="acceder-aux-variables-de-lenvironnement-dexecution">Accéder aux variables de l'environnement d'exécution</h3>
+<p>Les variables définies par la fonction externe ne sont pas accessibles dans l'environnement qui a récupéré la fonction interne. L'astuce consiste à définir une fonction accesseur attachée à la fonction retournée.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">outer</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">inner</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;inner func for </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">nonlocal</span> <span class="n">count</span>
+        <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">inner_get_count</span><span class="p">():</span>
+        <span class="k">return</span> <span class="n">count</span>
+
+    <span class="n">inner</span><span class="o">.</span><span class="n">get_count</span> <span class="o">=</span> <span class="n">inner_get_count</span>
+
+    <span class="k">return</span> <span class="n">inner</span>
+</code></pre></div>
+<p>Nous pouvons alors utiliser :
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">click</span> <span class="o">=</span> <span class="n">outer</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">click</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">click</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">click</span><span class="o">.</span><span class="n">get_count</span><span class="p">()</span>
+<span class="mi">2</span>
+</code></pre></div></p>
+<h2 id="vers-les-decorateurs">Vers les décorateurs</h2>
+<h3 id="structure-generale-des-decorateurs">Structure générale des décorateurs</h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">sandwich</span><span class="p">(</span><span class="n">content</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;/TTTTTTTTTT</span><span class="se">\\</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">content</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">__________/&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">wrapper</span>
+</code></pre></div>
+<p>Ce qui peut s'appeler de la manière suivante :
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">parisien</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Jambon&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Beurre&quot;</span><span class="p">)</span>
+
+<span class="n">sandwich</span><span class="p">(</span><span class="n">parisien</span><span class="p">)()</span>
+</code></pre></div></p>
+<p>Mais aussi
+<div class="highlight"><pre><span></span><code><span class="nd">@sandwich</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">parisien</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Jambon&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Beurre&quot;</span><span class="p">)</span>
+</code></pre></div></p>
+<h3 id="passage-darguments">Passage d'arguments</h3>
+<p>L'usage de variadics permet une cohésion faible entre le décorateur et la fonction à décorer.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">sandwich</span><span class="p">(</span><span class="n">content</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kargs</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;/TTTTTTTTTT</span><span class="se">\\</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">content</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kargs</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">__________/&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">wrapper</span>
+</code></pre></div>
+<h3 id="valeur-en-retour">Valeur en retour</h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">sandwich</span><span class="p">(</span><span class="n">content</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kargs</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;/TTTTTTTTTT</span><span class="se">\\</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">content</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kargs</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">__________/&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">value</span>
+
+    <span class="k">return</span> <span class="n">wrapper</span>
+</code></pre></div>
+<h3 id="decorateur-parametre">Décorateur paramétré</h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">name</span><span class="p">(</span><span class="n">key1</span><span class="o">=</span><span class="n">value1</span><span class="p">,</span> <span class="n">key2</span><span class="o">=</span><span class="n">value2</span><span class="p">,</span> <span class="o">...</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">decorator_name</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+        <span class="o">...</span>  <span class="c1"># La fonction wrapper</span>
+</code></pre></div>
+<p>Mais ceci fait que le décorateur ne peut être utilisé sans parenthèses.</p>
+<h3 id="conserver-la-syntaxe-simple-avec-le-decorateur-parametre">Conserver la syntaxe simple avec le décorateur paramétré</h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">name</span><span class="p">(</span><span class="n">_func</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">key1</span><span class="o">=</span><span class="n">value1</span><span class="p">,</span> <span class="n">key2</span><span class="o">=</span><span class="n">value2</span><span class="p">,</span> <span class="o">...</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">decorator_name</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+        <span class="o">...</span>  <span class="c1"># La fonction wrapper</span>
+
+    <span class="k">if</span> <span class="n">_func</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">decorator_name</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">decorator_name</span><span class="p">(</span><span class="n">_func</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="bonus-remplacer-les-metadonnees-du-wrapper">Bonus : remplacer les métadonnées du wrapper</h2>
+<p>Dans le cas de l'utilisation d'un wrapper, l'introspection de la fonction sera <em>faussé</em>. Nous n'avons plus la fonction d'origine mais la fonction wrapper. Faites le test sur la base du décorateur <code>sandwich</code>, vous devriez avoir quelque chose de similaire à :
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">sandwich</span><span class="o">.</span><span class="vm">__name__</span>
+<span class="s1">&#39;wrapper&#39;</span>
+</code></pre></div></p>
+<p>Pour préserver les informations de la fonction d'origine :
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">functools</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">sandwich</span><span class="p">(</span><span class="n">content</span><span class="p">):</span>
+    <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;/TTTTTTTTTT</span><span class="se">\\</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">content</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">__________/&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">wrapper</span>
 </code></pre></div></p>
 
 
