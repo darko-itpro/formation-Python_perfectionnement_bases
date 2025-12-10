@@ -9,12 +9,15 @@ def load_grades(course:str):
     else:
         raise ValueError("No course found")
 
+def get_courses():
+    return ["math", "english"]
+
 if __name__ == '__main__':
     from pprint import pprint
 
     pprint(
-        {name: {"math":math, "english":english}
-         for name, math, english in zip(load_students_list(),
-                                        load_grades('math'),
-                                        load_grades('english'))}
+        {name: grades
+         for name, *grades in zip(load_students_list(),
+                                        *[load_grades(course) for course in get_courses()],
+                                        )}
     )
