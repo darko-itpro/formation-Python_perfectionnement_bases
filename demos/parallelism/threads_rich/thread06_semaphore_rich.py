@@ -34,7 +34,19 @@ class Order:
     duration: int
     status: str = field(default="Ordered", init=False)
 
+    @property
+    def remaining_time(self):
+        try:
+            r_time =  self.duration - (time.time() - self._start_time)
+        except AttributeError:
+            r_time = self.duration
+
+        if r_time < 0:
+            r_time = 0
+        return round(r_time)
+
     def start_cooking(self):
+        self._start_time = time.time()
         self.status = "Cooking"
 
     def done(self):
@@ -56,15 +68,15 @@ def make_table(order_list:list[Order]) -> Table:
     for order in order_list:
 
         if order.status == "Ordered":
-            status_str = "Ordered"
+            status_str = f"{order.status:^13}"
         elif order.status == "Cooking":
-            status_str = "[white on red]Cooking[/]"
+            status_str = f"[white on red]{order.status:^13}[/]"
         elif order.status == "Done":
-            status_str = "[white on dark_green]Done[/]"
+            status_str = f"[white on dark_green]{order.status:^13}[/]"
         else:
             status_str = "[red]ERROR[/]"
 
-        table.add_row(order.name, f"{order.duration}", status_str)
+        table.add_row(order.name, f"{order.remaining_time}", status_str)
 
     if len(order_list) < 10:
         for _ in range(10 - len(order_list)):

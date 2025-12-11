@@ -1,7 +1,7 @@
 """
 Démonstration des threads 05
 
-Exemple d'utilisation de semaphore
+Exemple d'utilisation de semaphore, created by Edsger W. Dijkstra
 """
 from contextlib import closing
 
