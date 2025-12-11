@@ -1,3 +1,9 @@
+"""
+Démonstration des threads 05
+
+Exemple d'utilisation de semaphore, created by Edsger W. Dijkstra
+"""
+
 import demos.parallelism.logger_conf
 import logging
 import threading
