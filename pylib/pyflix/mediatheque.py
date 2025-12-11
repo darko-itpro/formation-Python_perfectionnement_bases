@@ -14,10 +14,35 @@ class Episode:
 class DuplicateEpisodeError(ValueError):
     pass
 
+class EpisodesIterator:
+    def __init__(self, episodes:list):
+        self._episodes = episodes.copy()
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        try:
+            return self._episodes.pop(0)
+        except IndexError:
+            raise StopIteration()
+
+
 class TvShow:
     def __init__(self, name):
-        self.name = name.title()
+        self.name = name
         self._episodes = []
+
+    def __iter__(self):
+        return EpisodesIterator(self.episodes)
+
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, new_name:str):
+        self._name = new_name.title()
 
     @property
     def duration(self):
