@@ -36,6 +36,15 @@ class TvShow:
     def __iter__(self):
         return EpisodesIterator(self.episodes)
 
+    def __len__(self):
+        return len(self._episodes)
+
+    def __contains__(self, item):
+        return item in self._episodes
+
+    def __getitem__(self, item): # myshow[item]
+        print(item, type(item))
+
     @property
     def name(self):
         return self._name
