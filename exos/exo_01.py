@@ -6,3 +6,4 @@ def add_knight(knight:str) -> None:
 
     kingdom.append(knight)
     count += 1
+
