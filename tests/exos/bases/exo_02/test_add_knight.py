@@ -1,3 +1,4 @@
+import pytest
 from exos.exo_02 import add_knight
 
 def test_add_knight_without_kingdom():
