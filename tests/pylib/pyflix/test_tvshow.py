@@ -1,5 +1,5 @@
 import pytest
-from pylib.pyflix.mediatheque import TvShow
+from pylib.pyflix.mediatheque import TvShow, Episode
 
 def test_create_tvshow():
     myshow = TvShow("one piece")
@@ -19,3 +19,8 @@ def test_duplicate_episode_must_raise(myshow):
     myshow.add_episode("Grand line", 2, 1)
     with pytest.raises(ValueError):
         myshow.add_episode("Grand line", 2, 1)
+
+def test_episodes_equality():
+    ep1 = Episode("Grand line", 2, 1)
+    ep2 = Episode("Grand line", 2, 1)
+    assert ep1 == ep2
