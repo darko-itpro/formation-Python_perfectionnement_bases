@@ -8,8 +8,8 @@ class Episode:
 
 
 class TvShow:
-    def __init__(self, name):
-        self.name = name
+    def __init__(self, name:str):
+        self.name = name.title()
         self.episodes = []
 
     def add_episode(self, title:str, season_number:int, number:int,
