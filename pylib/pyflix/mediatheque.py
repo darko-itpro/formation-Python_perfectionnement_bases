@@ -26,6 +26,7 @@ class TvShow:
 
         self._episodes.append(new_episode)
 
+    @property
     def episodes(self):
         return self._episodes.copy()
 
