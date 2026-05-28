@@ -22,3 +22,9 @@ def test_add_knight_existing_kingdom(knight, kingdom, size, first_element):
     assert len(kingdom) == size
     assert kingdom[-1] == knight
     assert kingdom[0] == first_element
+
+def test_duplicate_must_raise():
+    kingdom = ["Lancelot"]
+
+    with pytest.raises(ValueError):
+        add_knight("Lancelot", kingdom)
