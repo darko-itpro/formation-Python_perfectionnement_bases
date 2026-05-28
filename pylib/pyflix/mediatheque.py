@@ -6,10 +6,15 @@ class Episode:
         self.duration = int(duration) if duration is not None else None
         self.year = int(year) if year is not None else None
 
+    def __eq__(self, other):
+        if not isinstance(other, self.__class__):
+            return False
+
+        return (self.number, self.season_number) == (other.number, other.season_number)
 
 class TvShow:
-    def __init__(self, name):
-        self.name = name
+    def __init__(self, name:str):
+        self.name = name.title()
         self.episodes = []
 
     def add_episode(self, title:str, season_number:int, number:int,
