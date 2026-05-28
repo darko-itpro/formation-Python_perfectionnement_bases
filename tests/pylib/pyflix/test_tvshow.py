@@ -29,3 +29,9 @@ def test_add_existing_episode_must_raise():
     my_show.add_episode("Grand Line", 1, 1)
     with pytest.raises(ValueError):
         my_show.add_episode("Grand Line", 1, 1)
+
+def test_episodes_should_not_be_modified():
+    my_show = TvShow("one piece")
+    my_show.episodes.append('toto')
+    assert len(my_show.episodes) == 0
+    
