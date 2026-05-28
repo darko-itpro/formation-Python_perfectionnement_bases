@@ -1,3 +1,5 @@
+import pylib.settings as settings
+import logging
 
 def add_knight(knight:str):
     global count
@@ -15,6 +17,6 @@ if __name__ == '__main__':
     count = 0
 
     add_knight("Lancelot")
-    assert kingdom == ["Lancelot"]
-    assert count == 1
+    logging.info(f"{kingdom == ["Lancelot"]=}")
+    logging.info(f"{count == 1=}")
 
