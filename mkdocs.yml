@@ -17,7 +17,7 @@ markdown_extensions:
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
 nav:
   - Home: index.md
-  - En français:
+  - 🇫🇷 En français:
     - fr/index.md
     - Documentation des démos:
         - fr/demos/index.md
@@ -31,13 +31,15 @@ nav:
         - Les décorateurs: fr/manual/decorators.md
     - Exercices:
       - Rappels:
-        - fr/activities/rappels_1.md
-        - fr/activities/rappels_2.md
-        - fr/activities/rappels_3.md
+        - fr/activities/basics/index.md
+        - fr/activities/basics/rappels_1.md
+        - fr/activities/basics/rappels_2.md
+        - fr/activities/basics/rappels_3.md
       - Programmation Orientée Objet:
         - fr/activities/iterators.md
         - fr/activities/properties.md
       - Decorators:
+        - fr/activities/decorators/index.md
         - fr/activities/decorators/closures.md
         - fr/activities/decorators/decorators_1.md
         - fr/activities/decorators/decorators_2.md
@@ -48,7 +50,9 @@ nav:
         - fr/activities/context_managers/activity_1.md
         - fr/activities/context_managers/activity_2.md
         - fr/activities/context_managers/activity_3.md
-  - In English:
+      - Parallelism:
+        - fr/activities/parallelism/notifiers.md
+  - 🇬🇧 In English:
     - en/index.md
     - Reference manual:
         - Advanced OOP: en/manual/oop.md

@@ -6,6 +6,9 @@ This repository is meant for my trainings
 [![License](https://img.shields.io/github/license/darko-itpro/training-python.svg?style=plastic)](https://github.com/darko-itpro/training-python/blob/master/LICENSE)
 [![Static Badge](https://img.shields.io/badge/Github-Documentation-blue?logo=github)](https://darko-itpro.github.io/formation-Python_perfectionnement_bases/)
 
+A [Github documentation](https://darko-itpro.github.io/formation-Python_perfectionnement_bases/) is 
+available.
+
 ## Installation
 ### Working branch for the training
 For the training, I will set up a dedicated branch on wich I will push all the examples and
