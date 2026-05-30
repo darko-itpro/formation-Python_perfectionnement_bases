@@ -10,3 +10,7 @@
  * [Second exercice](decorators_2.md)
  * [Troisième exercice](decorators_3.md)
  * [Quatrième exercice](decorators_4.md)
+
+## Aide mémoire
+
+Pour plus d'informations, consultez [l'aide-mémoire](../../manual/decorators.md)

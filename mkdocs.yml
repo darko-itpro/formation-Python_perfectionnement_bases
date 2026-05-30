@@ -36,8 +36,9 @@ nav:
         - fr/activities/basics/rappels_2.md
         - fr/activities/basics/rappels_3.md
       - Programmation Orientée Objet:
-        - fr/activities/iterators.md
-        - fr/activities/properties.md
+        - fr/activities/poo/index.md
+        - fr/activities/poo/iterators.md
+        - fr/activities/poo/properties.md
       - Decorators:
         - fr/activities/decorators/index.md
         - fr/activities/decorators/closures.md
@@ -51,6 +52,7 @@ nav:
         - fr/activities/context_managers/activity_2.md
         - fr/activities/context_managers/activity_3.md
       - Parallelism:
+        - fr/activities/parallelism/index.md
         - fr/activities/parallelism/notifiers.md
   - 🇬🇧 In English:
     - en/index.md

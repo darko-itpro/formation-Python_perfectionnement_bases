@@ -7,6 +7,9 @@
  * [Troisième exercice](activity_3.md)
 
 ## Rappels
+
+Pour rappel, la structure générale d'un Context Manager est :
+
 ```python
 class MyContext:
     def __enter__(self):
@@ -15,3 +18,5 @@ class MyContext:
     def __exit__(self, exc_type, exc_value, exc_tb):
         pass
 ```
+
+Pour plus d'informations, consultez [l'aide-mémoire](../../manual/context_managers.md)
