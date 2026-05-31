@@ -15,9 +15,9 @@ pasta = ("pasta", 9)
 meat = ("steak", 4)
 
 def cooking(dish, duration):
-    console.log(f"Cooking {dish} started")
+    console.log(f"👨‍🍳 Cooking {dish} started")
     time.sleep(duration)
-    console.log(f"Cooking {dish} done")
+    console.log(f"✅ Cooking {dish} done")
 
 console = Console()
 console.clear()
@@ -42,4 +42,4 @@ console.print()
 console.rule("Processing done")
 
 end_time = time.time()
-console.log(f"Main    : Collecting after {end_time - start_time} seconds, ready to serve")
+console.log(f"Main    : ⏱️ Collecting after {end_time - start_time} seconds, ready to serve")

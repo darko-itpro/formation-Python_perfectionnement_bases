@@ -17,7 +17,7 @@ def main(value):
     countdown(value)
     countdown(value)
     end_time = time.time()
-    console.log(f"Main    : Collecting after {end_time - start_time:.4f} seconds")
+    console.log(f"Main    : ⏱️ Collecting after {end_time - start_time:.4f} seconds")
 
     console.print()
     console.rule("Tasked")
@@ -36,7 +36,7 @@ def main(value):
     second_thread.join()
 
     end_time = time.time()
-    console.log(f"Main    : Collecting after {end_time - start_time:.4f} seconds")
+    console.log(f"Main    : ⏱️ Collecting after {end_time - start_time:.4f} seconds")
 
 
 if __name__ == "__main__":

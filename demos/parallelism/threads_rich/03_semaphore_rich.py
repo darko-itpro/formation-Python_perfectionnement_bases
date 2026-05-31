@@ -4,11 +4,14 @@ import threading
 import time
 import random
 
+from enum import Enum
+
 from dataclasses import dataclass, field
 
 from rich.console import Console
 from rich.live import Live
 from rich.table import Table
+from rich.text import Text
 
 console = Console()
 
@@ -20,12 +23,22 @@ menu = [
     ("Venison Stew", 10),
 ]
 
+class OrderStatus(Enum):
+    ORDERED = ("ordered", "🕐 En attente", "white on yellow")
+    COOKING = ("cooking", "🍳 En cuisine", "white on blue")
+    DONE    = ("done",    "✅ Prêt",       "black on green")
+
+    def __init__(self, value, label, style):
+        self._value_ = value
+        self.label = label
+        self.style = style
+
 
 @dataclass
 class Order:
     name: str
     duration: int
-    status: str = field(default="Ordered", init=False)
+    status: OrderStatus = field(default=OrderStatus.ORDERED, init=False)
 
     @property
     def remaining_time(self):
@@ -40,13 +53,13 @@ class Order:
 
     def start_cooking(self):
         self._start_time = time.time()
-        self.status = "Cooking"
+        self.status = OrderStatus.COOKING
 
     def done(self):
-        self.status = "Done"
+        self.status = OrderStatus.DONE
 
     def is_done(self):
-        return self.status == "Done"
+        return self.status is OrderStatus.DONE
 
 
 def make_table(order_list:list[Order]) -> Table:
@@ -56,20 +69,11 @@ def make_table(order_list:list[Order]) -> Table:
 
     table.add_column("Order", width=30)
     table.add_column("Ready in")
-    table.add_column("Status")
+    table.add_column("Status", width=16, justify="center")
 
     for order in order_list:
-
-        if order.status == "Ordered":
-            status_str = f"{order.status:^13}"
-        elif order.status == "Cooking":
-            status_str = f"[white on red]{order.status:^13}[/]"
-        elif order.status == "Done":
-            status_str = f"[white on dark_green]{order.status:^13}[/]"
-        else:
-            status_str = "[red]ERROR[/]"
-
-        table.add_row(order.name, f"{order.remaining_time}", status_str)
+        status_cell = Text(order.status.label, style=order.status.style, justify="center")
+        table.add_row(order.name, f"{order.remaining_time}", status_cell)
 
     if len(order_list) < 10:
         for _ in range(10 - len(order_list)):

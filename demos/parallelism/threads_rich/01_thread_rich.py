@@ -12,10 +12,10 @@ from rich.console import Console
 pasta = ("pasta", 9)
 meat = ("steak", 4)
 
-def cooking(dish:str, duration:int):
-    console.log(f"Cooking {dish} started")
+def cooking(dish, duration):
+    console.log(f"👨‍🍳 Cooking {dish} started")
     time.sleep(duration)
-    console.log(f"Cooking {dish} done")
+    console.log(f"✅ Cooking {dish} done")
 
 
 console = Console()
@@ -38,4 +38,4 @@ end_time = time.time()
 
 console.rule("Processing done")
 
-console.print(f"Main    : Collecting after [bold]{end_time - start_time:.2f} seconds[/bold], ready to serve")
+console.print(f"Main    : ⏱️ Collecting after [bold]{end_time - start_time:.2f} seconds[/bold], ready to serve")

@@ -49,4 +49,4 @@ if __name__ == "__main__":
     burner2.join()
 
     end_time = time.time()
-    logging.info("Main    : Collecting after %.2f seconds, ready to serve", end_time - start_time)
+    logging.info("Main    : ⏱️ Collecting after %.2f seconds, ready to serve", end_time - start_time)

@@ -38,4 +38,4 @@ with ThreadPoolExecutor(max_workers=3, thread_name_prefix="Worker") as executor:
     for _ in range(3):
         executor.submit(account.deposit, 100)
 
-print(f"Final balance: {account.balance}")
+print(f"📈 Final balance: {account.balance}")

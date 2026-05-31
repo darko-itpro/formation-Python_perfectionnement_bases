@@ -40,4 +40,4 @@ first_thread.join()
 second_thread.join()
 
 end_time = time.time()
-console.log(f"Main    : Collecting after {end_time - start_time:.2f} seconds")
+console.log(f"Main    : ⏱️ Collecting after {end_time - start_time:.2f} seconds")

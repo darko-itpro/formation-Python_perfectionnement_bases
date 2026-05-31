@@ -19,4 +19,4 @@ with ThreadPoolExecutor(max_workers=2) as executor:
     executor.submit(account.withdraw, 500)
     executor.submit(account.withdraw, 700)
 
-print(f"Final account balance: {account.balance}")
+print(f"📈 Final account balance: {account.balance}")

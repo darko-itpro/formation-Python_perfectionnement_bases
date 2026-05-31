@@ -85,4 +85,4 @@ if __name__ == "__main__":
     burner1.join()
     burner2.join()
     end_time = time.time()
-    console.print(f"Main    : Collecting after [bold]{end_time - start_time} seconds[/bold], ready to serve")
+    console.print(f"Main    : ⏱️ Collecting after [bold]{end_time - start_time} seconds[/bold], ready to serve")
