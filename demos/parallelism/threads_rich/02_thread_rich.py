@@ -23,15 +23,20 @@ console = Console()
 console.clear()
 
 console.rule("Starting…")
-console.log("Main    : before creating thread")
-start_time = time.time()
 
-pasta_cook = threading.Thread(target=cooking, args=pasta)
-meat_cook = threading.Thread(target=cooking, args=meat)
+with console.status("[bold green]Cooking will start...[/bold green]",
+                    spinner="aesthetic") as status:
+    console.log("Main    : before creating thread")
+    time.sleep(1)
+    start_time = time.time()
 
-console.log("Main    : cooking started")
-pasta_cook.start()
-meat_cook.start()
+    status.update(f"[bold green]Cooking started[/bold green]")
+    pasta_cook = threading.Thread(target=cooking, args=pasta)
+    meat_cook = threading.Thread(target=cooking, args=meat)
+
+    console.log("Main    : cooking…")
+    pasta_cook.start()
+    meat_cook.start()
 
 console.print()
 console.rule("Processing done")
