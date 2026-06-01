@@ -37,8 +37,9 @@ nav:
         - fr/activities/basics/rappels_3.md
       - Programmation Orientée Objet:
         - fr/activities/poo/index.md
+        - fr/activities/poo/properties_1.md
+        - fr/activities/poo/properties_2.md
         - fr/activities/poo/iterators.md
-        - fr/activities/poo/properties.md
       - Decorators:
         - fr/activities/decorators/index.md
         - fr/activities/decorators/closures.md

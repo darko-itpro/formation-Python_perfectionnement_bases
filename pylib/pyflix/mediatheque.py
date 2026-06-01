@@ -1,3 +1,6 @@
+class DuplicateEpisode(ValueError):
+    pass
+
 class Episode:
     def __init__(self, title:str, number:int, season_number:int, duration:int=None, year:int=None):
         self.title = title
