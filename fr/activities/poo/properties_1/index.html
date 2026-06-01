@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../iterators/">
+        <link rel="prev" href="../">
       
       
-        <link rel="next" href="../../decorators/">
+        <link rel="next" href="../properties_2/">
       
       
         
@@ -23,7 +23,7 @@
     
     
       
-        <title>Les properties - Python, perfectionnement</title>
+        <title>Les properties, préparation - Python, perfectionnement</title>
       
     
     
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#les-properties" class="md-skip">
+        <a href="#les-properties-preparation" class="md-skip">
           Skip to content
         </a>
       
@@ -100,7 +100,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Les properties
+              Les properties, préparation
             
           </span>
         </div>
@@ -916,6 +916,8 @@
       
         
       
+        
+      
     
     
     
@@ -969,34 +971,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../iterators/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Les itérateurs
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -1016,7 +990,7 @@
   <span class="md-ellipsis">
     
   
-    Les properties
+    Les properties, préparation
   
 
     
@@ -1026,6 +1000,62 @@
 
       </a>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../properties_2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les properties, mise en œuvre
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iterators/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Les itérateurs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -2531,23 +2561,17 @@
   
 
 
-<h1 id="les-properties">Les properties</h1>
+<h1 id="les-properties-preparation">Les properties, préparation</h1>
 <p>Le module <code>pylib.pyflix.mediatheque</code> contient une classe <code>TvShow</code> qui représente une série. Pour 
 l’instant tous les attributs sont publics.</p>
-<p>Commencez par vérifier la conformité des spécifications :</p>
+<p>Votre prédécesseur n'a pas terminé l'implémentation. Commencez par vérifier la conformité des 
+spécifications :</p>
 <ul>
 <li>Le titre est un attribut du nom <code>name</code> et doit être en minuscules, la première lettre des mots en 
-   capitale.</li>
+   capitale (il y a une méthode pour cela…).</li>
 <li>La liste des épisodes est retournée par un attribut</li>
 <li>Un épisode est ajoutés par la méthode <code>add_episode()</code>.</li>
-<li>Ajouter un doublon doit résulter en une exception.</li>
-</ul>
-<p>Ensuite, vous devrez vous assurer que :</p>
-<ul>
-<li>la liste des épisodes ne doit pas être modifiée par son attribut, uniquement en ajoutant un 
-   épisode par la méthode.</li>
-<li>Si le titre est modifié par l’affectation à l’attribut, la casse doit être respectée</li>
-<li>Nous devons pouvoir obtenir la durée de la série par une syntaxe d’attribut.</li>
+<li>Ajouter un doublon doit résulter en une levée d'exception de type <code>DuplicateEpisode</code>.</li>
 </ul>
 <p>Complétez également si nécessaire les autres classes du module.</p>
 
