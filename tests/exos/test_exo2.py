@@ -4,7 +4,9 @@ def test_add_knight_to_existing_kingdom():
     camelot = []
     knight = "Lancelot"
 
-    assert add_knight(knight, camelot) == ["Lancelot"]
+    add_knight(knight, camelot)
+
+    assert camelot == ["Lancelot"]
 
 def test_add_knight_to_new_kingdom():
     knight = "Lancelot"
