@@ -21,6 +21,16 @@ class TvShow:
         self.name = name
         self._episodes = []
 
+    def __len__(self):
+        return len(self._episodes)
+
+    def __contains__(self, item):
+        for episode in self._episodes:
+            if episode == item:
+                return True
+        return False
+
+
     @property
     def duration(self):
         return sum((episode.duration
@@ -57,3 +67,4 @@ class Playlist:
 
     def add_episode(self, episode):
         self.episodes.append(episode)
+
