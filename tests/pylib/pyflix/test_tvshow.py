@@ -1,5 +1,5 @@
 import pytest
-from pylib.pyflix.mediatheque import TvShow
+from pylib.pyflix.mediatheque import TvShow, DuplicateEpisode
 
 def test_title_is_titlized():
     show = TvShow("lucky luke")
@@ -27,5 +27,5 @@ def test_add_duplicate_must_raise():
     show = TvShow("lucky luke")
     show.add_episode("Daisy Town", 1, 1)
 
-    with pytest.raises(ValueError):
+    with pytest.raises(DuplicateEpisode):
         show.add_episode("Daisy Town", 1, 1)
