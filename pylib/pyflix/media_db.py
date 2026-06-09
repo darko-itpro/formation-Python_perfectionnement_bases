@@ -36,6 +36,10 @@ SQL_GET_EPISODES_FOR_SEASON = ("SELECT title, season, e_number, duration, year "
                                "FROM episodes "
                                "where season = ? "
                                "ORDER BY e_number;")
+SQL_UPDATE_EPISODE = ("UPDATE episodes "
+                      "SET title = ?, season = ?, e_number = ?, duration = ? "
+                      "WHERE season = ? AND e_number = ?;")
+
 SQL_GET_EPISODES_BETWEEN = ("SELECT  title, season, e_number, duration, year "
                             "FROM episodes "
                             "where season >= ? and episode >= ? "
@@ -114,6 +118,26 @@ class TvShow:
                 cur.execute(SQL_ADD_EPISODE, (ep_number, season_number, title, duration, year))
         except sqlite.IntegrityError as ext:
             raise ValueError(f"Episode {title} s{season_number}e{ep_number} exists") from ext
+
+
+    def update_episode(self, old_episode: Episode, new_episode: Episode):
+        """
+        Update an episode using old and new episode data. The old data allows to retrieve the
+        episode to update.
+
+        :param old_episode: an episode representing the old data
+        :param new_episode: an episode representing the new data which will replace the old data
+        :raises ValueError: if the season number and episode number are modified to an existing episode to prevent duplication.
+        """
+        try:
+            with self._connect:
+                cur = self._connect.cursor()
+                cur.execute(SQL_UPDATE_EPISODE, (new_episode.title, new_episode.season_number,
+                                                 new_episode.number, new_episode.duration,
+                                                 old_episode.season_number, old_episode.number))
+        except sqlite.IntegrityError as ext:
+            raise ValueError(f"Episode {new_episode.title} s{new_episode.season_number}e{new_episode.number} exists") from ext
+
 
     def get_episodes(self, season=None):
         """
