@@ -1,5 +1,12 @@
-.PHONY: clean
+.PHONY: setup clean doc-build
+
+setup:
+	mkdir data
 
 clean:
 	rm -rf site
-	rm file.log
+	rm -rf data
+	rm -f file.log
+
+doc-build:
+	mkdocs build

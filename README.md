@@ -67,8 +67,11 @@ nécessaires sont listées ci-après.
 ### Makefile
 Si vous êtes sur un environnement POSIX (Linux ou MacOs) ou plus généralement si vous utilisez
 l'outil `make`, vous pouvez utiliser le `makefile` fourni :
- * `make clean` : supprime le répertoire `site` (créé pour la documentation) et le fichier de log à la 
-   racine.
+
+ * `make setup` : Crée des répertoires de travail.
+ * `make clean` : supprime les répertoires et les fichiers créés par les autres commandes ou lors 
+   des exécutions (comme le fichier de logs).
+ * `make doc-build` : génère la documentation en local. 
  
 ## Dépendances du projet
 Les dépendances suceptibles d'être utilisées pour cette formation sont les
