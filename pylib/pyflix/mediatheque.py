@@ -9,6 +9,18 @@ class Episode:
         self.duration = int(duration) if duration is not None else None
         self.year = int(year) if year is not None else None
 
+    def __eq__(self, other) -> bool:
+        if not isinstance(other, self.__class__):
+            return False
+
+        return self.season_number == other.season_number and self.number == other.number
+
+    def __repr__(self):
+        return f'Episode({self.title}, {self.number}, {self.season_number}), {self.duration}, {self.year})' # Episode('Grand Line', 1, 2, None, None)
+
+    def __str__(self):
+        return f'Episode {self.title} s{self.season_number:02}e{self.number:02}' # 'Episode Grand Line s02e01'
+
 
 class TvShow:
     def __init__(self, name:str):
@@ -19,7 +31,7 @@ class TvShow:
                     duration:int=None, year:int=None):
         new_episode = Episode(title, number, season_number, duration, year)
         if new_episode in self.episodes:
-            raise ValueError(f'Duplicate episode "{new_episode.title}"')
+            raise DuplicateEpisode(f'Duplicate episode "{new_episode.title}"')
 
         self.episodes.append(new_episode)
 
