@@ -101,7 +101,7 @@ class TvShow:
         return self._name
 
     def add_episode(self, title: str, season_number: int, ep_number: int,
-                    duration: int = None, year: int = None):
+                    duration: int|None = None, year: int|None = None):
         """
         Ajoute un épisode à la collection.
 
@@ -155,7 +155,6 @@ class TvShow:
 
         return [Episode(*episode_data)
                 for episode_data in cur.fetchall()]
-
 
     @property
     def episodes(self):

@@ -1,8 +1,10 @@
 class DuplicateEpisode(ValueError):
     pass
 
+
 class Episode:
-    def __init__(self, title:str, number:int, season_number:int, duration:int=None, year:int=None):
+    def __init__(self, title: str, number: int, season_number: int,
+                 duration: int|None = None, year: int|None = None):
         self.title = title
         self.number = number
         self.season_number = season_number
@@ -15,13 +17,14 @@ class TvShow:
         self.name = name
         self.episodes = []
 
-    def add_episode(self, title:str, season_number:int, number:int,
-                    duration:int=None, year:int=None):
+    def add_episode(self, title: str, season_number: int, number: int,
+                    duration: int|None = None, year: int|None = None):
         new_episode = Episode(title, number, season_number, duration, year)
         if new_episode in self.episodes:
             raise ValueError(f'Duplicate episode "{new_episode.title}"')
 
         self.episodes.append(new_episode)
+
 
 class Playlist:
     def __init__(self, name):
