@@ -35,14 +35,16 @@ travail.
 Ce projet est un projet de formation. Sa structure ne suit donc pas la
 structure conventionnelle d'un projet Python. L'organisation des répertoires
 est la suivante :
- * **assets** : est un répertoire contenant des fichiers qui seront nécessaires
+ * `assets` : est un répertoire contenant des fichiers qui seront nécessaires
  pour le parcours et la manipulation de fichiers.
- * **demos** : est un package contenant des fichiers de démonstration et d'illustration.
- * **exos** : est votre répertoire de travail. Il est destiné à contenir le
+ * `demos` : est un package contenant des fichiers de démonstration et d'illustration.
+ * `docs`: contient la documentation qui est déployée comme [pagees GitHub](https://darko-itpro.github.io/formation-Python_perfectionnement_bases/).
+ * `exos` : est votre répertoire de travail. Il est destiné à contenir le
  code que vous allez produire durant la formation et vous permettre de le
  retrouver dans cet emplacement unique.
- * **pylib** : est un répertoire contenant du code qui sera utilisé par vos
- programmes.
+ * `src`: Répertoire du contenu déployé (voir ci-dessous) contenant les packages suivants :
+   * `pylib` : est un répertoire contenant du code qui sera utilisé par vos
+   programmes.
 
 ## Mise en place de l'environnement
 
@@ -60,39 +62,83 @@ et [Visual Studio Code](https://code.visualstudio.com/).
 Une partie de la formation peut reposer sur des notebooks Jupyter.
 
 ### Installation de dépendances
-Les dépendances nécessaires au projet ne sont pas déclarées car la création
-d'un fichier requirements fait parti de ces formations. Les dépendances
-nécessaires sont listées ci-après.
+Ce projet utilise les pratiques _modernes_. Bien qu'historiquement les dépendances soient déclarées 
+dans les fichiers `requirements.txt`, pour ce projet, elles sont dans le `pyproject.toml`.
+
+Les instructions sont donc :
+
+Pour installer le projet (le contenu du répertoire `src`) en mode éditable :
+```bash
+pip install -e .
+```
+
+Depuis la version **26.2** de `pip`, vous pouvez installer uniquement les dépendances du projet 
+avec :
+
+```bash
+pip install . --only-deps
+```
+
+Pour installer les dépendances de _dév'_ :
+
+```bash
+pip install --group dev
+```
+
+Certaines dépendances sont déclarées comme _optionnelles_. Il s'agit de `Celery` et de son 
+interface web `flower`. Elles sont contenues dans le nom `[tasking]`.
+
+Dans le contexte de la formation, pour une installation en mode éditable, l'instruction pour les 
+installer est :
+
+```bash
+pip install -e ".[tasking]"
+```
  
 ### Makefile
 Si vous êtes sur un environnement POSIX (Linux ou MacOs) ou plus généralement si vous utilisez
 l'outil `make`, vous pouvez utiliser le `makefile` fourni :
 
- * `make setup` : Crée des répertoires de travail.
  * `make clean` : supprime les répertoires et les fichiers créés par les autres commandes ou lors 
-   des exécutions (comme le fichier de logs).
+   des exécutions (comme l'arborescence du _site_).
  * `make doc-build` : génère la documentation en local. 
  
 ## Dépendances du projet
-Les dépendances suceptibles d'être utilisées pour cette formation sont les
-suivantes :
+Les dépendances utilisées pour cette formation sont les suivantes.
+
+### Dépendances _de production_
+
+Il s'agit des dépendances indispensables pour le bon fonctionnement du projet.
+
  * [ipython](https://jupyter.org/) : il s'agit d'un shell intéractif avancé encore préféré au shell
    intéractif standard.
+ * [jupyter-lab](https://jupyter.org/) : sera utilisé pour ses notebooks, documents
+   d'illustration. Cette dépendance installera également le shell intéractif 
+   avancé `ipython`. `Jupyter-lab` est une évolution du projet `Jupyter`.
+ * [rich](https://github.com/Textualize/rich) : permet d'avoir un texte *riche* dans le terminal.
+ * [platformdirs](https://pypi.org/project/platformdirs/) : utilisé pour déterminer les répertoires 
+   utilisateur en fonction de la plate-forme.
+
+### Dépendances _de développement_
+
+Il s'agit des dépendances nécessaires pour le développement mais qui ne doivent pas être installées 
+en prod.
+
  * [Pytest](https://docs.pytest.org/) : utilisé pour la partie tests unitaires
  * [Pytz](https://pypi.org/project/pytz/) : utilisé pour la gestion des TimeZone des dates. Bien
    que dépréciée depuis Python 3.9, elle est présente à but d'illustration d'une
    dépendance *de prod* 
  * [flake8](https://flake8.pycqa.org/) : outil de validation statique de code
  * [pylint](https://pypi.org/project/pylint/) : outil d'analyse statique de code
- * [jupyter](https://jupyter.org/) : Jupyter sera utilisé pour ses notebooks, documents
-   d'illustration. Cette dépendance installera également le shell intéractif 
-   avancé `ipython`.
- * [jupyter-lab](https://jupyter.org/) : est une évolution du projet Jupyter. Normalement on
-   utilise l'un ou l'autre. Les deux sont présents dans le contexte de formation.
+ * [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) pour la documentation.
+
+### Dépendances _Optionnelles_
+
+Les dépendances suivantes ne sont pas indispensables au projet si on n'utilise pas leurs 
+fonctionalités.
+
  * [celery](https://docs.celeryq.dev/) : utilisé pour l'asynchronisme. Nécessite
    [RabbitMQ](https://www.rabbitmq.com/) et [Redis](https://redis.io/).
- * [rich](https://github.com/Textualize/rich) : permet d'avoir un texte *riche* dans le terminal.
- * [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) pour la documentation.
  
 ## Ressources
 

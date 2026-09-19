@@ -1,0 +1,46 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "formation-python-perfectionnement-bases"
+version = "2026.09"
+description = "Project for my advanced Python Training"
+readme = "README.md"
+authors = [
+    {name="Darko Stankovski", email="darko.itpro@gmail.com"},
+]
+license = "GPL-3.0-or-later"
+
+requires-python = ">=3.10"
+dependencies = [
+    "ipython>=8.39.0",
+    "jupyterlab>=4.6.3",
+    "platformdirs>=4.11.10",
+    "rich>=15.0.0",
+]
+
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pylib"]
+
+[dependency-groups]
+dev = [
+    "flake8>=7.3.0",
+    "mkdocs-material>=9.7.7",
+    "pylint>=4.0.8",
+    "pytest>=9.1.1",
+    "pytest-cov>=7.1.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/darko-itpro/formation-Python_perfectionnement_bases"
+Documentation = "https://darko-itpro.github.io/formation-Python_perfectionnement_bases/"
+Repository = "https://github.com/darko-itpro/formation-Python_perfectionnement_bases.git"
+Issues = "https://github.com/darko-itpro/formation-Python_perfectionnement_bases/issues"
+
+[project.optional-dependencies]
+tasking = [
+    "celery>=5.6.3",
+    "flower>=2.1.0",
+]

@@ -1,7 +1,7 @@
 import random
 import time
 import logging
-import pylib.settings
+
 
 def make_notify(service_name: str, min_delay: float = 1, max_delay: float = 5):
     def notify():

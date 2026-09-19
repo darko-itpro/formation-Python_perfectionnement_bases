@@ -15,8 +15,10 @@ Vos fonctions doivent ressembler à :
 ```python
 import pylib.utils.notifiers as nf
 
+
 def notify_mail():
     nf.make_notify("mail")()
+
 
 def notify_sms():
     nf.make_notify("SMS")()
