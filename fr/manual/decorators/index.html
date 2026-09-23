@@ -19,7 +19,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -27,7 +27,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -2889,7 +2889,7 @@
 <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">outer</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
     <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">inner</span><span class="p">():</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;inner func for </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"inner func for </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
         <span class="k">nonlocal</span> <span class="n">count</span>
         <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
 
@@ -2901,7 +2901,7 @@
     <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">inner</span><span class="p">():</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;inner func for </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"inner func for </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
         <span class="k">nonlocal</span> <span class="n">count</span>
         <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
 
@@ -2923,41 +2923,41 @@
 <h3 id="structure-generale-des-decorateurs">Structure générale des décorateurs</h3>
 <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">sandwich</span><span class="p">(</span><span class="n">content</span><span class="p">):</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">():</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;/TTTTTTTTTT</span><span class="se">\\</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"/TTTTTTTTTT</span><span class="se">\\</span><span class="s2">"</span><span class="p">)</span>
         <span class="n">content</span><span class="p">()</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">__________/&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\\</span><span class="s2">__________/"</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">wrapper</span>
 </code></pre></div>
 <p>Ce qui peut s'appeler de la manière suivante :
 <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">parisien</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Jambon&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Beurre&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Jambon"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Beurre"</span><span class="p">)</span>
 
 <span class="n">sandwich</span><span class="p">(</span><span class="n">parisien</span><span class="p">)()</span>
 </code></pre></div></p>
 <p>Mais aussi
 <div class="highlight"><pre><span></span><code><span class="nd">@sandwich</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">parisien</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Jambon&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Beurre&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Jambon"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Beurre"</span><span class="p">)</span>
 </code></pre></div></p>
 <h3 id="passage-darguments">Passage d'arguments</h3>
 <p>L'usage de variadics permet une cohésion faible entre le décorateur et la fonction à décorer.</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">sandwich</span><span class="p">(</span><span class="n">content</span><span class="p">):</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kargs</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;/TTTTTTTTTT</span><span class="se">\\</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"/TTTTTTTTTT</span><span class="se">\\</span><span class="s2">"</span><span class="p">)</span>
         <span class="n">content</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kargs</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">__________/&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\\</span><span class="s2">__________/"</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">wrapper</span>
 </code></pre></div>
 <h3 id="valeur-en-retour">Valeur en retour</h3>
 <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">sandwich</span><span class="p">(</span><span class="n">content</span><span class="p">):</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kargs</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;/TTTTTTTTTT</span><span class="se">\\</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"/TTTTTTTTTT</span><span class="se">\\</span><span class="s2">"</span><span class="p">)</span>
         <span class="n">value</span> <span class="o">=</span> <span class="n">content</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kargs</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">__________/&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\\</span><span class="s2">__________/"</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">value</span>
 
@@ -2982,7 +2982,7 @@
 <h2 id="bonus-remplacer-les-metadonnees-du-wrapper">Bonus : remplacer les métadonnées du wrapper</h2>
 <p>Dans le cas de l'utilisation d'un wrapper, l'introspection de la fonction sera <em>faussé</em>. Nous n'avons plus la fonction d'origine mais la fonction wrapper. Faites le test sur la base du décorateur <code>sandwich</code>, vous devriez avoir quelque chose de similaire à :
 <div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">sandwich</span><span class="o">.</span><span class="vm">__name__</span>
-<span class="s1">&#39;wrapper&#39;</span>
+<span class="s1">'wrapper'</span>
 </code></pre></div></p>
 <p>Pour préserver les informations de la fonction d'origine :
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">functools</span>
@@ -2990,9 +2990,9 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">sandwich</span><span class="p">(</span><span class="n">content</span><span class="p">):</span>
     <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">():</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;/TTTTTTTTTT</span><span class="se">\\</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"/TTTTTTTTTT</span><span class="se">\\</span><span class="s2">"</span><span class="p">)</span>
         <span class="n">content</span><span class="p">()</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">__________/&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\\</span><span class="s2">__________/"</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">wrapper</span>
 </code></pre></div></p>
@@ -3048,7 +3048,7 @@
       <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

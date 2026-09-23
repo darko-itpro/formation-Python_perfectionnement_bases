@@ -19,7 +19,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -27,7 +27,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -2752,46 +2752,46 @@
 <h2 id="basic-structure">Basic structure</h2>
 <div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">BasicContextManager</span><span class="p">:</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Entering Context Manager&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Entering Context Manager"</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_val</span><span class="p">,</span> <span class="n">exc_tb</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exiting Context Manager&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Exiting Context Manager"</span><span class="p">)</span>
 </code></pre></div>
 <p>Usage:</p>
 <div class="highlight"><pre><span></span><code><span class="k">with</span> <span class="n">BasicContextManager</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;In context&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'In context'</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="a-context-manager-is-an-object">A context manager is an object</h2>
 <p>A context manager is a class and so, an object. It can have a <code>__init__(self)</code> method.</p>
 <div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">BasicContextManager</span><span class="p">:</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Initializing&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">my_id</span> <span class="o">=</span> <span class="s2">&quot;I&#39;m the context&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Initializing"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_id</span> <span class="o">=</span> <span class="s2">"I'm the context"</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Entering Context Manager&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Entering Context Manager"</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_val</span><span class="p">,</span> <span class="n">exc_tb</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exiting Context Manager&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Exiting Context Manager"</span><span class="p">)</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="n">bc</span> <span class="o">=</span> <span class="n">BasicContextManager</span><span class="p">()</span>
 <span class="k">with</span> <span class="n">bc</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;In context </span><span class="si">{</span><span class="n">bc</span><span class="o">.</span><span class="n">my_id</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'In context </span><span class="si">{</span><span class="n">bc</span><span class="o">.</span><span class="n">my_id</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="idiome-with-as">Idiome with as</h2>
 <p>The keyword <code>as</code> gets the return of the <code>__enter__(self)</code> method.</p>
 <div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">BasicContextManager</span><span class="p">:</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Initializing&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">my_id</span> <span class="o">=</span> <span class="s2">&quot;I&#39;m the context&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Initializing"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_id</span> <span class="o">=</span> <span class="s2">"I'm the context"</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Entering Context Manager&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Entering Context Manager"</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span>
 </code></pre></div>
 <p>Let us write:
 <div class="highlight"><pre><span></span><code><span class="k">with</span> <span class="n">BasicContextManager</span><span class="p">()</span> <span class="k">as</span> <span class="n">bc</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;In context </span><span class="si">{</span><span class="n">bc</span><span class="o">.</span><span class="n">my_id</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'In context </span><span class="si">{</span><span class="n">bc</span><span class="o">.</span><span class="n">my_id</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
 </code></pre></div></p>
 <h2 id="exceptions-management">Exceptions management</h2>
 <h3 id="__exit__-parameters"><code>__exit__()</code> parameters</h3>
@@ -2860,7 +2860,7 @@ a <strong>truthy</strong> value. If the method returns a <strong>falsy</strong> 
       <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>
