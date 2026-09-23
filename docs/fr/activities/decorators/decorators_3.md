@@ -5,6 +5,8 @@ Nous allons écrire une fonction qui simule faire quelque chose de « long ». S
 suivante.
 
 ```python
+import time
+
 def long_call(value:int):
     time.sleep(2)
     return value**2
