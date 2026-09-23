@@ -13,7 +13,7 @@ for x in range(1_000_000):
 
 end = time.time()
 
-print(end - start, "secondes se sont écoulées")
+print(f'{end - start}, secondes se sont écoulées'"')
 ```
 
 ## Sujet
