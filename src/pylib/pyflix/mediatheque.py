@@ -1,3 +1,6 @@
+from typing import cast
+
+
 class DuplicateEpisode(ValueError):
     pass
 
@@ -11,6 +14,12 @@ class Episode:
         self.duration = int(duration) if duration is not None else None
         self.year = int(year) if year is not None else None
 
+    def __eq__(self, other): # episode == other
+        if not isinstance(other, self.__class__):
+            return False
+
+        return self.number == other.number and self.season_number == other.season_number
+
 
 class TvShow:
     def __init__(self, name):
@@ -21,7 +30,7 @@ class TvShow:
                     duration: int|None = None, year: int|None = None):
         new_episode = Episode(title, number, season_number, duration, year)
         if new_episode in self.episodes:
-            raise ValueError(f'Duplicate episode "{new_episode.title}"')
+            raise DuplicateEpisode(f'Duplicate episode "{new_episode.title}"')
 
         self.episodes.append(new_episode)
 
