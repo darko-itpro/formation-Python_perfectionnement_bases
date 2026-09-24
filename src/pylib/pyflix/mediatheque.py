@@ -14,7 +14,7 @@ class Episode:
 
 class TvShow:
     def __init__(self, name):
-        self.name = name
+        self.name = name.title()
         self.episodes = []
 
     def add_episode(self, title: str, season_number: int, number: int,
@@ -31,5 +31,5 @@ class Playlist:
         self.name = name
         self.episodes = []
 
-    def add_episode(self, episode):
+    def add_episode(self, episode:Episode):
         self.episodes.append(episode)
