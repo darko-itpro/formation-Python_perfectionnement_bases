@@ -33,3 +33,8 @@ def test_duplicate_episode_must_raise(my_show):
     my_show.add_episode("title 1", 1, 1)
     with pytest.raises(DuplicateEpisode):
         my_show.add_episode("title 1", 1, 1)
+
+def test_episodes_updated_only_by_method(my_show):
+    my_show.add_episode("Title", 1, 2)
+    my_show.episodes.append("toto")
+    assert len(my_show.episodes) == 1

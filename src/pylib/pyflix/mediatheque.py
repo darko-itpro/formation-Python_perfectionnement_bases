@@ -23,8 +23,25 @@ class Episode:
 
 class TvShow:
     def __init__(self, name):
-        self.name = name.title()
-        self.episodes = []
+        self.name = name
+        self._episodes = []
+
+    @property
+    def duration(self):
+        return sum((episode.duration for episode in self._episodes))
+
+
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, new_name:str):
+        self._name = new_name.title()
+
+    @property
+    def episodes(self):
+        return self._episodes.copy()
 
     def add_episode(self, title: str, season_number: int, number: int,
                     duration: int|None = None, year: int|None = None):
@@ -32,7 +49,7 @@ class TvShow:
         if new_episode in self.episodes:
             raise DuplicateEpisode(f'Duplicate episode "{new_episode.title}"')
 
-        self.episodes.append(new_episode)
+        self._episodes.append(new_episode)
 
 
 class Playlist:
