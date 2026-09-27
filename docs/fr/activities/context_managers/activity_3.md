@@ -15,7 +15,8 @@ print(os.getcwd())
 ```
 
 Qui doit vous afficher respectivement le répertoire de travail, le répertoire `/temp` puis le 
-répertoire de travail.
+répertoire de travail. **Attention**, le répertoire `/temp` est donné à type d'exemple, utilisez 
+évidemment un répertoire existant sur votre système.
 
 Pour rappel, vous pouvez changer de répertoire de travail avec 
 [`os.chdir(path)`](https://docs.python.org/3/library/os.html#os.chdir).
