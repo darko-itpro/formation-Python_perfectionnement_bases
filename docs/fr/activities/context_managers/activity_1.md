@@ -6,12 +6,12 @@ En Python, il est possible de mesurer la durée d’exécution d’un code de la
 ```python
 import time
 
-start = time.time()
+start = time.perf_counter()
 
 for x in range(1_000_000):
     y = x ** 2
 
-end = time.time()
+end = time.perf_counter()
 
 print(f'{end - start} secondes se sont écoulées')
 ```
