@@ -4,8 +4,8 @@ Fichier à importer pour utiliser le logger.
 Ce fichier doit être importé en premier. Vous devez également importer `logging` dans
 le fichier où vous utiliserez le logger.
 
-Les fichiers de données sont écrits dans ~/Library/Application Support/<nom> sur macOS,
-~/.local/share/<nom> sur Linux, et AppData\Local sur Windows.
+Les fichiers de données sont écrits dans les répertoires spécifiques des systèmes utilisés. Voir :
+ https://platformdirs.readthedocs.io/en/latest/platforms.html pour les détails.
 """
 
 import logging
