@@ -6,6 +6,9 @@ def test_add_one_knight():
     assert exo_01.count == 1
 
 def test_add_one_other_knight():
+    exo_01.count = 0
+    exo_01.kingdom.clear()
+
     exo_01.add_knight("Lancelot")
     assert exo_01.kingdom == ['Lancelot']
     assert exo_01.count == 1
