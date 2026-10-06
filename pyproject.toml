@@ -17,6 +17,7 @@ dependencies = [
     "ipython>=8.39.0",
     "jupyterlab>=4.6.3",
     "platformdirs>=4.11.10",
+    "rich>=15.0.0",
 ]
 
 
