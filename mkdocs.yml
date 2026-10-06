@@ -55,6 +55,7 @@ nav:
       - Parallelism:
         - fr/activities/parallelism/index.md
         - fr/activities/parallelism/notifiers.md
+        - fr/activities/parallelism/async_notifiers.md
   - 🇬🇧 In English:
     - en/index.md
     - Reference manual:
