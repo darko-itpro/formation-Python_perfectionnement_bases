@@ -12,14 +12,14 @@ async def some_work(name):
 
 async def main():
     tasks = []
-    for i in range(5):
-        tasks.append(some_work(i))
+    async with asyncio.TaskGroup() as tg:
+        for i in range(5):
+            tasks.append(tg.create_task(some_work(i)))
 
-    await asyncio.gather(*tasks)
 
 
 if __name__ == '__main__':
     start = time.time()
     asyncio.run(main())
     duration = time.time() - start
-    logging.info("Total duration: %.2f seconds", duration)
+    logging.info("Total duration: %.2f", duration)

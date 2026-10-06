@@ -6,7 +6,7 @@ import time
 
 async def some_work(name):
     logging.info('Started %s ...', name)
-    delay = random.uniform(0, 1.5)
+    delay = random.uniform(1, 10)
     await asyncio.sleep(delay)
     logging.info('... and finished %s after %.2f seconds', name, delay)
 
