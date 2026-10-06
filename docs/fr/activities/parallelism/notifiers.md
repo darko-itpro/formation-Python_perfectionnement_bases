@@ -26,7 +26,7 @@ def notify_sms():
 
 Et elles sont évidemment décorées.
 
-Exécutez votre code pour observer que l'envoi de notifications prends du temps.
+Exécutez votre code pour observer que l'envoi de notifications prend du temps.
 
 Modifiez la fonction `send_notifications()` pour envoyer des notifications en parallèle. Vous êtes 
 libres de choisir la manière de faire sur la base du contenu de la formation.
