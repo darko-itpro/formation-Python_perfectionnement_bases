@@ -22,9 +22,22 @@ class Episode:
 
 class TvShow:
     def __init__(self, name:str):
-        self.name = name.title()
+        self.name = name
         self._episodes = []
 
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, name:str):
+        self._name = name.title()
+
+    @property
+    def duration(self):
+        return sum([episode.duration for episode in self._episodes])
+
+    @property
     def episodes(self):
         return self._episodes.copy()
 
