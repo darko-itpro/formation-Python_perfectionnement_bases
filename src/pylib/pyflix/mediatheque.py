@@ -23,15 +23,18 @@ class Episode:
 class TvShow:
     def __init__(self, name:str):
         self.name = name.title()
-        self.episodes = []
+        self._episodes = []
+
+    def episodes(self):
+        return self._episodes.copy()
 
     def add_episode(self, title: str, season_number: int, number: int,
                     duration: int|None = None, year: int|None = None):
         new_episode = Episode(title, number, season_number, duration, year)
-        if new_episode in self.episodes:
+        if new_episode in self._episodes:
             raise DuplicateEpisode(f'Duplicate episode "{new_episode.title}"')
 
-        self.episodes.append(new_episode)
+        self._episodes.append(new_episode)
 
 
 class Playlist:
