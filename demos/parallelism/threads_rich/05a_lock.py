@@ -13,13 +13,13 @@ class Oven:
     def cook_meal(self, dish:str, duration:int):
         console.log(f"Ready to cook {dish}")
 
-        #with self._lock:
-        #self._lock.acquire()
-        console.log(f"➡️ Putting {dish} into oven ⏲️")
-        self._dish = dish
-        time.sleep(duration)
-        console.log(f"⏏️ Taking out {self._dish} from oven ⏰")
-        #self._lock.release()
+        with self._lock:
+            #self._lock.acquire()
+            console.log(f"➡️ Putting {dish} into oven ⏲️")
+            self._dish = dish
+            time.sleep(duration)
+            console.log(f"⏏️ Taking out {self._dish} from oven ⏰")
+            #self._lock.release()
 
 console = Console()
 console.clear()

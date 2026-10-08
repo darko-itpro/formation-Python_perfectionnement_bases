@@ -21,6 +21,8 @@ if __name__ == "__main__":
     with ThreadPoolExecutor(max_workers=2) as executor:
         executor.submit(cooking, *pasta)
         executor.submit(cooking, *meat)
+        executor.submit(cooking, *meat)
+        executor.submit(cooking, *pasta)
 
     end_time = time.time()
     logging.info("Main    : ⏱️ Collecting after %.2f seconds, ready to serve", end_time - start_time)

@@ -38,6 +38,11 @@ with console.status("[bold green]Cooking will start...[/bold green]",
     pasta_cook.start()
     meat_cook.start()
 
+    pasta_cook.join()
+    meat_cook.join()
+
+    console.log("Main    : cooking done")
+
 console.print()
 console.rule("Processing done")
 

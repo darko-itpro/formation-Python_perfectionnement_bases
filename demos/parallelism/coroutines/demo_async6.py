@@ -17,7 +17,6 @@ async def main():
             tasks.append(tg.create_task(some_work(i)))
 
 
-
 if __name__ == '__main__':
     start = time.time()
     asyncio.run(main())
