@@ -9,10 +9,6 @@
       
       
       
-        <link rel="prev" href="../">
-      
-      
-        <link rel="next" href="../async_notifiers/">
       
       
         
@@ -244,8 +240,6 @@
       
   
   
-    
-  
   
   
     
@@ -265,11 +259,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -297,7 +291,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -680,10 +674,8 @@
                 
   
   
-    
   
   
-  
     
     
       
@@ -701,11 +693,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
         
           
           <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
@@ -726,7 +718,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1441,8 +1433,6 @@
                 
   
   
-    
-  
   
   
     
@@ -1460,11 +1450,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4_5" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -1492,7 +1482,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_4_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_4_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_4_5">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1509,26 +1499,17 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../thread_notifiers.md" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Notifications en parallèle
+    None
   
 
     
@@ -1537,7 +1518,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -2573,6 +2553,25 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#exercice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercice
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2593,12 +2592,13 @@
 
 <h1 id="notifications-en-parallele">Notifications en parallèle</h1>
 <p>Cet exercice reprend <a href="../../decorators/decorators_4/">l'exercice sur le pattern registery des décorateurs</a>.</p>
+<p><strong>Important</strong> : Consultez <a href="../">la page d'index</a> pour une information sur les logs.</p>
 <p>Vous allez commencer par modifier les fonctions de <em>notification</em>. Vous avez à disposition un module 
 qui simule un service de notification : <code>pylib.utils.notifiers</code>. Ce service contient une fonction 
 <code>make_notify(service_name:str)</code> qui retourne une fonction. Cette fonction va simuler de manière plus 
 réaliste l'envoi d'une notification en <em>prenant du temps</em>.</p>
 <p>Commencez par modifier les fonctions "notify" en remplaçant l'affichage par un appel à cette 
- fonction. Utiliser en paramètre un texte décrivant le type de service (mail, SMS…).</p>
+fonction. Utiliser en paramètre un texte décrivant le type de service (mail, SMS…).</p>
 <p>Vos fonctions doivent ressembler à :</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pylib.utils.notifiers</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nf</span>
 
@@ -2611,9 +2611,11 @@ réaliste l'envoi d'une notification en <em>prenant du temps</em>.</p>
     <span class="n">nf</span><span class="o">.</span><span class="n">make_notify</span><span class="p">(</span><span class="s2">"SMS"</span><span class="p">)()</span>
 </code></pre></div>
 <p>Et elles sont évidemment décorées.</p>
+<h2 id="exercice">Exercice</h2>
 <p>Exécutez votre code pour observer que l'envoi de notifications prend du temps.</p>
 <p>Modifiez la fonction <code>send_notifications()</code> pour envoyer des notifications en parallèle. Vous êtes 
 libres de choisir la manière de faire sur la base du contenu de la formation.</p>
+<p>Vous pouvez commencer par la version simple puis la version avec niveaux d'alerte.</p>
 
 
 

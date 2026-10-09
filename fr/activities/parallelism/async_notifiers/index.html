@@ -9,7 +9,7 @@
       
       
       
-        <link rel="prev" href="../notifiers/">
+        <link rel="prev" href="../">
       
       
         <link rel="next" href="../../../../en/">
@@ -1512,14 +1512,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../notifiers/" class="md-nav__link">
+      <a href="../thread_notifiers.md" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Notifications en parallèle
+    None
   
 
     
@@ -1549,6 +1549,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifications Async
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1565,6 +1583,64 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#exercice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercice
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-propos-de-lexecution-avec-les-niveaux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        À propos de l'exécution avec les niveaux
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="À propos de l&#39;exécution avec les niveaux">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#si-necessaire-quelques-indices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Si nécessaire, quelques indices…
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2573,6 +2649,53 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#exercice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercice
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-propos-de-lexecution-avec-les-niveaux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        À propos de l'exécution avec les niveaux
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="À propos de l&#39;exécution avec les niveaux">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#si-necessaire-quelques-indices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Si nécessaire, quelques indices…
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2593,12 +2716,13 @@
 
 <h1 id="notifications-async">Notifications Async</h1>
 <p>Cet exercice reprend <a href="../../decorators/decorators_4/">l'exercice sur le pattern registery des décorateurs</a>.</p>
+<p><strong>Important</strong> : Consultez <a href="../">la page d'index</a> pour une information sur les logs.</p>
 <p>Vous allez commencer par modifier les fonctions de <em>notification</em>. Vous avez à disposition un module 
 qui simule un service de notification : <code>pylib.utils.notifiers</code>. Ce service contient une fonction 
 <code>make_async_notify(service_name:str)</code> qui retourne une <strong>coroutine</strong>. Cette coroutine va simuler de 
 manière plus réaliste l'envoi d'une notification en <em>prenant du temps</em>.</p>
 <p>Commencez par modifier les fonctions "notify" en remplaçant l'affichage par un appel à cette 
- fonction. Utiliser en paramètre un texte décrivant le type de service (mail, SMS…).</p>
+fonction. Utiliser en paramètre un texte décrivant le type de service (mail, SMS…).</p>
 <p>Vos fonctions doivent ressembler à :</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pylib.utils.notifiers</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nf</span>
 
@@ -2611,9 +2735,25 @@ manière plus réaliste l'envoi d'une notification en <em>prenant du temps</em>.
     <span class="k">await</span> <span class="n">nf</span><span class="o">.</span><span class="n">make_async_notify</span><span class="p">(</span><span class="s2">"SMS"</span><span class="p">)()</span>
 </code></pre></div>
 <p>Et elles sont évidemment décorées.</p>
+<h2 id="exercice">Exercice</h2>
 <p>La fonction <code>send_notifications()</code> doit maintenant exécuter les coroutines en parallèle. Modifiez la
 en conséquence.</p>
-<p>Si nécessaire, quelques indices…</p>
+<p>Vous pouvez commencer par la version simple puis la version avec niveaux d'alerte.</p>
+<h2 id="a-propos-de-lexecution-avec-les-niveaux">À propos de l'exécution avec les niveaux</h2>
+<p>Dans la version avec des niveaux d'appel, vous allez probablement créer des coroutines que 
+vous n'exécuterez pas du fait de leur niveau. Vous aurez alors en fin d'exécution, pour ces 
+coroutines, un warning du type:</p>
+<div class="highlight"><pre><span></span><code>&lt;sys&gt;:0:<span class="w"> </span>RuntimeWarning:<span class="w"> </span>coroutine<span class="w"> </span><span class="s1">'notify_mail'</span><span class="w"> </span>was<span class="w"> </span>never<span class="w"> </span>awaited
+</code></pre></div>
+<p>Ce qui est normal… Cet avertissement est émis par le <em>garbage collector</em> quand une coroutine a été 
+créée mais jamais atteinte ou exécutée. Vous pouvez donc l'ignorer, il n'y a <em>rien</em> à faire. 
+Dans certaines situations, il faudrait les intercepter et les <em>fermer</em>, mais dans notre cas, vous 
+êtes dans une situation d'exercice alors que ce type de code est destiné à être exécuté en boucle et
+recevoir plusieurs appels à notifications.</p>
+<p>Bien entendu, même dans une situation de production, une coroutine peut ne jamais être appelée à la
+fermeture du programme entrainant cet avertissement. Une évolution plus propre serait donc, juste 
+avant, de parcourir la liste des notifications et de les fermer.</p>
+<h3 id="si-necessaire-quelques-indices">Si nécessaire, quelques indices…</h3>
 <details>
 <summary>Indice 1, la liste des notifications</summary>
 La liste des notifications doit contenir des coroutines et non des fonctions.
