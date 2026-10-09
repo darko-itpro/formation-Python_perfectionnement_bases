@@ -4,6 +4,8 @@ Cet exercice reprend [l'exercice sur le pattern registery des décorateurs](../d
 
 **Important** : Consultez [la page d'index](index.md) pour une information sur les logs.
 
+## Contexte
+
 Vous allez commencer par modifier les fonctions de *notification*. Vous avez à disposition un module 
 qui simule un service de notification : `pylib.utils.notifiers`. Ce service contient une fonction 
 `make_notify(service_name:str)` qui retourne une fonction. Cette fonction va simuler de manière plus 

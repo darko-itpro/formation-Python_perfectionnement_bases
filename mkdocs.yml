@@ -54,7 +54,7 @@ nav:
         - fr/activities/context_managers/activity_3.md
       - Parallelism:
         - fr/activities/parallelism/index.md
-        - fr/activities/parallelism/thread_notifiers.md
+        - fr/activities/parallelism/threads_notifiers.md
         - fr/activities/parallelism/async_notifiers.md
   - 🇬🇧 In English:
     - en/index.md
