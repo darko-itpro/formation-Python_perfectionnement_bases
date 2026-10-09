@@ -4,6 +4,14 @@ Cet exercice reprend [l'exercice sur le pattern registery des décorateurs](../d
 
 **Important** : Consultez [la page d'index](index.md) pour une information sur les logs.
 
+## Avant de commencer
+
+Cet exercice va vous faire travailler les coroutines et `asyncio` dans un contexte qui doit vous 
+être déjà familier. Le choix d'implémentation a été volontairement simplifié pour le contexte d'un
+exercice. Consultez ces simplifications en fin de document.
+
+## Contexte
+
 Vous allez commencer par modifier les fonctions de *notification*. Vous avez à disposition un module 
 qui simule un service de notification : `pylib.utils.notifiers`. Ce service contient une fonction 
 `make_async_notify(service_name:str)` qui retourne une **coroutine**. Cette coroutine va simuler de 
@@ -30,32 +38,13 @@ Et elles sont évidemment décorées.
 
 ## Exercice
 
-La fonction `send_notifications()` doit maintenant exécuter les coroutines en parallèle. Modifiez la
+La fonction `send_notifications()` doit maintenant exécuter les coroutines en parallèle. Modifiez-la
 en conséquence.
 
-Vous pouvez commencer par la version simple puis la version avec niveaux d'alerte.
+Vous pouvez commencer par la version simple puis la version avec niveaux d'alerte. Pour cette 
+dernière, consultez la partie ci-dessous sur la _simplification_ du sujet. 
 
-## À propos de l'exécution avec les niveaux
-
-Dans la version avec des niveaux d'appel, vous allez probablement créer des coroutines que 
-vous n'exécuterez pas du fait de leur niveau. Vous aurez alors en fin d'exécution, pour ces 
-coroutines, un warning du type:
-
-```shell
-<sys>:0: RuntimeWarning: coroutine 'notify_mail' was never awaited
-```
-
-Ce qui est normal… Cet avertissement est émis par le _garbage collector_ quand une coroutine a été 
-créée mais jamais atteinte ou exécutée. Vous pouvez donc l'ignorer, il n'y a _rien_ à faire. 
-Dans certaines situations, il faudrait les intercepter et les _fermer_, mais dans notre cas, vous 
-êtes dans une situation d'exercice alors que ce type de code est destiné à être exécuté en boucle et
-recevoir plusieurs appels à notifications.
-
-Bien entendu, même dans une situation de production, une coroutine peut ne jamais être appelée à la
-fermeture du programme entrainant cet avertissement. Une évolution plus propre serait donc, juste 
-avant, de parcourir la liste des notifications et de les fermer.
-
-### Si nécessaire, quelques indices…
+## Si nécessaire, quelques indices…
 
 <details>
 <summary>Indice 1, la liste des notifications</summary>
@@ -73,3 +62,29 @@ coroutine qui devra être déclarée dans la fonction.
 Vous aurez certainement besoin de compréhension de listes.
 </details>
 
+## La _simplification_ du contexte de cet exercice
+
+Ce sujet considère que vous êtes dans un exercice et donc que votre code et l'appel aux coroutines
+ne sera exécuté qu'une seule fois. En conséquence, le sujet fonctionne. Mais elle néglige **qu'une 
+coroutine est créée pour être exécutée et n'être exécutée qu'une seule fois**.
+
+### Conséquence sur l'exercice à niveaux
+
+Dans la version avec des niveaux d'appel, vous allez probablement créer des coroutines que 
+vous n'exécuterez pas du fait de leur niveau. Vous aurez alors en fin d'exécution, pour ces 
+coroutines, un warning du type :
+
+```shell
+<sys>:0: RuntimeWarning: coroutine 'notify_mail' was never awaited
+```
+
+Ce qui est normal… Cet avertissement est émis par le _garbage collector_ quand une coroutine a été 
+créée mais jamais atteinte ou exécutée. Vous pouvez donc l'ignorer car il ne vous est pas demandé de
+gérer cette situation. Si vous souhaitez le faire, ce n'est pas un filtre qu'il faudra réaliser mais 
+un tri : les coroutines non appelées devront être fermées. Ceci nous fait sortir du cadre du sujet 
+de cet exercice.
+
+### Cette version ne permet d'une seule exécution
+
+Une coroutine ne peut être exécutée qu'une seule fois. Pour _exécuter plusieurs fois_ une coroutine, 
+elle doit être créée à chaque fois ce que ne permet pas la fonction proposée.
