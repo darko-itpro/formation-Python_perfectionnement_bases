@@ -8,9 +8,9 @@ Ce référentiel complète la formation Python Perfectionnement que je propose e
 mes stagiaires.
 
 [![License](https://img.shields.io/github/license/darko-itpro/training-python.svg?style=plastic)](https://github.com/darko-itpro/training-python/blob/master/LICENSE)
-[![Static Badge](https://img.shields.io/badge/Github-Documentation-blue?logo=github)](https://darko-itpro.github.io/formation-Python_perfectionnement_bases/)
+[![Static Badge](https://img.shields.io/badge/Github-Documentation-blue?logo=github)](https://darko-itpro.github.io/formation-Python_perfectionnement_bases/fr/)
 
-La [documentation GitHub](https://darko-itpro.github.io/formation-Python_perfectionnement_bases/) est disponible.
+La [documentation GitHub](https://darko-itpro.github.io/formation-Python_perfectionnement_bases/fr/) est disponible.
 
 Ces sources sont organisées pour proposer des exemples de code sur les thèmes couverts par les
 formations Python Perfectionnement. Elles respectent avec quelques adaptations l'organisation d'un
@@ -103,6 +103,44 @@ l'outil `make`, vous pouvez utiliser le `makefile` fourni :
    des exécutions (comme l'arborescence du _site_).
  * `make doc-build` : génère la documentation en local. 
  
+## Documentation
+
+Dans le cadre de ce projet, la documentation _principale_ est générée par [Material for 
+MkDocs](https://squidfunk.github.io/mkdocs-material/). L'ensemble des fichiers de documentation sont dans le répertoire `docs/` et sont au 
+format `rst`. Vous pouvez donc les consulter directement dans vos IDEs, PyCharm et VS Code ont un 
+panneau de prévisualisation.
+
+Les supports de formation sont gérés différemment et ne sont donc pas diffusés ici.
+
+### Consulter la documentation de manière dynamique
+
+Mkdocs propose un serveur web local qui permet de consulter la doc de manière dynamique.
+
+Une fois les dépendances installées (`mkdocs-material`qui est dans le groupe `dev`), dans une invite 
+de commande, exécutez :
+
+```shell
+mkdocs serve
+```
+
+Le log de lancement vous indiquera à quelle adresse vous pouvez consulter la doc (normalement, 
+`http://127.0.0.1:8000/`).
+
+Si vous souhaitez la modifier et voir la mise à jour de vos documents, exécutez :
+```shell
+mkdocs serve --livereload
+```
+
+### Créer localement le site de documentation
+
+Vous pouvez générer le site de documentation avec la commande :
+
+```shell
+mkdocs build
+```
+
+L'ensemble des fichiers sera disponible dans le répertoire `site/`.
+
 ## Dépendances du projet
 Les dépendances utilisées pour cette formation sont les suivantes.
 
@@ -139,8 +177,3 @@ fonctionalités.
 
  * [celery](https://docs.celeryq.dev/) : utilisé pour l'asynchronisme. Nécessite
    [RabbitMQ](https://www.rabbitmq.com/) et [Redis](https://redis.io/).
- 
-## Ressources
-
-Durant la formation, des ressources complémentaires peuvent être disponibles
-[sur le partage suivant](https://bit.ly/3uh2MEQ)
