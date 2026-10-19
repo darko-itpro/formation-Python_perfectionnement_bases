@@ -1,0 +1,1096 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Python, Perfectionnement",
+    "section": "",
+    "text": "Présentation de la formation\nCe document est un support de formation destiné à être utilisé suite à mes formations.\nCe document est préparé pour permettre d’accéder aux informations présentées en formation et non pour être lu comme un manuel.",
+    "crumbs": [
+      "Présentation de la formation"
+    ]
+  },
+  {
+    "objectID": "index.html#pré-requis",
+    "href": "index.html#pré-requis",
+    "title": "Python, Perfectionnement",
+    "section": "Pré-requis",
+    "text": "Pré-requis\nCette formation est destinée à une audience ayant une maitrise des fondamentaux Python.",
+    "crumbs": [
+      "Présentation de la formation"
+    ]
+  },
+  {
+    "objectID": "Introduction/Workspace.html",
+    "href": "Introduction/Workspace.html",
+    "title": "1  L’environnement de travail",
+    "section": "",
+    "text": "1.1 Isoler son environnement de travail\nBien que vous puissiez écrire un script Python dans un fichier n’importe où dans votre système de fichiers, travailler de manière plus robuste nécessite de bien préparer son environnement de travail.\nUn projet Python, c’est un interpréteur (sa version) et un ensemble de dépendances. Plusieurs interpréteurs peuvent cohabiter sur un même système. Les dépendances vont être spécifiques à une version d’interpréteur (installer pytest pour Python 3.13 ne le rends pas disponible pour 3.14). Chaque interpréteur a donc un environnement d’exécution. Si vous avez deux projets Python utilisant la même version d’interpréteur, elles utiliseront aussi le même environnement avec les mêmes dépendances.\nPour isoler les environnement par projet, nous utilisons les venv. L’utilitaire pour les créer fait parti du package standard.\nCi dessous, vous avez les grandes lignes mais consultez la documentation : https://docs.python.org/3/library/venv.html pour plus de précisions.",
+    "crumbs": [
+      "L'environnement de travail",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>L'environnement de travail</span>"
+    ]
+  },
+  {
+    "objectID": "Introduction/Workspace.html#isoler-son-environnement-de-travail",
+    "href": "Introduction/Workspace.html#isoler-son-environnement-de-travail",
+    "title": "1  L’environnement de travail",
+    "section": "",
+    "text": "1.1.1 Création de l’environnement virtuel\nL’outil s’utilise en ligne de commande et il faut commencer par créer l’environnement virtuel. La commande est de la forme :\npython3.XX -m venv [ENV_DIR]\noù :\n\npython3.XX est la version de Python utilisée pour créer le venv et sera la version active de cet environnement. En fonction de votre système, vous pourrez avoir besoin de déclarer le chemin absolu.\n-m venv est la commande de création du venv.\n[ENV_DIR] est le nom du répertoire où sera créé le venv. De manière générale, il est créé à la racine du projet et est nommé .venv.\n\nLa commande habituelle, exécutée dans le répertoire du projet, est sous cette forme (en supposant l’usage de python3.14) :\npython3.14 -m venv .venv\n\n\n1.1.2 Activation de l’environnement virtuel\nCréer un environnement virtuel consiste à créer un répertoire. Pour pouvoir l’utiliser, il faut l’activer. La commande va dépende re votre système. Les exemples suivants considèrent que l’environnement virtuel a été créé dans un répertoire .venv.\nSous sh, bash ou zsh :\nsource .venv/bin/activate\nSous Windows, avec le PowerShell\n.venv/bin/Activate.ps1\nSous Windows, avec le cmd.exe\n.venv\\Scripts\\activate.bat\n\n\n1.1.3 Désactiver un environnement virtuel\nSi vous avez besoin de sortir de l’environnement virtuel, c’est à dire de le désactiver dans le terminal, l’instruction est :\ndeactivate\n\n\n1.1.4 Supprimer un environnement virtuel\nSupprimer un environnement virtuel consiste à supprimer le répertoire qui le contient.\n\n\n1.1.5 Les environnements virtuels et les gestionnaires de version\nLe répertoire d’un environnement virtuel n’est pas sous contrôle de version. Ces environnement sont volumineux et peuvent contenir des packages spécifiques à votre système (OS ou architecture). Les environnements virtuels se reconstruisent.\n\n\n1.1.6 Les environnements virtuels et les IDEs\nLes principaux IDEs (PyCharm et Visual Studio Code) on des outils plus graphiques de gestion des environnements virtuels. Il ne s’agit cependant que d’une interface sur les instructions présentées ici.",
+    "crumbs": [
+      "L'environnement de travail",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>L'environnement de travail</span>"
+    ]
+  },
+  {
+    "objectID": "Introduction/Workspace.html#gérer-des-dépendances-de-manière-standard",
+    "href": "Introduction/Workspace.html#gérer-des-dépendances-de-manière-standard",
+    "title": "1  L’environnement de travail",
+    "section": "1.2 Gérer des dépendances de manière standard",
+    "text": "1.2 Gérer des dépendances de manière standard\nLes dépendances se gèrent de manière standard avec pip.\n\n1.2.1 Installer une dépendance\nPour installer une dépendance :\npip install pytest\nVous pouvez installer plusieurs dépendances en une instruction\npip install pytest pylint ruff\n\n\n1.2.2 Mettre à jour une dépendance\npip install --upgrade pytest\nPour information, pip se met à jour par lui même :\npip install --upgrade pip\n\n\n1.2.3 Supprimer une dépendance\npip uninstall pytest\n\n\n1.2.4 Lister les dépendances\npip list\n\n\n1.2.5 Gérer les dépendances d’un projet, approche historique\nHistoriquement, les dépendances d’un projet sont déclarées dans un fichier requirements.txt, ce qui facilite leur installation. Ce fichier doit suivre une certaine syntaxe. Le plus simple est de le générer, à l’aide de l’instruction :\npip freeze\nCette instruction affichera dans le terminal les bibliothèques installées avec la syntaxe suivante :\nflake8==5.0.4\nipython==8.11.0\npylint==2.15.5\npytest==7.0.1\nPour créer le fichier, il suffit de rediriger la sortie standard vers le fichier :\npip freeze &gt; requirements.txt\nPour installer le contenu du fichier :\npip install -r requirements.txt\nIl est également possible d’utiliser ce fichier pour mettre à jour des dépendances :\npip install --upgrade -r requirements.txt",
+    "crumbs": [
+      "L'environnement de travail",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>L'environnement de travail</span>"
+    ]
+  },
+  {
+    "objectID": "Introduction/Workspace.html#lapproche-packaging-standard",
+    "href": "Introduction/Workspace.html#lapproche-packaging-standard",
+    "title": "1  L’environnement de travail",
+    "section": "1.3 L’approche packaging standard",
+    "text": "1.3 L’approche packaging standard\nUn programme Python, dans sa forme la plus simple, est une arborescence de fichiers. Python prévoit également la possibilité de packager le code pour en faite un package. C’est exactement le type de fichiers que vous installez avec pip instal. Mais créer un projet destiné au packaging a aussi un intérêt dans le cadre du développement.\nUn projet destiné au packaging a une structure particulière (src-based layout) et est décrit dans un fichier pyproject.toml.\nIl y a plusieurs intérêts pour le développement.\n\n1.3.1 Installation du projet en mode éditable\npip install -e .\nLe projet actuel n’est pas installé, un lien est créé dans la bibliothèque des packages vers l’arborescence. Ceci permet de ne plus avoir de problème de chemin vers les ressources.\n\n\n1.3.2 Une gestion centralisée des dépendances\nLorsqu’un projet est destiné au packaging, la création d’un package ne regarde pas le fichier requirements.txt. Les dépendances sont décrites dans le pyproject.toml.\nDepuis pip 26.2, il est possible d’utiliser le fichier pyproject.toml et se passer du requirements.txt :\npip install . --only-deps\nEn général, dans un pyproject.toml, les dépendances ne sont que les dépendances de prod. Les dépendances de développement sont un groupe habituellement nommé dev et que l’on peut installer par :\npip install --group dev",
+    "crumbs": [
+      "L'environnement de travail",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>L'environnement de travail</span>"
+    ]
+  },
+  {
+    "objectID": "rappels/intro.html",
+    "href": "rappels/intro.html",
+    "title": "Rappels indispensables",
+    "section": "",
+    "text": "Le présent chapitre rappelle des notions de base pas toujours connues ou maitrisées mais pourtant fondamentales pour bien comprendre certaines parties de la formation perfectionnement.",
+    "crumbs": [
+      "Rappels indispensables"
+    ]
+  },
+  {
+    "objectID": "rappels/donnees_variables.html",
+    "href": "rappels/donnees_variables.html",
+    "title": "2  Données et variables",
+    "section": "",
+    "text": "2.1 Données mutables et non mutables\nPython possède la notion de données mutables et non mutables. Les premières sont modifiables, pas les secondes.\nParmi les types de base, les chaines de caractères (str) et les N-Uplets (tuple) sont immuables. Il ne sera donc pas possible d’ajouter, supprimer ou remplacer un élément. Les expressions ci-contre lèvent une exception.\nParmi les types communs, nous avons aussi par exemple les dates avec datetime, les durées avec timedelta ou les chemins de type Path qui sont immuables.",
+    "crumbs": [
+      "Rappels indispensables",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Données et variables</span>"
+    ]
+  },
+  {
+    "objectID": "rappels/donnees_variables.html#données-mutables-et-non-mutables",
+    "href": "rappels/donnees_variables.html#données-mutables-et-non-mutables",
+    "title": "2  Données et variables",
+    "section": "",
+    "text": "king = \"Arthur\"\nking[0] = \"P\"\ndel king[0]",
+    "crumbs": [
+      "Rappels indispensables",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Données et variables</span>"
+    ]
+  },
+  {
+    "objectID": "rappels/donnees_variables.html#affectation-par-référence",
+    "href": "rappels/donnees_variables.html#affectation-par-référence",
+    "title": "2  Données et variables",
+    "section": "2.2 Affectation par référence",
+    "text": "2.2 Affectation par référence\nEn Python, les variables contiennent une référence vers une données. Affecter une variable à un autre copie la variable, c’est à dire la référence vers la données. Il n’y a pas de duplication de donnée. Ceci permet une économie de mémoire.\nCeci peut être vérifié en utilisant la fonction id() sur la variable (donc sur la donnée). De même, l’opérateur is est un comparateur d’identité.\nking = \"Arthur\"\napprentice = king\n\n1print(f\"{king=}, {apprentice=}\")\n2print(f\"{id(king)=}, {id(apprentice)=}\")\n3print(f\"{king is apprentice=}\")\n\n1\n\nLes deux variables contiennent la même chaine de caractères\n\n2\n\nL’id référencé par les deux variables est le même\n\n3\n\nAffiche Truecar les deux chaines sont les mêmes\n\n\nAvec les types mutables, la donnée unique sera modifiée. Un mauvais usage provoquera un effet de bord mais un bon usage permet également d’éviter une recherche pour retrouver une donnée à modifier.\nkingdom = [\"Arthur\", \"Merlin\", \"Lancelot\"]\ncamelot = kingdom\n\ncamelot.append(\"Robin\")\nprint(f\"{kingdom=}\")",
+    "crumbs": [
+      "Rappels indispensables",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Données et variables</span>"
+    ]
+  },
+  {
+    "objectID": "rappels/donnees_variables.html#passage-de-paramètres",
+    "href": "rappels/donnees_variables.html#passage-de-paramètres",
+    "title": "2  Données et variables",
+    "section": "2.3 Passage de paramètres",
+    "text": "2.3 Passage de paramètres\nLe passage de paramètres se fait également par référence. Si vous passez une donnée mutable en paramètre d’une fonction, celle-ci pourra être modifiée par la fonction.\ndef add_to_kingdom(knight:str, kingdom):\n    kingdom.append(knight)\n\ncamelot = []\nadd_to_kingdom(\"Lancelot\", camelot)\n1print(f\"{camelot=}\")\n\n1\n\nLa liste camelot a bien un élément en plus\n\n\nIl y a un idiome en Python : si une données passée en paramètre à une fonction qui doit la modifier est retournée par la fonction, il s’agit d’une copie. Si la fonction ne la retourne pas, alors la donnée originale a été modifiée. Vous en avez une illustration avec la méthode .sort() du type list et la fonction sorted().",
+    "crumbs": [
+      "Rappels indispensables",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Données et variables</span>"
+    ]
+  },
+  {
+    "objectID": "rappels/donnees_variables.html#valeurs-par-défaut-des-paramètres",
+    "href": "rappels/donnees_variables.html#valeurs-par-défaut-des-paramètres",
+    "title": "2  Données et variables",
+    "section": "2.4 Valeurs par défaut des paramètres",
+    "text": "2.4 Valeurs par défaut des paramètres\nLes paramètres par défaut sont initialisés qu’une seule fois, lors d’appels successifs, ce sont les même références qui sont utilisées. Ceci peut provoquer une mauvaise surprise avec les types mutables comme les listes.\ndef add_to_kingdom(knight:str, kingdom=[]):\n    kingdom.append(knight)\n    return kingdom\n\n1print(f'{add_to_kingdom(\"Lancelot\")=}')\n2print(f'{add_to_kingdom(\"Robin\")=}')\n\n1\n\nLa liste retournée contient ['Lancelot']\n\n2\n\nLa liste retournée contient ['Lancelot', 'Robin']",
+    "crumbs": [
+      "Rappels indispensables",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Données et variables</span>"
+    ]
+  },
+  {
+    "objectID": "rappels/donnees_variables.html#visibilité-locale-et-globale",
+    "href": "rappels/donnees_variables.html#visibilité-locale-et-globale",
+    "title": "2  Données et variables",
+    "section": "2.5 Visibilité locale et globale",
+    "text": "2.5 Visibilité locale et globale\nComme pour tous les langages, les variables ont une visibilité locale au bloc qui les déclare. Elles sont également visibles aux sous blocs comme les fonctions en lecture seule (par défaut).\nEn Python, les blocs des structures de contrôle (for, while et if) ainsi que les blocs liés aux exceptions sont considérés comme le bloc courant.\nOn parle d’une variable globale quand une variable est déclarée au niveau du module Python. On parle de variable et de visibilité locale lorsqu’une variable est déclarée au niveau d’un bloc.",
+    "crumbs": [
+      "Rappels indispensables",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Données et variables</span>"
+    ]
+  },
+  {
+    "objectID": "rappels/donnees_variables.html#formatage-des-dates",
+    "href": "rappels/donnees_variables.html#formatage-des-dates",
+    "title": "2  Données et variables",
+    "section": "2.6 Formatage des dates",
+    "text": "2.6 Formatage des dates\nLes manières moderne pour formater des dates est l’utilisation de la méthode .format() des chaines de caractères ou les f-string. Dans les deux cas, il n’est pas nécessaire de faire appel à la méthode .strftime() du type datetime. Le formatage sera pris en charge par le descripteur de formatage.\nfrom datetime import datetime\n\nxmas2022 = datetime(2022, 12, 25)\nprint(\"Xmas is on {:%B %d %Y}\".format(xmas2022))  # 'December 25 2022'",
+    "crumbs": [
+      "Rappels indispensables",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Données et variables</span>"
+    ]
+  },
+  {
+    "objectID": "rappels/operateurs_expressions.html",
+    "href": "rappels/operateurs_expressions.html",
+    "title": "3  Opérateurs et expressions",
+    "section": "",
+    "text": "3.1 Opérateurs de comparaison et booléens",
+    "crumbs": [
+      "Rappels indispensables",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Opérateurs et expressions</span>"
+    ]
+  },
+  {
+    "objectID": "rappels/operateurs_expressions.html#opérateurs-de-comparaison-et-booléens",
+    "href": "rappels/operateurs_expressions.html#opérateurs-de-comparaison-et-booléens",
+    "title": "3  Opérateurs et expressions",
+    "section": "",
+    "text": "3.1.1 Les booléens\nLe type bool ne contient que deux valeurs : True et False.\nLes opérateurs booléens ne se limitent pas à l’usage de types booléens. D’autres types peuvent être utilisés et certaines de leurs valeurs seront considérées comme fausses (on parle quelquefois de falsy pour éviter la confusion). Ainsi, les collections vides, les nombres nul (0, 0.0…) ou le type None sont considérés comme falsy.\n\n\n\nType\nFAUX\n\n\nBool\nFalse\n\n\nint\n0\n\n\nfloat\n0.0\n\n\nstring\n“”\n\n\ntuple\n()\n\n\nlist\n[]\n\n\ndict\n{}\n\n\nNone Type\nNone\n\n\n\nOn peut donc directement tester les valeurs sans les convertir en type bool.\nknights = []\n\nif knights:\n    print(\"Go for the Grail\")\nelse:\n    print(\"need to hire knights…\")\n\n\n3.1.2 Les opérateurs logiques\nLes opérateurs logique sont, par ordre de priorité, or, and et not\nLa négation not retourne une donnée de type bool. L’opérateur de conjonction and et l’opérateur de disjonction or nécessitent deux expressions à évaluer (soit x et y ces expressions) et sont considérés comme paresseux. Cela signifie que l’expression de droite ne sera évaluée que si nécessaire. De plus, ces opérateurs ne retournent pas de valeur de type booléenne. Ceci s’explique par leur comportement qui est :\nLa conjonction x and y retournera y si x sinon x.\nLa disjonction x or y retournera x si x sinon y.\narmy = []\nheroes = [\"lancelot\", \"Perceval\"]\n\n1print(f\"{heroes or army=}\")\nprint(f\"{army or heroes=}\")\n\n2print(f\"{army and heroes=}\")\n\n1\n\nLe retour affiché de cet opérateur sera ['lancelot', 'Perceval']\n\n2\n\nLe retour affiché de cet opérateur sera []\n\n\n\n\n3.1.3 La structure for else\nLes blocs des boucles (for ou while) peuvent être suivis d’un bloc else. Ce bloc sera évalué si la sortie de la boucle s’est faite autrement que par un break, autrement dit si la sortie de la boucle a eu lieu normalement après avoir parcouru toutes les itérations.\nC’est une structure qui se justifie principalement avec le bloc for et évite l’usage d’un flag. Le choix du mot clef peut prêter à confusion mais il correspond à l’intention qui est la recherche d’un élément où, si il n’a pas été trouvé, nous avons une action à réaliser. La lecture doit être « Je recherche un élément, je parcours tous les éléments de ma séquence. Si je l’ai trouvé, break, sinon…).\ncamelot = ['Arthur', 'Merlin', 'Lancelot', 'Robin']\nwizards = ['Merlin', 'Tim']\n\nfor peon in camelot:\n    if peon in wizards:\n        print(\"The kingdom has a wizard\")\n        \nelse:\n    \"Sir, you need to find a wizard\"\nNous pouvons aussi utiliser un bloc else avec les exceptions. La clause else suit tous les blocs except et permet d’exécuter du code si aucune exception n’a été levée. Si vous l’utilisez, la clause finally doit toujours être la dernière déclarée.",
+    "crumbs": [
+      "Rappels indispensables",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Opérateurs et expressions</span>"
+    ]
+  },
+  {
+    "objectID": "rappels/operateurs_expressions.html#le-slicing",
+    "href": "rappels/operateurs_expressions.html#le-slicing",
+    "title": "3  Opérateurs et expressions",
+    "section": "3.2 Le Slicing",
+    "text": "3.2 Le Slicing\nLe slicing est un outil très utile en Python. Il permet d’accéder à des slices de séquences ou aux éléments en fonction d’un pas. Mais il peut aussi être utilisé d’autres manières\n\n3.2.1 Affectations\nLa notation par slice peut permettre de remplacer un nombre d’éléments différent dans une liste.\nnumbers = [\"one\", \"two\", \"three\", \"four\", \"five\", \"six\", \"seven\"]\nletters = [\"a\", \"b\", \"c\"]\n\nnumbers[1:3] = letters\n1print(numbers)\n\nnumbers = [\"one\", \"two\", \"three\", \"four\", \"five\", \"six\", \"seven\"]\nnumbers[1:6] = letters\n2print(numbers)\n\n1\n\nAffichera ['one', 'a', 'b', 'c', 'four', 'five', 'six', 'seven']\n\n2\n\nAffichera ['one', 'a', 'b', 'c', 'seven']\n\n\n\n\n3.2.2 Suppression d’éléments\nL’instruction del sur un élément d’une liste supprime l’élément. L’instruction del peut être utilisée avec les slices pour supprimer plusieurs éléments\nnumbers = [\"one\", \"two\", \"three\", \"four\", \"five\", \"six\", \"seven\"]\ndel numbers[2]\n1print(numbers)\n\nnumbers = [\"one\", \"two\", \"three\", \"four\", \"five\", \"six\", \"seven\"]\ndel numbers[2:5]\n2print(numbers)\n\nnumbers = [\"one\", \"two\", \"three\", \"four\", \"five\", \"six\", \"seven\"]\ndel numbers[::2]\n3print(numbers)\n\n1\n\nAffichera ['one', 'two', 'four', 'five', 'six', 'seven']\n\n2\n\nAffichera [‘one’, ‘two’, ‘six’, ‘seven’]\n\n3\n\nAffichera ['two', 'four', 'six']\n\n\n\n\n3.2.3 Object Slice\nLes slices sont aussi un objet en Python. Un objet slice(start, stop, step) peut être passé à la place d’entiers.\nnumbers = [\"one\", \"two\", \"three\", \"four\", \"five\", \"six\", \"seven\"]\n1my_slice = slice(2, 4)\n\n1\n\nmy_slice contient ['three', 'four']",
+    "crumbs": [
+      "Rappels indispensables",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Opérateurs et expressions</span>"
+    ]
+  },
+  {
+    "objectID": "rappels/operateurs_expressions.html#opérateur-ternaire",
+    "href": "rappels/operateurs_expressions.html#opérateur-ternaire",
+    "title": "3  Opérateurs et expressions",
+    "section": "3.3 Opérateur ternaire",
+    "text": "3.3 Opérateur ternaire\nPython propose la syntaxe suivante pour l’opérateur ternaire :\n\nvaleur_si_vrai if condition else valeur_si_faux\n\nL’opérateur ternaire est à utiliser pour évaluer une valeur en fonction d’une condition. Notez que l’opérateur ternaire retourne une valeur, les parties de gauche (si vrai) ou droite (si faux) doivent donc retourner une valeur.",
+    "crumbs": [
+      "Rappels indispensables",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Opérateurs et expressions</span>"
+    ]
+  },
+  {
+    "objectID": "rappels/operateurs_expressions.html#itérer-sur-plusieurs-séquences",
+    "href": "rappels/operateurs_expressions.html#itérer-sur-plusieurs-séquences",
+    "title": "3  Opérateurs et expressions",
+    "section": "3.4 Itérer sur plusieurs séquences",
+    "text": "3.4 Itérer sur plusieurs séquences\nLa fonction zip() permet d’itérer sur plusieurs séquences. L’objet retourné est un itérateur qui retourne un tuple des éléments des séquences itérées.\nUn usage simple peut être le suivant :\ncamelot = [\"Arthur\", \"Merlin\",\n           (\"Lancelot\", \"Robin\", \"Perceval\", \"Karadoc\")]\nroles = [\"king\", \"wizard\", \"knights\"]\n\nfor role, peon in zip(roles, camelot):\n    print(role, peon)\nSi les séquences n’ont pas le même nombre d’éléments, l’itération s’arrêtera à la fin de la plus courte.",
+    "crumbs": [
+      "Rappels indispensables",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Opérateurs et expressions</span>"
+    ]
+  },
+  {
+    "objectID": "rappels/operateurs_expressions.html#notation-par-intension",
+    "href": "rappels/operateurs_expressions.html#notation-par-intension",
+    "title": "3  Opérateurs et expressions",
+    "section": "3.5 Notation par intension",
+    "text": "3.5 Notation par intension\nLes Comprehension lists sont un outil très pratique en Python pour transformer ou filtrer des listes. \nMais cette notation n’est pas limitée aux listes. Nous pouvons par exemple l’utiliser avec des dictionnaires.\nNous pouvons d’ailleurs combiner cette propriété avec la fonction zip() :\nprint({role:peon for role, peon in zip(roles, camelot)})",
+    "crumbs": [
+      "Rappels indispensables",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Opérateurs et expressions</span>"
+    ]
+  },
+  {
+    "objectID": "rappels/operateurs_expressions.html#packing-et-unpacking",
+    "href": "rappels/operateurs_expressions.html#packing-et-unpacking",
+    "title": "3  Opérateurs et expressions",
+    "section": "3.6 Packing et unpacking",
+    "text": "3.6 Packing et unpacking\nL’unpacking (ou déballage en français) permet d’extraire automatiquement des éléments d’une séquence. Vous l’avez certainement déjà vu avec l’affectation d’éléments d’une liste ou d’un tuple à des variables.\nhour, minutes = divmod(75, 60)\nEt vous l’avez certainement déjà utilisé lors des itération sur un enumerate().\nDans ce cas, l’unpacking est automatique. Il est cependant possible de le forcer à l’aide du Star Operator *.\nAttention, cet opérateur ne s’utilise que dans certains contextes. Et en fonction du contexte, c’est un opérateur de déballage ou d’emballage (packing/unpacking).\n\n3.6.1 Opérateur d’unpacking\nVous pouvez l’utiliser pour déballer une séquence dans un contexte qui attends la séquence ou les éléments de la séquence comme les paramètres d’une fonction.\nprint(\"Il est {:02}h{:02}\".format(*divmod(75, 60)))\nDans cet exemple, sur les heures obtenus par divmod(), vous n’avez pas besoin de passer par des variables transitoires.\n\n\n3.6.2 Opérateur de packing\nLe star operator peut aussi être utilisé pour emballer des éléments. Il peut être utile lorsqu’on utilise le déballage automatique lors de l’affectation d’une séquence à des variables. Il permet ainsi de récupérer les données excédentaires.\nking, wizard, *others = camelot\n\n\n3.6.3 Inversion du contenu de variables\nVous connaissez certainement l’idiome a, b = b, a qui permet d’inverser le contenu de deux variables.\nDans la pratique, il met en œuvre l’unpacking. En effet, à droite de l’affectation, vous avez la création d’un tuple de deux éléments. En affectant son contenu à deux variables, vous déballez dans la même action le tuple.",
+    "crumbs": [
+      "Rappels indispensables",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Opérateurs et expressions</span>"
+    ]
+  },
+  {
+    "objectID": "func/closures.html",
+    "href": "func/closures.html",
+    "title": "4  Notion de Closure",
+    "section": "",
+    "text": "4.1 Généralités\nDe manière générale, une fonction retient le contexte dans lequel elle est créée. Une fonction retournée par une fonction retient donc de la même manière le contexte dans lequel elle a été créée :\nVa s’utiliser :",
+    "crumbs": [
+      "Fonctions avancées",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Notion de Closure</span>"
+    ]
+  },
+  {
+    "objectID": "func/closures.html#généralités",
+    "href": "func/closures.html#généralités",
+    "title": "4  Notion de Closure",
+    "section": "",
+    "text": "def outer(param):\n    value = param\n    def inner(modif):\n        return value * modif\n\n&gt;&gt;&gt; my_answer = outer(42)\n&gt;&gt;&gt; my_answer(10)\n420",
+    "crumbs": [
+      "Fonctions avancées",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Notion de Closure</span>"
+    ]
+  },
+  {
+    "objectID": "func/closures.html#modifier-lenvironnement-dexécution-dune-closure",
+    "href": "func/closures.html#modifier-lenvironnement-dexécution-dune-closure",
+    "title": "4  Notion de Closure",
+    "section": "4.2 Modifier l’environnement d’exécution d’une closure",
+    "text": "4.2 Modifier l’environnement d’exécution d’une closure\nComme pour toute variable, les variables définies dans la fonction externe ne sont visibles qu’en lecture seule pour la fonction interne. Il faut utiliser la déclaration nonlocal pour indiquer à l’interpréteur que l’on travail dans l’espace de la fonction englobante.\ndef outer(name):\n    count = 0\n    def inner():\n        print(f\"inner func for {name}\")\n        nonlocal count\n        count += 1\n        \n    return inner",
+    "crumbs": [
+      "Fonctions avancées",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Notion de Closure</span>"
+    ]
+  },
+  {
+    "objectID": "func/closures.html#accéder-au-contexte-de-lenvironnement-dexécution",
+    "href": "func/closures.html#accéder-au-contexte-de-lenvironnement-dexécution",
+    "title": "4  Notion de Closure",
+    "section": "4.3 Accéder au contexte de l’environnement d’exécution",
+    "text": "4.3 Accéder au contexte de l’environnement d’exécution\nLe contexte d’exécution défini par la fonction externe n’est pas accessibles dans l’environnement qui a récupéré la fonction interne. L’astuce consiste à définir des fonctions attachées à la fonction retournée.\ndef outer(name):\n    count = 0\n    \n    def inner():\n        print(f\"inner func for {name}\")\n        nonlocal count\n        count += 1\n        \n    def inner_get_count():\n        return count\n        \n    inner.get_count = inner_get_count\n    \n    return inner\nNous pouvons alors utiliser :\n&gt;&gt;&gt; click = outer('demo')\n&gt;&gt;&gt; click()\n&gt;&gt;&gt; click()\n&gt;&gt;&gt; click.get_count()\n2",
+    "crumbs": [
+      "Fonctions avancées",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Notion de Closure</span>"
+    ]
+  },
+  {
+    "objectID": "func/decorators.html",
+    "href": "func/decorators.html",
+    "title": "5  Les décorateurs",
+    "section": "",
+    "text": "5.1 Structure générale des décorateurs\nUn décorateur est un outil récurent dans le langage Python qui sert à modifier le comportement d’une fonction ou d’une méthode. Selon les domaines d’application, ils sont plus ou moins fréquents.\nUn décorateur est déclaré avant la définition d’une fonction (sur la ligne précédente) par @.\nPython a un nombre limité de décorateurs built-in qui sont limités à l’Objet. Il s’agit de @staticmethod, @classmethod et @property.\nLes décorateur sont des éléments qui vont nous permettre d’aborder la notion de la métaprogrammation. La métaprogrammation désigne l’écriture de programmes qui manipulent des données décrivant elles-mêmes des programmes…\nBref, les décorateurs sont des composants qui vont nous permettre de modifier le comportement de fonctions ou de classes en exécutant du code avant et/ou après l’exécution normal de cette fonction. En soi, ils sont une mise en œuvre des Closures.\nNous allons dans cette partie voir comment déclarer son propre décorateur.\nUn décorateur est une fonction qui prend en paramètre une fonction et retourne une fonction. La déclaration de base est donc :\nL’usage pourrait être :\nMais c’est le strict nécessaire pour utiliser deco_func() comme décorateur :",
+    "crumbs": [
+      "Fonctions avancées",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Les décorateurs</span>"
+    ]
+  },
+  {
+    "objectID": "func/decorators.html#structure-générale-des-décorateurs",
+    "href": "func/decorators.html#structure-générale-des-décorateurs",
+    "title": "5  Les décorateurs",
+    "section": "",
+    "text": "def deco_func(func):\n    return func\n\ndef say_hello():\n    print('Hello World')\n    \ndeco_func(say_hello)()\n\n\n@deco_func\ndef say_hello():\n    print('Hello World')",
+    "crumbs": [
+      "Fonctions avancées",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Les décorateurs</span>"
+    ]
+  },
+  {
+    "objectID": "func/decorators.html#modifier-le-comportement-dune-fonction",
+    "href": "func/decorators.html#modifier-le-comportement-dune-fonction",
+    "title": "5  Les décorateurs",
+    "section": "5.2 Modifier le comportement d’une fonction",
+    "text": "5.2 Modifier le comportement d’une fonction\nPour exécuter quelque chose avant et/ou après la fonction décorée, cette fonction est empaquetée dans une fonction interne.\ndef sandwich(content):\n    def wrapper():\n        print(\"/TTTTTTTTTT\\\\\")\n        content()\n        print(\"\\\\__________/\")\n        \n    return wrapper\nNous allons pouvoir décorer une fonction\n@sandwich\ndef parisien():\n    print(\"Jambon\")\n    print(\"Beurre\")\nL’appel de la fonction parisien() exécutera en réalité wrapper(). La fonction parisien() sera exécutée en tant que content() lors de cet appel.\nLes décorateurs ne sont qu’une implémentation pythonesque (ou pythonique) du motif de conception décorateur. ## Passage d’arguments\nL’usage de variadics permet une cohésion faible entre le décorateur et la fonction à décorer.\ndef sandwich(content):\n    def wrapper(*args, **kargs):\n        print(\"/TTTTTTTTTT\\\\\")\n        content(*args, **kargs)\n        print(\"\\\\__________/\")\n        \n    return wrapper",
+    "crumbs": [
+      "Fonctions avancées",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Les décorateurs</span>"
+    ]
+  },
+  {
+    "objectID": "func/decorators.html#valeur-en-retour",
+    "href": "func/decorators.html#valeur-en-retour",
+    "title": "5  Les décorateurs",
+    "section": "5.3 Valeur en retour",
+    "text": "5.3 Valeur en retour\nLorsque la fonction décorée est dans le contexte d’une fonction interne, celle-ci doit communiquer le retour.\ndef sandwich(content):\n    def wrapper(*args, **kargs):\n        print(\"/TTTTTTTTTT\\\\\")\n        value = content(*args, **kargs)\n        print(\"\\\\__________/\")\n        \n        return value\n        \n    return wrapper",
+    "crumbs": [
+      "Fonctions avancées",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Les décorateurs</span>"
+    ]
+  },
+  {
+    "objectID": "func/decorators.html#décorateur-paramétré",
+    "href": "func/decorators.html#décorateur-paramétré",
+    "title": "5  Les décorateurs",
+    "section": "5.4 Décorateur paramétré",
+    "text": "5.4 Décorateur paramétré\nConserver la syntaxe simple avec le décorateur paramétré\ndef name(_func=None, *, key1=value1, key2=value2, ...):\n    def decorator_name(func):\n        ...  # La fonction wrapper\n        \n    if _func is None:\n        return decorator_name\n    else:\n        return decorator_name(_func)",
+    "crumbs": [
+      "Fonctions avancées",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Les décorateurs</span>"
+    ]
+  },
+  {
+    "objectID": "func/decorators.html#bonus-remplacer-les-métadonnées-du-wrapper",
+    "href": "func/decorators.html#bonus-remplacer-les-métadonnées-du-wrapper",
+    "title": "5  Les décorateurs",
+    "section": "5.5 Bonus : remplacer les métadonnées du wrapper",
+    "text": "5.5 Bonus : remplacer les métadonnées du wrapper\nDans le cas de l’utilisation d’un wrapper, l’introspection de la fonction sera faussé. Nous n’avons plus la fonction d’origine mais la fonction wrapper. Faites le test sur la base du décorateur sandwich, vous devriez avoir quelque chose de similaire à :\n&gt;&gt;&gt; parisien.__name__\n'wrapper'\nPour préserver les informations de la fonction d’origine :\nimport functools\n\ndef sandwich(content):\n    @functools.wraps(content)\n    def wrapper():\n        print(\"/TTTTTTTTTT\\\\\")\n        content()\n        print(\"\\\\__________/\")\n        \n    return wrapper",
+    "crumbs": [
+      "Fonctions avancées",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Les décorateurs</span>"
+    ]
+  },
+  {
+    "objectID": "func/generateurs.html",
+    "href": "func/generateurs.html",
+    "title": "6  Rappel sur les générateurs",
+    "section": "",
+    "text": "6.1 Générateurs avec le mot clef yield\nUn générateur est un objet particulier en Python. Vous avez dû voir deux manières de base pour les créer.\nSi une fonction utilise le mot clef yield, elle devient un générateur.\nVous pouvez utiliser la structure for pour itérer sur les éléments fournis par le générateur.",
+    "crumbs": [
+      "Fonctions avancées",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Rappel sur les générateurs</span>"
+    ]
+  },
+  {
+    "objectID": "func/generateurs.html#générateurs-avec-le-mot-clef-yield",
+    "href": "func/generateurs.html#générateurs-avec-le-mot-clef-yield",
+    "title": "6  Rappel sur les générateurs",
+    "section": "",
+    "text": "camelot = [\"Arthur\", \"Merlin\", \"Lancelot\",\n           \"Robin\", \"Perceval\", \"Karadoc\"]\n\ndef upperise(sequence):\n    for item in sequence:\n        yield item.upper()\n\nprint(upperise(camelot))  # &lt;generator object upperise at 0x113f81c40&gt;\n\nfor element in upperise(camelot):\n    print(element)",
+    "crumbs": [
+      "Fonctions avancées",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Rappel sur les générateurs</span>"
+    ]
+  },
+  {
+    "objectID": "func/generateurs.html#générateurs-avec-la-syntaxe-de-lists-comprehension",
+    "href": "func/generateurs.html#générateurs-avec-la-syntaxe-de-lists-comprehension",
+    "title": "6  Rappel sur les générateurs",
+    "section": "6.2 Générateurs avec la syntaxe de Lists Comprehension",
+    "text": "6.2 Générateurs avec la syntaxe de Lists Comprehension\nSi au lieu des crochets des Lists Comprehension, vous utilisez des parenthèses (ou pas selon le contexte), vous ne créez pas une liste mais un générateur.\nprint((element.upper() for element in camelot))\nDans cet exemple avec la fonction print(), les parenthèses ne sont pas nécessaires. Elles ont été conservées pour mettre en évidence la structure du générateur.",
+    "crumbs": [
+      "Fonctions avancées",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Rappel sur les générateurs</span>"
+    ]
+  },
+  {
+    "objectID": "func/generateurs.html#dautres-générateurs-mais-pourquoi",
+    "href": "func/generateurs.html#dautres-générateurs-mais-pourquoi",
+    "title": "6  Rappel sur les générateurs",
+    "section": "6.3 D’autres générateurs, mais pourquoi ?",
+    "text": "6.3 D’autres générateurs, mais pourquoi ?\nPython propose quelques générateurs comme la fonction range(). Sous Python 2, cette fonction retournait une liste. La fonction xrange() retournait un générateur et correspond à la fonction range() de Python 3. Si vous souhaitez obtenir une liste d’entiers, il suffit de faire list(range()) ce qui est généralement à éviter.\nSi Python gère assez bien la mémoire, il y a quelques problèmes avec les listes d’entiers et de réels qui ne sont pas forcément libérées avant la fin du programme.\nVous pouvez vérifier ceci avec le code suivant. Celui-ci nécessite psutil que vous installerez avec pip.\nimport os\nimport psutil\n\nprocess = psutil.Process(os.getpid())\n\nwhile True:\n    l = list(range(1 * 1000 * 1000))\n    print(f\"Memory usage: {process.memory_info()[0] / float(2 ** 20)} MB\")\nL’affichage en illustration sera le suivant :\nMemory usage: 71.80859375 MB\nMemory usage: 81.52734375 MB\nMemory usage: 81.52734375 MB\nMemory usage: 82.51171875 MB\nMemory usage: 82.51171875 MB\n…\nMemory usage: 108.10546875 MB\nMemory usage: 109.08984375 MB\nMemory usage: 109.08984375 MB\nMemory usage: 110.07421875 MB\nMemory usage: 110.44921875 MB\nMemory usage: 110.44921875 MB\nLes différentes versions de Python n’ont pas le même comportement avec ce programme mais le résultat sera toujours une augmentation de la mémoire utilisée. Dans le cas présent, elle se limite à une certaine taille.\nDe manière générale, favorisez les générateurs pour éviter ce défaut.",
+    "crumbs": [
+      "Fonctions avancées",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Rappel sur les générateurs</span>"
+    ]
+  },
+  {
+    "objectID": "func/generateurs.html#mais-après-tout-quest-ce-quun-générateur",
+    "href": "func/generateurs.html#mais-après-tout-quest-ce-quun-générateur",
+    "title": "6  Rappel sur les générateurs",
+    "section": "6.4 Mais après tout, qu’est-ce qu’un générateur ?",
+    "text": "6.4 Mais après tout, qu’est-ce qu’un générateur ?\nUn générateur est un objet spécial qui permet de manipuler un itérateur sur la fonction. Nous pouvons alors parcourir les valeurs produites par appel à la fonction builtin next() ou par appel à la méthode spéciale __next__().\nDans la pratique, la structure for appelle à chaque itération cette fonction __next__() du générateur.\nLorsque vous créez un générateur avec le mot-clef yield, le générateur arrête l’exécution de la fonction à ce mot clef et attends l’appel à la fonction __next__(). Elle fournit alors la valeur suivant le mot clef et reprends jusqu’au yield et attends à nouveau.\nNous verrons comment créer nos propres itérateurs et itérables dans la partie sur la programmation orientée objet.",
+    "crumbs": [
+      "Fonctions avancées",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Rappel sur les générateurs</span>"
+    ]
+  },
+  {
+    "objectID": "func/generateurs.html#recevoir-avec-yield",
+    "href": "func/generateurs.html#recevoir-avec-yield",
+    "title": "6  Rappel sur les générateurs",
+    "section": "6.5 Recevoir avec yield",
+    "text": "6.5 Recevoir avec yield\nLe mot-clef yield peut aussi être utilisé par un générateur pour recevoir des données qui lui seront envoyées par la méthode .send(). La syntaxe que vous aurez dans le générateur est de type x = yield.\nUn exemple d’illustration d’un générateur recevant et produisant une valeur est le suivant :\ndef test_gen():\n    while True:\n1        x = yield\n2        yield x * 2\n\nmygen = test_gen()\n3next(mygen)\n4print(mygen.send(10))\n5next(mygen)\nprint(mygen.send(5))\n\n1\n\nCette instruction permet au générateur de recevoir une valeur.\n\n2\n\nSuivi du renvois de la valeur.\n\n3\n\nLe premier next() est indispensable pour faire avancer le générateur au premier yield. À défaut, vous aurez une erreur : TypeError: can't send non-None value to a just-started generator.\n\n4\n\nl’envoi de valeur par .send() va provoquer le calcul et le retour du résultat\n\n5\n\nIl est nécessaire d’avancer le générateur.",
+    "crumbs": [
+      "Fonctions avancées",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Rappel sur les générateurs</span>"
+    ]
+  },
+  {
+    "objectID": "func/generateurs.html#la-structure-yield-from",
+    "href": "func/generateurs.html#la-structure-yield-from",
+    "title": "6  Rappel sur les générateurs",
+    "section": "6.6 La structure yield from",
+    "text": "6.6 La structure yield from\nAjoutée en Python 3.3, la structure yield from permet de simplifier l’appel d’un sous-générateur.\nAinsi, plutôt que d’écrire :\ndef demo_yield():\n    for item in range(10):\n        yield item\nOn écrit :\ndef demo_yield_from():\n    yield from range(10)\nNotez que tant que l’action yield from s’exécute, le générateur demo_yield_from est remplacé par le générateur range.",
+    "crumbs": [
+      "Fonctions avancées",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Rappel sur les générateurs</span>"
+    ]
+  },
+  {
+    "objectID": "POO/intro.html",
+    "href": "POO/intro.html",
+    "title": "Programmation Orientée Objet avancée",
+    "section": "",
+    "text": "Pour cette partie, le point de départ du modèle récurent pour illustrer les concepts sera un modèle simplifié de gestion de formation.\n\n\n\n\n\n\n\n\n\n\n\n-students\n\n\n\n\n\n*\n\n\n\n*\n\n\n\n\n\nTraining\n\n\n\n\n\n\n\n+subject : String\n\n\n\n\n\n\n\n-duration : Integer\n\n\n\n\n\n\n\n-available_seats : Integer\n\n\n\n\n\n\n\n+add_student(Student student)\n\n\n\n\n\n\n\n+remove_student(Student student)\n\n\n\n\n\n\n\nStudent\n\n\n\n\n\n\n\n+name : String\n\n\n\n\n\n\n\n+title : String\n\n\n\n\n\n\n\n+company : String",
+    "crumbs": [
+      "Programmation Orientée Objet avancée"
+    ]
+  },
+  {
+    "objectID": "POO/rappels.html",
+    "href": "POO/rappels.html",
+    "title": "7  Rappels",
+    "section": "",
+    "text": "7.1 Attributs de classe et d’instance\nLorsqu’une variable est déclarée au niveau d’une classe, il s’agit d’un attribut de classe. Celle-ci est partagée par toutes les instances. Un attribut d’instance est communément initialisé dans le constructeur (en fait, l’initialiseur) __init__().\nAttention cependant, en Python, un attribut d’instance peut-être créé dynamiquement. Si la syntaxe nom_instance.attribut_classe permet d’accéder à l’attribut de classe, une affectation créera un attribut d’instance su même nom masquant l’attribut de classe.",
+    "crumbs": [
+      "Programmation Orientée Objet avancée",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Rappels</span>"
+    ]
+  },
+  {
+    "objectID": "POO/rappels.html#attributs-de-classe-et-dinstance",
+    "href": "POO/rappels.html#attributs-de-classe-et-dinstance",
+    "title": "7  Rappels",
+    "section": "",
+    "text": "class Kingdom:\n    count = 0\n    def __init__(self, name):\n        self.name = name\n1        Kingdom.count += 1\n\ncamelot = Kingdom(\"Camelot\")\nprint(f\"{camelot.name=}\")\nprint(f\"{camelot.count=}\")\n\nwinterfell = Kingdom(\"Winterfell\")\nprint(f\"{winterfell.name=}\")\n2print(f\"{camelot.count=}\")\n3print(f\"{Kingdom.count=}\")\n\n1\n\nUn attribut de classe est accédé préfixé par le nom de la classe et non self.\n\n2\n\nPour chaque instance, la valeur de .count sera la même.\n\n3\n\nLa bonne manière d’accéder à l’attribut de classe est de le préfixer par le nom de la classe.",
+    "crumbs": [
+      "Programmation Orientée Objet avancée",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Rappels</span>"
+    ]
+  },
+  {
+    "objectID": "POO/properties.html",
+    "href": "POO/properties.html",
+    "title": "8  Properties et descripteurs",
+    "section": "",
+    "text": "8.1 Les descripteurs\nUn descripteur est un objet définissant les méthodes __get__(), __set__() ou __delete__() (au moins une). Ils sont la base de beaucoup de fonctionnalités en Python tel que les fonctions, les méthodes, les properties, les méthodes de classe, les méthodes statiques et les références vers les super classes.",
+    "crumbs": [
+      "Programmation Orientée Objet avancée",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Properties et descripteurs</span>"
+    ]
+  },
+  {
+    "objectID": "POO/properties.html#les-descripteurs",
+    "href": "POO/properties.html#les-descripteurs",
+    "title": "8  Properties et descripteurs",
+    "section": "",
+    "text": "8.1.1 Exemple de base\nclass Answer:\n    def __get__(self, obj, objtype=None):\n        return 42\nCe descripteur doit être utilisé comme attribut de classe :\nclass Universe:\n    meaning_of_life = Answer()\nCe qui permet un usage :\nu = Universe()\nu.meaning_of_life\n\n\n8.1.2 Accéder aux attributs\nLes descripteurs sont utilisés pour accéder aux attributs.\nclass TurtleAccess:\n    def __get__(self, obj, objtype=None):\n        return obj._turtle_name\n        \n    def __set__(self, obj, value):\n        obj._turtle_name = value.title()\n        \nclass DiscWorld:\n1    turtle_name = TurtleAccess()\n\n    def __init__(self, turtle_name:str):\n2        self.turtle_name = turtle_name\n        \ndiscworld = DiscWorld(\"a'tuin\")\n3print(discworld.turtle_name)\n\n1\n\nCréation d’une instance du descripteur TurtleAccess\n\n2\n\nAppel au __set__() du descripteur\n\n3\n\nAppel au __get__() du descripteur et affichage de la chaine \"A'Tuin\".\n\n\n\n\n8.1.3 Plus généralement\nLes descripteurs sont des objets, leur définition peut donc avoir un constructeur et des méthodes spécifiques.",
+    "crumbs": [
+      "Programmation Orientée Objet avancée",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Properties et descripteurs</span>"
+    ]
+  },
+  {
+    "objectID": "POO/properties.html#les-properties",
+    "href": "POO/properties.html#les-properties",
+    "title": "8  Properties et descripteurs",
+    "section": "8.2 Les properties",
+    "text": "8.2 Les properties\n\n8.2.1 Principe général\nUne property est un objet créé par la fonction built-in property(). La signature de cette fonction est :\nproperty(fget=None, fset=None, fdel=None, doc=None)\nAppeler property() est une manière succincte de construire un descripteur de données en fournissant :\n\nUne fonction fget pour les accès object.property\nUne fonction fset pour les accès object.property = value\nUne fonction fdel pour les expressions del object.property\n\n\n\n8.2.2 Exemple complet\nSoit la classe simplifiée :\nclass Training:\n    def __init__(self, title: str, max_seats: int|str = 10):\n        self.title = title.upper()\n        self.max_seats = int(max_seats)\n        self._students = []\n        \n    def add_student(self, student: Student):\n        self._students.append(student)\nNous pouvons définir les fonctions :\ndef get_students(self):\n    return self._students.copy()\n    \ndef set_students(self, students: list):\n    self._students[:] = students[:]\n    \ndef del_students(self):\n    self._students.clear()\net donc ajouter dans la classe Training :\nclass Training:\n    ...\n    \n    students = property(fget=get_students, fset=set_students, \n                        fdel=del_students)\nMais chaque paramètre est optionnel donc vous pouvez ne déclarer que ceux qui ont un sens :\nclass Training:\n    ...\n    \n    students = property(fget=get_students)\nModifier ou supprimer l’attribut students entrainera un AttributError. Ceci permet d’avoir un attribut en lecture seule :\npython_t = Training(\"python\", 5)\npython_t.add_student(Student(\"Kevin\", \"Mitnick\"))\npython_t.add_student(Student(\"Elliot\", \"Alderson\"))\n\n1print(python_t.students)\n2python_t.students = []\n\n1\n\nAffichage dans la console de [Student Kevin, Mitnick, Student Elliot, Alderson]\n\n2\n\nLève une exception AttributeError: can't set attribute 'students'\n\n\n\n\n8.2.3 Déclarer une property par décorateur\nLa déclaration de properties est simplifiée par le décorateur property. Au lieu de définir des fonctions et la variable de classe property(), vous définissez l’accesseur comme une méthode standard mais décorée avec @property.\n@property\ndef students(self):\n    return self._students.copy()\nPython créera alors l’attribut de classe students avec cette méthode en tant que fget.\nSi vous souhaitez ajouter également les fonctions fset et/ou fdel, vous déclarez les méthodes correspondantes mais il faut utiliser un décorateur qui lie ces fonctions à la property créée par l’accesseur. Pour cela, cette property propose 2 fonctions à utiliser en décorateur :\n@students.setter\ndef students(self, students: list):\n    self._students[:] = students[:]\n\n@students.deleter\ndef students(self):\n    self._students.clear()\n\n\n8.2.4 Limite de la syntaxe par décorateurs\nAvec la fonction property, vous pouvez créer des properties avec toutes les combinatoires écriture, lecture et suppression. Avec le décorateur, la property sera créé en lecture. Vous ne pouvez donc pas utiliser le décorateur si vous ne voulez pas accéder à la property.\n\n\n8.2.5 Properties et encapsulation\nL’exemple d’usage des properties pour contrôler l’accès à un attribut réel de l’objet est la première étape et l’explication la plus simple. Mais les properties permettent de réellement mettre en œuvre la notion d’encapsulation consistant à masquer l’implémentation : elles permettent d’exposer un état décorrélé de l’implémentation.\nPrenons l’exemple du nombre de places de la formation. Elle est créée avec le nombre de places total mais nous pouvons vouloir savoir combien de places il y a de disponibles. Cette nformation est un état donc un attribut mais qui dépends de deux autres états. Il peut donc être évalué à chaque demande par une property :\n@property\ndef available_seats(self):\n    return self.max_seats - len(self._students)\nRetenez que les properties permettent d’exposer des attributs en masquant l’implémentation réelle. L’utilisateur de l’objet verra un attribut mais vous, vous serez libre de choisir son implémentation ou même la faire évoluer. Considérons en effet que cet objet évolue en intégrant une interaction avec une base de données. La property students accesseur ira chercher les informations en base. Il n’y a alors plus d’attribut students mais avec les properties, l’utilisateur de l’objet n’en a aucune idée.\nCes deux derniers exemples servent à vous illustrer que accesseurs et mutateurs ne sont pas associés à un attribut du même nom. La conception (ou l’évolution) d’une classe doit d’une part définir son interface (tout ce qui est publique) et d’autre part choisir au mieux l’implémentation.",
+    "crumbs": [
+      "Programmation Orientée Objet avancée",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Properties et descripteurs</span>"
+    ]
+  },
+  {
+    "objectID": "POO/classes_abstraites.html",
+    "href": "POO/classes_abstraites.html",
+    "title": "9  Les classes et méthodes abstraites",
+    "section": "",
+    "text": "9.1 Exemple de classe abstraite\nLa Programmation Orientée Objet possède le concept de classe abstraite. Une classe abstraite est une classe qui ne peut pas être instanciée. Elle possède une implémentation, un squelette de base, mais incomplet et l’objectif est que cette classe soit spécialisée.\nLe schéma UML ci-contre dessous propose un exemple impliquant une classe abstraite dans notre contexte.\nDans notre système, chaque mois, je dois calculer la paye de chaque collaborateur. Pour cela, nous définissons pour la classe Employee une méthode, elle aussi abstraite, calculate_payroll().\nExplications : la classe Employee est trop générique pour implanter cette méthode car ce calcul dépends du statut du collaborateur, ici, un salarié payé au mois ou un prestataire payé sur la prestation (un prestataire n’est pas un employé en tant que tel mais on se permettra cette approximation pour l’illustration).\nLa mtéhode calculate_payroll() n’a donc pas d’implémentation ou une implémentation partielle et est déclarée comme abstraite ce qui entraine le statut de classe abstraite pour Employee.\nPython ne gère pas nativement les classes abstraites. Python propose cependant la bibliothèque ABC pour Abstract Base Classes. La raison de son ajout est exposé dans la PEP 3119.\nVous pouvez déclarer une classe abstraite de la manière suivante.\nSi vous essayez d’instancier cette classe, vous aurez une exception avec un message du type :\nVous devrez donc spécialiser cette classe.",
+    "crumbs": [
+      "Programmation Orientée Objet avancée",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Les classes et méthodes abstraites</span>"
+    ]
+  },
+  {
+    "objectID": "POO/classes_abstraites.html#exemple-de-classe-abstraite",
+    "href": "POO/classes_abstraites.html#exemple-de-classe-abstraite",
+    "title": "9  Les classes et méthodes abstraites",
+    "section": "",
+    "text": "1class Employee(ABC):\n    def __init__(self, first_name: str, last_name: str, id:str):\n        self.first_name = first_name\n        self.last_name = last_name\n        self.id = id\n\n2    @abstractmethod\n    def calculate_payroll(self) -&gt; float:\n        pass\n\n1\n\nUne classe abstraite hérite de ABC. Elle doit contenir au moins une méthode abstraite\n\n2\n\nUne méthode est déclarée comme abstraite en étant décorée par @absractmethod. Cette méthode peut contenir du code.\n\n\n\nTypeError: Can't instantiate abstract class Employee with abstract method calculate_payroll",
+    "crumbs": [
+      "Programmation Orientée Objet avancée",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Les classes et méthodes abstraites</span>"
+    ]
+  },
+  {
+    "objectID": "POO/classes_abstraites.html#spécialiser-une-classe-abstraite",
+    "href": "POO/classes_abstraites.html#spécialiser-une-classe-abstraite",
+    "title": "9  Les classes et méthodes abstraites",
+    "section": "9.2 Spécialiser une classe abstraite",
+    "text": "9.2 Spécialiser une classe abstraite\nLorsque vous spécialisez une classe abstraite, si vous ne surchargez pas les méthodes abstraites,  vous aurez toujours une classe abstraite.\nPour obtenir une classe concrète, vous devez implémenter toutes les méthodes abstraites comme dans l’exemple de code suivant.\nclass SalaryEmployee(Employee):\n\n1    def calculate_payroll(self) -&gt; float:\n        return self.monthly_salaray\n\n1\n\nLa méthode est spécialisée sans être décorée avec @absractmethod ce qui en fait une méthode concrète.\n\n\nEn complément, si la méthode générale contient du code, il est évidemment possible de l’appeler de la manière habituelle.",
+    "crumbs": [
+      "Programmation Orientée Objet avancée",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Les classes et méthodes abstraites</span>"
+    ]
+  },
+  {
+    "objectID": "POO/heritage_multiple.html",
+    "href": "POO/heritage_multiple.html",
+    "title": "10  L’héritage multiple",
+    "section": "",
+    "text": "10.1 Modèle de travail\nPython est un des rares langages modernes qui permette l’héritage multiple. Cela signifie qu’une classe peut spécialiser plusieurs classes.\nUn grand principe de l’héritage multiple est… de l’éviter au maximum.\nL’héritage multiple s’est révélé problématique ce qui a conduit la plupart des langages à s’orienter vers de l’héritage simple et à ajouter le concept d’interfaces. Dans cette partie, nous allons voir les principaux problèmes que nous pouvons rencontrer.\nLe modèle es la partie employés d’un centre de formation reprenant celui de la partie précédente. Nous avions nos objets représentant des salariés et des prestataires. Nous avons spécialisé les salariés en commerciaux (SalesEmployee) et formateurs (salariés) (Coach).\n«abstract»\n\n\n\n\n\n\n\nEmployee\n\n\n\n\n\n\n\n+first_name : String\n\n\n\n\n\n\n\n+last_name : String\n\n\n\n\n\n\n\n+id : Integer\n\n\n\n\n\n\n\n+calculate_payroll() : Float\n\n\n\n\n\n\n\nSalaryEmployee\n\n\n\n\n\n\n\n+monthly_salaray : Float\n\n\n\n\n\n\n\nDailyEmployee\n\n\n\n\n\n\n\n+daily_rate : Float\n\n\n\n\n\n\n\nCoach\n\n\n\n\n\n\n\nSalesEmployee\n\n\n\n\n\n\n\nDailyCoach\nL’implémentation des SalaryEmployee et DailyEmployee est la suivante :\nDans notre diagramme, nous avons une classe Coach qui spécialise SalaryEmployee. Elle n’est pas détaillée ici.\nNous aurons ensuite besoin de représenter un intervenant externe (DailyCoach). Ce DailyCoach est un Coach mais aussi un DailyEmployee. Dans la logique, il spécialise ces deux classes.\nEt là, nous allons commencer à avoir une série de problèmes résultant de la présence de mêmes fonctions dans les deux généralisations. Notez que le diagramme UML représente le modèle complet mettant en évidence le cas classique conduisant à ce type de problème : le Diamond Problem. En effet, nous ne voyons pas dans les classes au premier niveau que ces deux classes ont en fait un ancêtre commun.",
+    "crumbs": [
+      "Programmation Orientée Objet avancée",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>L’héritage multiple</span>"
+    ]
+  },
+  {
+    "objectID": "POO/heritage_multiple.html#modèle-de-travail",
+    "href": "POO/heritage_multiple.html#modèle-de-travail",
+    "title": "10  L’héritage multiple",
+    "section": "",
+    "text": "class SalaryEmployee(Employee):\n    def __init__(self, first_name: str, last_name: str,\n                 id: int, monthly_salaray: float):\n                 \n1        super().__init__(first_name, last_name, id)\n        self.monthly_salaray = monthly_salaray\n\n2    def calculate_payroll(self):\n        return self.monthly_salaray\n\nclass DailyEmployee(Employee):\n    def __init__(self, first_name: str, last_name: str,\n                 id: int, daily_rate: float):\n                 \n        super().__init__(first_name, last_name, id)\n        self.daily_rate = daily_rate\n3        self.days = 0\n\n    def calculate_payroll(self):\n        return self.days * self.daily_rate\n\n1\n\nLa création de base de la classe est déléguée à Employee.\n\n2\n\nChaque classe a sa propre implémentation concrète de calculate_payroll().\n\n3\n\nPermet de calculer le salaire, son évolution n’est pas montrée dans cet extrait de code.\n\n\n\n\nclass DailyCoach(Coach, DailyEmployee):\n    pass",
+    "crumbs": [
+      "Programmation Orientée Objet avancée",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>L’héritage multiple</span>"
+    ]
+  },
+  {
+    "objectID": "POO/heritage_multiple.html#lordre-de-résolution-des-méthodes",
+    "href": "POO/heritage_multiple.html#lordre-de-résolution-des-méthodes",
+    "title": "10  L’héritage multiple",
+    "section": "10.2 L’ordre de résolution des méthodes",
+    "text": "10.2 L’ordre de résolution des méthodes\nLorsque qu’une méthode ou un attribut d’une classe est accédé, Python utilise son MRO (Method Resolution Order) pour le retrouver.\nUne classe possède l’attribut spécial __mro__ qui va retourner l’ordre dans lequel Python recherchera les attributs. Cet ordre est celui qui est respecté lorsque vous appelez la fonction super(). Dans le cas de DailyCoach, l’attribut retourne le résultat suivant.\nIn [1]: DailyCoach.__mro__\nOut[1]: \n(pyacademy.people.DailyCoach,\n pyacademy.people.Coach,\n pyacademy.people.SalaryEmployee,\n pyacademy.people.DailyEmployee,\n pyacademy.people.Employee,\n abc.ABC,\n object)\nLorsque nous créons une nouvelle instance, la méthode __init__() de DailyCoach est appelée ensuite celle de Coach puis celle de SalaryEmployee puis DailyEmployee et ainsi de suite.",
+    "crumbs": [
+      "Programmation Orientée Objet avancée",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>L’héritage multiple</span>"
+    ]
+  },
+  {
+    "objectID": "POO/heritage_multiple.html#résolution-du-problème-des-paramètres",
+    "href": "POO/heritage_multiple.html#résolution-du-problème-des-paramètres",
+    "title": "10  L’héritage multiple",
+    "section": "10.3 Résolution du problème des paramètres",
+    "text": "10.3 Résolution du problème des paramètres\nSi dans certains cas, appeler l’ensemble des méthodes sera ce que vous souhaitez, dans d’autres, vous ne le souhaiterez pas.\nDans nos exemples, le constructeur est un premier problème qui peut être résolu en appelant spécifiquement la méthode du parent souhaité.\nclass DailyCoach(Coach, DailyEmployee):\n    def __init__(self, first_name: str, last_name: str,\n                 id: int, daily_rate: float):\n                 \n        DailyEmployee.__init__(self, first_name, last_name,\n                               id, daily_rate)\nCependant, nous aurons à nouveau le problème lors de l’appel à .calculate_payroll(). Dans notre cas, il faudra à nouveau faire appel à l’implémentation spécifique.",
+    "crumbs": [
+      "Programmation Orientée Objet avancée",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>L’héritage multiple</span>"
+    ]
+  },
+  {
+    "objectID": "POO/heritage_multiple.html#les-mixins",
+    "href": "POO/heritage_multiple.html#les-mixins",
+    "title": "10  L’héritage multiple",
+    "section": "10.4 Les mixins",
+    "text": "10.4 Les mixins\nLes mixins sont un moyen d’exploiter l’héritage multiple pour proposer un code réutilisable à la frontière entre les interfaces et les classes abstraites sans forcer à une hiérarchie rigide.\nUne mixin est une classe qui va répondre à certaines conventions :\n\nUn nom destiné à éviter toute ambiguïté.\nCe sont des classes simples qui réalisent un comportement. Elles n’ont pas de généralisation.\nElles n’ont qu’une seule responsabilité\nElles n’ont pas d’état donc rarement un constructeur ou des attributs d’instance;\nElles sont destinées à étendre le comportement d’autres classes et n’ont aucun sens par elles-même.\n\nUn exemple de mixin peut être :\nclass SerializableMixin:\n    def serialize(self) -&gt; dict:\n        if hasattr(self, \"__slots__\"):\n            return {\n                name: getattr(self, name)\n                for name in self.__slots__\n            }\n        else:\n            return vars(self)\nDjango utilise intensivement les mixins pour étendre les comportements. Vous pouvez voir un exemple pour la validation du login : https://docs.djangoproject.com/en/5.2/topics/auth/default/#the-loginrequiredmixin-mixin ## Héritage multiple, conclusion\nL’héritage multiple est source de nombreux problèmes, il est donc fortement déconseillé de l’utiliser. De manière générale, l’héritage est déconseillé en faveur de la composition. Il y a cependant une différence d’interprétation. L’héritage signifie est un alors que la composition signifie contient/comporte un. Nous pouvons le voir avec la modélisation d’une formation et plus spécifiquement une session de formation qui a lieu à une certaine date et à un certain lieu avec des stagiaires. Une formation (au sens sujet et contenu) n’est pas une liste, ce n’est pas non plus un lieu. Une session n’est pas non plus une formation (au sens sujet et contenu) ni un lieu. Par contre, une session comporte un sujet et un lieu.\nCependant, dans un langage déclaratif, il faut associer un type à nos classes pour informer le langage de ce que peut faire l’objet. Ces langages ont ajouté la notion d’interfaces. Une interface est un contrat déclarant ce que peut faire l’objet (c’est une liste de méthodes).\nEn Python, les interfaces sont inutiles. Les méthodes sont implémentés en fonction du besoin et les programmes n’ont pas besoin de connaitre ce que sont les objets (leur type) mais ce qu’ils peuvent faire (leurs méthodes).\nPour aller plus loin, n’hésitez pas à consulter ce post de Raymond Hettinger, Python’s super() considered super! : https://rhettinger.wordpress.com/2011/05/26/super-considered-super/ \nAinsi que celui de Guido Van Rossum sur Python History : http://python-history.blogspot.com/2010/06/method-resolution-order.html.",
+    "crumbs": [
+      "Programmation Orientée Objet avancée",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>L’héritage multiple</span>"
+    ]
+  },
+  {
+    "objectID": "POO/context_managers.html",
+    "href": "POO/context_managers.html",
+    "title": "11  Les context managers",
+    "section": "",
+    "text": "11.1 Présentation générale\nUn Context Manager définit un contexte dans lequel vous exécutez votre code. Le Context Manager fait parti de la famille des décorateurs et s’occupera donc d’exécuter des actions avant et/ou après votre code. Dans le contexte, vous vous concentrez sur votre métier et déléguez les questions technique au Context Manager.\nLes context manager que vous avez dû voir sont la fonction open(), la fonction pytest.raises() (ou l’équivalente avec unittest) et l’objet connexion dans le cadre des bases de données. Peut-être aussi avec la fonction os.scandir().\nNous allons voir dans cette partie comment créer nos propres context managers.\nUn Context Manager est une classe qui possède deux méthodes spéciales : __enter__() et __exit__(). Vous pourrez donc utiliser cette classe pour instancier un objet tout à fait normalement. Mais vous pourrez également utiliser cet objet avec le mot-clef with.\nLe with appellera en premier lieu la méthode __enter__(). L’interpréteur exécutera ensuite votre code puis sortira du contexte en appelant la méthode __exit__().\nVoici ci-dessous l’implémentation la plus simple d’un context manager afin que vous voyez les différentes étapes d’appel. Notez que la méthode __exit__() prend des paramètres que nous verrons par la suite.\nUsage :",
+    "crumbs": [
+      "Programmation Orientée Objet avancée",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Les context managers</span>"
+    ]
+  },
+  {
+    "objectID": "POO/context_managers.html#présentation-générale",
+    "href": "POO/context_managers.html#présentation-générale",
+    "title": "11  Les context managers",
+    "section": "",
+    "text": "class BasicContextManager:\n    def __enter__(self):\n        print(\"Entering Context Manager\")\n        \n    def __exit__(self, exc_type, exc_val, exc_tb):\n        print(\"Exiting Context Manager\")\n\nwith BasicContextManager():\n    print('In context')",
+    "crumbs": [
+      "Programmation Orientée Objet avancée",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Les context managers</span>"
+    ]
+  },
+  {
+    "objectID": "POO/context_managers.html#un-context-manager-reste-un-objet",
+    "href": "POO/context_managers.html#un-context-manager-reste-un-objet",
+    "title": "11  Les context managers",
+    "section": "11.2 Un context manager reste un objet",
+    "text": "11.2 Un context manager reste un objet\nLe contexte manager reste une classe et donc un objet. Il peut avoir une méthode __init__(self)\nclass BasicContextManager:\n    def __init__(self):\n        print(\"Initializing\")\n        self.my_id = \"I'm the context\"\n        \n    def __enter__(self):\n        print(\"Entering Context Manager\")\n        \n    def __exit__(self, exc_type, exc_val, exc_tb):\n        print(\"Exiting Context Manager\")\nCette classe peut être instanciée et associée à une variable. La variable peut être utilisée pour sa fonction de contexte manager :\nbc = BasicContextManager()\nwith bc:\n    print(f'In context {bc.my_id}')",
+    "crumbs": [
+      "Programmation Orientée Objet avancée",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Les context managers</span>"
+    ]
+  },
+  {
+    "objectID": "POO/context_managers.html#idiome-with-as",
+    "href": "POO/context_managers.html#idiome-with-as",
+    "title": "11  Les context managers",
+    "section": "11.3 Idiome with as",
+    "text": "11.3 Idiome with as\nCet idiome permet d’instancier le contaxt manager au moment de son utilisation. Le mot clef as récupère le retour de la fonction __enter__(self).\nAinsi, cette déclaration\nclass BasicContextManager:\n    def __init__(self):\n        print(\"Initializing\")\n        self.my_id = \"I'm the context\"\n        \n    def __enter__(self):\n        print(\"Entering Context Manager\")\n        return self\nPermet l’usage :\nwith BasicContextManager() as bc:\n    print(f'In context {bc.my_id}')\nDe manière générale, la méthode __enter__() doit avoir un return self pour que l’idiome fonctionne. ## Gestion des exceptions\nUne exception levée dans le contexte est interceptée par le context manager qui appelle alors la méthode __exit__() en passant des arguments liés à l’exception.",
+    "crumbs": [
+      "Programmation Orientée Objet avancée",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Les context managers</span>"
+    ]
+  },
+  {
+    "objectID": "POO/context_managers.html#paramètres-de-__exit__",
+    "href": "POO/context_managers.html#paramètres-de-__exit__",
+    "title": "11  Les context managers",
+    "section": "11.4 Paramètres de __exit__()",
+    "text": "11.4 Paramètres de __exit__()\nSi une exception se produit dans le contexte et l’interrompt, elle peut être gérée dans la méthode __exit__(). Les paramètres de cette méthodes vont alors entrer en jeu. La signature complète de la méthode est __exit__(self, exc_type, exc_value, exc_tb). * exc_type : est le type (classe) de l’exception * exc_value : est l’instance de l’exception * exc_tb : est l’objet traceback\nAttention, vous ne devez pas lever une exception dans ce bloc pour faire suivre l’exception.",
+    "crumbs": [
+      "Programmation Orientée Objet avancée",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Les context managers</span>"
+    ]
+  },
+  {
+    "objectID": "POO/context_managers.html#propagation-de-lexception",
+    "href": "POO/context_managers.html#propagation-de-lexception",
+    "title": "11  Les context managers",
+    "section": "11.5 Propagation de l’exception",
+    "text": "11.5 Propagation de l’exception\nSi vous avez géré l’exception et qu’elle ne doit pas être propagée, alors la méthode doit retourner une valeur vrai (truthy). Si la méthode retourne une valeur falsy (ce qui est fait par défaut puisque le retour est None), l’exception sera propagée.",
+    "crumbs": [
+      "Programmation Orientée Objet avancée",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Les context managers</span>"
+    ]
+  },
+  {
+    "objectID": "POO/iterateurs.html",
+    "href": "POO/iterateurs.html",
+    "title": "12  Les itérateurs",
+    "section": "",
+    "text": "12.1 Exemple de base\nUn itérateur est un objet qui permet de retourner le prochain élément d’un itérable. Les exemples les plus simples d’itérateurs sont les séquences mais aussi les générateurs.\nUn itérable est un objet implantant la méthode spéciale __iter__()  qui doit retourner un itérateur. Un itérateur est un objet implantant la méthode spéciale __next__(). Cette méthode doit retourner l’élément suivant ou lever une exception de type StopIteration.\nNous allons utiliser notre formation pour illustrer la définition d’un itérateur. En effet, nous pouvons proposer d’accéder aux stagiaires par itération de type for student in training.\nNous allons donc ajouter ces deux méthodes à la classe Training. La méthode __iter__() retournera simplement self.",
+    "crumbs": [
+      "Programmation Orientée Objet avancée",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Les itérateurs</span>"
+    ]
+  },
+  {
+    "objectID": "POO/iterateurs.html#exemple-de-base",
+    "href": "POO/iterateurs.html#exemple-de-base",
+    "title": "12  Les itérateurs",
+    "section": "",
+    "text": "def __iter__(self):\n    self._current_value = 0\n    return self\n\ndef __next__(self):\n    try:\n        value = self.students[self._current_value]\n        self._current_value += 1\n        return value\n    except IndexError:\n        raise StopIteration(\"End of collection\")\n\n12.1.1 Limite du modèle de base\nCe choix d’implémentation n’est peut-être pas la plus pertinente mais elle permet d’illustrer que l’itérateur devra garder une trace de l’élément en cours.\nCeci révèle un problème dans cette implémentation : elle n’est pas adaptée aux tâches concurrente. Dans la pratique, la méthode __iter__() devrait retourner un objet dédié à l’itération et déconnecté de l’itérable.\n\n\n12.1.2 D’autre outils d’itération\nLa bibliothèque itertools propose des fonctions créant des itérateurs pratiques : https://docs.python.org/3/library/itertools.html",
+    "crumbs": [
+      "Programmation Orientée Objet avancée",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Les itérateurs</span>"
+    ]
+  },
+  {
+    "objectID": "POO/iterateurs.html#vers-des-fonctionnalité-de-collections",
+    "href": "POO/iterateurs.html#vers-des-fonctionnalité-de-collections",
+    "title": "12  Les itérateurs",
+    "section": "12.2 Vers des fonctionnalité de collections",
+    "text": "12.2 Vers des fonctionnalité de collections\nNous avons fait de l’objet TrainingSession un itérable, mais nous pouvons aller plus loin et en faire un objet collection complet grâce à d’autres méthodes spéciales :\n\n__len__() est appelé par la fonction len() et doit retourner la taille de la collection\n__contains__() est appelé avec le mot clef in et doit retourner un booléen\n__getitem__() est appelé lors de l’écriture avec crochets\n\nBien entendu, ces méthodes ne doivent être ajoutée que si elles ont un sens avec votre classe. Un itérable ne sait pas forcément combien d’éléments il possède tout comme il peut ignorer la position réelle d’un élément.\nDans notre cas, vu que nous nous reposons sur une liste, nous pouvons ajouter l’ensemble de ces méthodes. Commençons par les plus simples.\ndef __len__(self):\n    return len(self._students)\n\ndef __contains__(self, item):\n    return item in self._students\nLa méthode __getitem__(self, item) est plus complexe. Le code suivant permet de voir quel est la valeur et le type du paramètre item :\ndef __getitem__(self, item):\n    print(type(item))\n    print(item)\nVous pouvez passer n’importe quel type à __getitem__() et vous récupérerez la donnée avec le type correspondant.\nMais si dans les crochets vous utilisez la syntaxe de slice, c’est bien un objet slice qui est passé en paramètre. Vous pourrez donc l’exploiter dans la méthode. Ceci peut être, en fonction de votre modèle, plus ou moins complexe. Dans notre cas, il ne s’agit que de passe-plat.",
+    "crumbs": [
+      "Programmation Orientée Objet avancée",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Les itérateurs</span>"
+    ]
+  },
+  {
+    "objectID": "POO/metaclasses.html",
+    "href": "POO/metaclasses.html",
+    "title": "13  Les métaclasses",
+    "section": "",
+    "text": "13.1 Définir dynamiquement une classe\nLes métaclasses sont un moyen performant, efficace et élégant de rajouter des fonctionnalités aux objets. Pour instancier un objet, deux phases sont nécessaires : la construction de l’objet, avec la méthode __new__() et l’initialisation de l’objet, avec la méthode __init__() qui sont deux points particulièrement distincts pour Python.\nLa seconde méthode est de loin la plus connue et utilisée, car dès que l’on décrit les paramètres passés au constructeur, il faut utiliser cette méthode, car cela fait partie de la phase d’initialisation.\nLa signature de cette méthode est donc la signature du constructeur, au premier argument près.\nLorsque l’on remonte l’arbre d’héritage, on trouve toujours tout à la fin l’objet object. Les instances ont un attribut __class__ qui indique la classe liée à l’instance. Cette classe a elle-même un attribut __class__ soit instance.__class__.__class__ qui définit la metaclasse et par  défaut, il s’agit de type.\nPour l’exemple ci-dessous, ABC a été retiré de l’arborescence d’héritage car il s’agit d’une métaclasse.\nEn Python, tout est objet. Les classes sont également des objets. Un objet ayant un type, les classes ont un type qui est type.\nEt le type de type est… type.\ntype est une métaclasse.\nLa fonction type(), lorsqu’elle reçoit un seul argument, retourne le type de l’objet ce qui correspond au même retour que instance.__class__.\nMais il est également possible de lui passer 3 arguments : type(name, bases, dict) ce qui créera une nouvelle instance de la métaclasse type. En d’autres termes, cela créera une nouvelle classe.\nNous pouvons donc définir un nouveau type le plus simple de la manière suivante.\nUn autre exemple avec un attribut et héritant de la définition précédente :",
+    "crumbs": [
+      "Programmation Orientée Objet avancée",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Les métaclasses</span>"
+    ]
+  },
+  {
+    "objectID": "POO/metaclasses.html#définir-dynamiquement-une-classe",
+    "href": "POO/metaclasses.html#définir-dynamiquement-une-classe",
+    "title": "13  Les métaclasses",
+    "section": "",
+    "text": "name définit le nom de la classe et deviendra l’attribut __name__\nbases est un tuple des classes dont hérite cette classe.\ndict est un dictionnaire qui contient la définition des attributs et méthodes, c’est le dictionnaire du namespace.\n\n\nIn [1]: Foo = type('Foo', (), {})\n\nIn [2]: f = Foo()\n\nIn [3]: f\nOut[3]: &lt;__main__.Foo at 0x102809060&gt;\n\nIn [4]: type(f)\nOut[4]: __main__.Foo\n\nIn [7]: Bar = type(\"Bar\", (Foo,), {\"attr\":100, \"val_bar\":lambda x:x.attr})\n\nIn [8]: b = Bar()\n\nIn [9]: b.attr\nOut[9]: 100\n\nIn [10]: b.__class__\nOut[10]: __main__.Bar\n\nIn [11]: Bar.__mro__\nOut[11]: (__main__.Bar, __main__.Foo, object)\n\nIn [12]: b.val_bar()\nOut[12]: 100",
+    "crumbs": [
+      "Programmation Orientée Objet avancée",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Les métaclasses</span>"
+    ]
+  },
+  {
+    "objectID": "POO/metaclasses.html#créer-nos-propres-metaclasses",
+    "href": "POO/metaclasses.html#créer-nos-propres-metaclasses",
+    "title": "13  Les métaclasses",
+    "section": "13.2 Créer nos propres metaclasses",
+    "text": "13.2 Créer nos propres metaclasses\nPour créer nos propres metaclasses, nous devons avoir une classe héritant de type. La structure et le code type sera le suivant.\nclass MyMetaClasse(type):\n    def __call__(self, *argv, **kwargs):\n        print(\"Dans call METACLASSE\")\n        return super().__call__(*argv, **kwargs)\n\n    def __new__(cls, name, base, dct):\n        print(\"Dans new METACLASSE\")\n        return super().__new__(cls, name, base, dct)\n    \n    def __init__(self, *argv, **kwargs):\n        print(\"Dans init METACLASSE\")\n        super().__init__(*argv, **kwargs)\nCette metaclasse peut maintenant être utilisée de la manière suivante lors de la création de notre classe.\nclass MyClass(metaclass=MyMetaClasse):\n    pass\nEn conclusion, vous n’auriez que très rarement besoin de créer des metaclasses. Leur usage reste ésotérique et il y aura certainement une solution plus simple et  plus maintenable. La citation ci-contre de Tim Peters, le guru Python auteur du Zen de Python, résume leur intérêt.\n\nMetaclasses are deeper magic than 99% of users should ever worry about. If you wonder whether you need them, you don’t (the people who actually need them know with certainty that they need them, and don’t need an explanation about why)\nTim Peters\n\nCependant, même si vous n’utiliserez certainement jamais les metaclasses, leur connaissance reste importante pour la compréhension du modèle objet.",
+    "crumbs": [
+      "Programmation Orientée Objet avancée",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Les métaclasses</span>"
+    ]
+  },
+  {
+    "objectID": "parallelism/intro.html",
+    "href": "parallelism/intro.html",
+    "title": "Initiation au calcul distribué",
+    "section": "",
+    "text": "Terminologie\nLorsqu’un programme augmente en complexité, il se retrouve avec le besoin d’exécuter des traitements en même temps. Nous aurons alors à gérer le problème de concurrence. Mais un processeur ne peut exécuter qu’une seule tâche à la fois. Il va donc avancer les différentes tâches de manière successive. Python propose deux outils pour gérer ce cas : threading qui permet du multi-tâches préemptif et asyncio qui permet du multi-tâches coopératif.\nLe parallélisme consiste à exécuter plusieurs traitements en même temps sur plusieurs processeurs ou sur plusieurs cœurs. La programmation parallèle est indispensable dans certains domaines comme le calcul scientifique.\nUn processus est l’exécution d’un ensemble d’instructions par l’utilisation de ressources physiques, les deux principales étant la mémoire vive et le processeur. Un programme peut correspondre à un seul ou plusieurs processus. Si un programme est multi-processus, chacun dispose de son propre environnement d’exécution et est indépendant. Cette technologie est idéale lorsque l’on dispose de plusieurs processeurs.\nD’un point de vue utilisateur, une tâche (ou thread) présente les mêmes caractéristiques qu’un processus. Mais toutes les tâches utilisent le contexte d’exécution du processus auquel elles appartiennent. Elle possèdent que leur propre pile d’appels. Le parallélisme entre tâches n’est pas réel.\nDu fait de l’implémentation de CPython, Python ne peut exécuter qu’un seul thread à la fois. Ceci est verrouillé par un outil nommé GIL (Global Interpreter Lock) et vous pouvez trouver plus d’informations sur les limites dans la présentation suivante : http://www.dabeaz.com/python/UnderstandingGIL.pdf.\nPython propose une API de haut niveau nommée threading pour gérer les threads. Elle n’apportera un gain de performances que pour les tâches qui vont attendre des évènements externes. Cependant, utiliser les threads peut aussi être une manière d’améliorer le design de l’application.",
+    "crumbs": [
+      "Initiation au calcul distribué"
+    ]
+  },
+  {
+    "objectID": "parallelism/threading.html",
+    "href": "parallelism/threading.html",
+    "title": "14  Introduction à threading",
+    "section": "",
+    "text": "14.1 Les threads en tant que daemon\nCréer un thread se fait par la création d’un objet de type threading.Thread().\nLa signature de la classe est la suivante (tous les paramètres ne sont pas représentés) :\nLes arguments doivent être nommés.\nPour illustrer, nous allons nous utiliser des actions longues et pour cela simplement mettre l’exécution du code en attente. Pour l’observer, nous utiliserons un logger.\nNous allons utiliser (et donc importer) les bibliothèques logging, threading et time.\nNous pouvons créer un thread pour avec cette fonction. Pour exécuter ce thread, il suffit de faire un appel à la méthode Thread.start().\nSi vous exécutez ce programme, vous verrez qu’il se termine avant le thread.\nEn informatique, un daemon est un processus qui s’exécute en tâche de fond.\nPour threading, un daemon est un thread qui sera arrêté à la fin du programme, qu’il ai terminé son exécution ou non.\nAinsi, si vous complétez la déclaration du thread de la manière suivante :\nVous ne verrez pas l’affichage du dernier log.",
+    "crumbs": [
+      "Initiation au calcul distribué",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Introduction à threading</span>"
+    ]
+  },
+  {
+    "objectID": "parallelism/threading.html#les-threads-en-tant-que-daemon",
+    "href": "parallelism/threading.html#les-threads-en-tant-que-daemon",
+    "title": "14  Introduction à threading",
+    "section": "",
+    "text": "x = threading.Thread(target=thread_function, args=(1,), daemon=True)",
+    "crumbs": [
+      "Initiation au calcul distribué",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Introduction à threading</span>"
+    ]
+  },
+  {
+    "objectID": "parallelism/threading.html#synchroniser-les-thread",
+    "href": "parallelism/threading.html#synchroniser-les-thread",
+    "title": "14  Introduction à threading",
+    "section": "14.2 Synchroniser les thread",
+    "text": "14.2 Synchroniser les thread\nLa méthode .join() de l’objet thread fait attendre au fil principale la fin de l’exécution du thread.\nInsérée dans le code précédent, le programme s’arrête le temps que le thread se termine.\nx.start()\nlogging.info(\"Main    : wait for the thread to finish\")\nx.join()\nlogging.info(\"Main    : all done\")",
+    "crumbs": [
+      "Initiation au calcul distribué",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Introduction à threading</span>"
+    ]
+  },
+  {
+    "objectID": "parallelism/threading.html#travailler-avec-plusieurs-threads",
+    "href": "parallelism/threading.html#travailler-avec-plusieurs-threads",
+    "title": "14  Introduction à threading",
+    "section": "14.3 Travailler avec plusieurs threads",
+    "text": "14.3 Travailler avec plusieurs threads\nSi vous exécutez plusieurs threads à partir d’un même thread principal, vous verrez que, potentiellement, les exécutions peuvent se croiser. Un thread peut, pour la même exécution, se terminer avant un autre thread démarré avant.\nC’est le système qui détermine quel thread faire avancer. Vous n’avez pas de moyen d’anticiper quel thread le système fera avancer.\nSi les threads sont indépendants, il n’y a pas vraiment de conséquence. Par contre, nous pouvons avoir à faire face à des race conditions.",
+    "crumbs": [
+      "Initiation au calcul distribué",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Introduction à threading</span>"
+    ]
+  },
+  {
+    "objectID": "parallelism/threading.html#les-race-conditions",
+    "href": "parallelism/threading.html#les-race-conditions",
+    "title": "14  Introduction à threading",
+    "section": "14.4 Les race conditions",
+    "text": "14.4 Les race conditions\nUne race condition se traduit par situation de compétition ou situation de concurrence. Il s’agit de concurrence d’accès à une ressource.\nL’illustration suivante montre le problème de gestion d’un compteur. Le compteur est géré par la classe suivante.\nclass SomeService:\n    def __init__(self):\n        self.value = 0\n\n    def update(self, name):\n        logging.info(f\"Thread {name}: starting update\")\n        local_copy = self.value\n        local_copy += 1\n        time.sleep(0.1)\n        self.value = local_copy\n        logging.info(f\"Thread {name}: finishing update\")\nDans notre programme principal, nous aurons un seul service. Puis, nous allons déclencher deux threads qui mettent à jour le compteur.\nservice = SomeService()\n\nt1 = threading.Thread(target=service.update, args=(1,))\nt2 = threading.Thread(target=service.update, args=(2,))\nlogging.info(f\"Testing update. Starting value is {service.value}.\")\nt1.start()\nt2.start()\nt1.join()\nt2.join()\nlogging.info(f\"Testing update. Ending value is {service.value}.\")\n Les logs correspondant sont présentés ci-dessous, la valeur finale de 1 aurai dû être à 2.\nTesting update. Starting value is 0.\nThread 1: starting update\nThread 2: starting update\nThread 1: finishing update\nThread 2: finishing update\nTesting update. Ending value is 1.\nNous allons avoir besoin de synchroniser nos threads et une manière élémentaire pour le faire est de créer un verrou.\n\n14.4.1 Synchronisation avec lock\nUn verrou agira comme un totem. Il ne peut être possédé que par un seul thread. Pour qu’un autre thread puisse l’avoir, il faut que le précédent le restitue.\nPour cela, les méthodes de base sont .acquire() et .release(). Si un thread fait appel à .acquire() mais que le lock n’est pas disponible, il attendra jusque’à sa libération. \nLes verrous peuvent être utilisés comme un context manager.\nNotre classe devient le code ci-dessous.\nclass SomeService:\n    def __init__(self):\n        self.value = 0\n        self._lock = threading.Lock()\n\n    def update(self, name):\n       with self._lock:\n            local_copy = self.value\n            local_copy += 1\n            time.sleep(0.1)\n            self.value = local_copy\nSi vous ajoutez du log autour du context manager, vous verrez que le second thread commencera l’appel à la méthode avant la fin de l’exécution du premier thread. Mais il sera bloqué avant le contexte manager tant que le premier thread n’a pas relâché ce lock.\nCeci permet de résoudre le problème d’accès concurrent aux ressources partagées entre les threads.\n\n\n14.4.2 Deadlock\nLe lock amène un autre problème : deux threads peuvent se bloquer mutuellement. C’est le principe des deux coffres dans lesquels sont enfermées les clefs pour ouvrir l’autre. C’est une situation de deadlock.\nUn deadlock survient communément dans une des deux situations suivantes :\n\nUn bug d’implémentation où le lock n’est pas libéré proprement\nUn design où la fonction a besoin d’être appelée par une fonction qui peut avoir ou non un lock. Cette situation arrive habituellement dans les situations d’appels récursifs.\n\nPour éviter la première situation, préférez la syntaxe avec le contexte manager.\nPour la seconde, Python propose un second objet, RLock. Il permet à un même thread d’acquérir un même lock plusieurs fois avant de le libérer. Cette classe est conçue pour les cas des appels récursifs.\nEn dernier recours, vous avez l’option du paramètre timeout de la méthode .acquire(). L’argument doit être un réel correspondant à un nombre de secondes.",
+    "crumbs": [
+      "Initiation au calcul distribué",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Introduction à threading</span>"
+    ]
+  },
+  {
+    "objectID": "parallelism/threading.html#limiter-le-nombre-de-threads-avec-les-sémaphores",
+    "href": "parallelism/threading.html#limiter-le-nombre-de-threads-avec-les-sémaphores",
+    "title": "14  Introduction à threading",
+    "section": "14.5 Limiter le nombre de threads avec les sémaphores",
+    "text": "14.5 Limiter le nombre de threads avec les sémaphores\nLe sémaphore est une des plus anciennes primitives de synchronisation conçue par l’informaticien Edsger W. Dijkstra. Un sémaphore est initialisé avec un compteur et expose deux  méthodes : .acquire() et .release().\n\nEdsger W. Dijkstra avait défini pour les sémaphores les opérations Init, P et V. P et V viennent du néerlandais Proberen et Verhogen qui signifient respectivement Sonder et incrémenter.\n\nUn appel à la méthode .acquire() décréments le compteur. Un appel à la méthode .release() incrémente le compteur.\nUn appel à .acquire() lorsque le compteur est à 0 bloquera le thread qui a fait cet appel jusque’à ce qu’un autre fasse appel à .release().\nLa valeur passée à l’initialisation n’est pas un maximum. Il est possible de faire appel à .release() alors que le sémaphore est à cette valeur et donc l’augmenter. La classe threading.BoundedSemaphore est identique à threading.Semaphore mais empêche que le compteur excède sa valeur initiale.\nLes sémaphores sont utilisés pour limiter le nombre d’utilisation simultanée d’une ressource comme par exemple l’accès à une base de données.\nC’est également la solution au problème du diner des philosophes",
+    "crumbs": [
+      "Initiation au calcul distribué",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Introduction à threading</span>"
+    ]
+  },
+  {
+    "objectID": "parallelism/threading.html#spécialiser-les-threads",
+    "href": "parallelism/threading.html#spécialiser-les-threads",
+    "title": "14  Introduction à threading",
+    "section": "14.6 Spécialiser les Threads",
+    "text": "14.6 Spécialiser les Threads\nLa classe threading.Thread peut être spécialisée avec l’héritage. Mais pour le faire correctement, il est indispensable de connaitre le fonctionnement d’un objet Thread.\nDans les exemples précédents, nous avons fait appel, pour démarrer le thread, à la méthode Thread.start(). Cette méthode crée un nouveau thread et appelle la méthode Thread.run().\nLorsque nous consultons le code source de cette méthode, nous avons (documentation omise) :\ndef run(self):\n    try:\n        if self._target is not None:\n            self._target(*self._args, **self._kwargs)\n    finally:\n        del self._target, self._args, self._kwargs\nCette méthode appelle donc le callable passé en argument à la création de l’objet en lui passant en argument les éléments de args et kwargs.\nVous comprenez donc que vous pouvez créer plus spécifiquement un thread qui ne recevra pas de callable mais aura directement le code dans la méthode .run().\nCréer son propre thread consiste donc à spécialiser cette classe et à surcharger le constructeur et la méthode .run(). Vous ne devriez pas surcharger une autre méthode. Cependant, vous pouvez, et c’est pourquoi vous créerez vos propres threads, ajouter d’autres méthodes.",
+    "crumbs": [
+      "Initiation au calcul distribué",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Introduction à threading</span>"
+    ]
+  },
+  {
+    "objectID": "parallelism/multiprocessing.html",
+    "href": "parallelism/multiprocessing.html",
+    "title": "15  Introduction au multiprocessing",
+    "section": "",
+    "text": "15.1 Utilisation de la mémoire partagée\nLe module multiprocessing tire tous les avantages des CPUs. À un haut niveau, il crée de nouvelles instances de l’interpréteur pour fonctionner sur un CPU dédié. Lancer un nouvel interpréter est plus couteux que démarrer un nouveau thread.\nLe module multiprocessing a la même interface que le module threading. De base, vous ne pourriez n’avoir que l’import à changer en remplaçant Thread par Process. Une astuce consiste à utiliser un alias pour l’import afin de switcher l’import à loisir.\nNotez également qu’avant d’utiliser les processus fils, sous Windows, devez ajouter cette ligne.\nL’explication vient du fait que sous Windows, le fork d’un programme n’est pas possible de la même façon que sous les systèmes Posix. Il est d’usage d’ajouter systématiquement cette ligne qui sera sans effet sous Linux/MacOS.\nCependant, utiliser plusieurs process revient à forker votre programme, les données ne sont alors plus partagées. Ainsi, à chaque nouveau process, vous aurez un nouveau programme avec une copie des données.\nPour manipuler les même données il faut les allouer à une mémoire partagée.\nUtiliser la mémoire partagée comporte quelques limites.\nLes types de Python (dictionnaires, listes, …) ne sont pas utilisables dans la mémoire partagée. Seuls les types du module ctypes le sont. Il s’agit des types natifs du langage C. Le module multiprocessing permet d’allouer ces données via 4 classes :\nUne valeur issue d’une variable de type Value/RawValue ne peut pas être manipulée avec une variable ordinaire Python. Il faut utiliser la propriété .value comme dans l’exemple suivant :\nLe verrou des objets de type Value/Array s’utilise via la méthode get_lock() et sont context safe.",
+    "crumbs": [
+      "Initiation au calcul distribué",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Introduction au multiprocessing</span>"
+    ]
+  },
+  {
+    "objectID": "parallelism/multiprocessing.html#utilisation-de-la-mémoire-partagée",
+    "href": "parallelism/multiprocessing.html#utilisation-de-la-mémoire-partagée",
+    "title": "15  Introduction au multiprocessing",
+    "section": "",
+    "text": "RawValue, donnée brute, sans verrou associé data = RawValue(ctypes.c_long, 0)\nRawArray, tableau brut, sans verrou associé \nValue, valeur ayant un verrou qui lui est associé data = Value(c_types.c_long, 0, lock=True)\nArray, tableau ayant un verrou associé. \n\n\n1In [17]: n = RawValue('d', 10)\n\nIn [18]: n.value\nOut[18]: 10.0\n\nIn [19]: n.value += 10\n\nIn [20]: n.value\nOut[20]: 20.0\n\n1\n\nl’argument 'd' représente un c_double. Vous pouvez également utiliser 'i' pour les c_int et 'h' pour les c_short.\n\n\n\nIn [10]: counter = Value(\"i\", 0)\n\nIn [11]: with counter.get_lock():\n    ...:     counter.value += 1",
+    "crumbs": [
+      "Initiation au calcul distribué",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Introduction au multiprocessing</span>"
+    ]
+  },
+  {
+    "objectID": "parallelism/futures.html",
+    "href": "parallelism/futures.html",
+    "title": "16  Le module concurrent.futures",
+    "section": "",
+    "text": "16.1 Exemple\nconcurrent.futures est le module Python qui permet d’exécuter du code en parallèle de façon simple, avec une interface unifiée pour les threads et les processus. Le module fournit 2 Executors :\nL’exemple va récupérer les statuts de sites web. La mise en place est la suivante :\nLe ThreadPoolExecutor s’utilise ainsi :\nDans cet exemple, l’Executor a été paramétré avec max_workers=2 ce qui fait qu’il lance deux threads en parallèle au maximum.\nexecutor.submit()",
+    "crumbs": [
+      "Initiation au calcul distribué",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Le module `concurrent.futures`</span>"
+    ]
+  },
+  {
+    "objectID": "parallelism/futures.html#exemple",
+    "href": "parallelism/futures.html#exemple",
+    "title": "16  Le module concurrent.futures",
+    "section": "",
+    "text": "from concurrent.futures import ThreadPoolExecutor\nimport urllib.request\n\nurls = [\n    \"https://example.com\",\n    \"https://python.org\",\n    \"https://pypi.org\",\n]\n\ndef fetch(url):\n    with urllib.request.urlopen(url, timeout=5) as r:\n        print(f\"{url} : {r.status}\")\n\n1with ThreadPoolExecutor(max_workers=2) as executor:\n    for url in urls:\n2        executor.submit(fetch, url,)\n        \n\n1\n\nCréation de l’exécutor et usage en context manager afin de garantir la fin de toutes les tâches.\n\n2\n\nL’appel à .submit() crée un thread et l’ajoute à la file de l’executor.\n\n\n\n\ndef fetch(url):\n    with urllib.request.urlopen(url, timeout=5) as r:\n        return url, r.status\n\nwith ThreadPoolExecutor(max_workers=2) as executor:\n    for url, status in executor.map(fetch, urls):\n        print(f\"{url} : {status}\")",
+    "crumbs": [
+      "Initiation au calcul distribué",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Le module `concurrent.futures`</span>"
+    ]
+  },
+  {
+    "objectID": "parallelism/queues.html",
+    "href": "parallelism/queues.html",
+    "title": "17  Le problème des producteurs et consommateurs",
+    "section": "",
+    "text": "17.1 Illustration\nLe problème des producteurs et consommateurs, ou producer-consumer problem, est un cas de synchronisation de ressources. Le producteur génère des données à traiter par le consommateur. Il y aura donc une file d’attente entre la génération et le traitement des données qui ont donc lieu dans deux tâches différentes.\nPython fournit le module queue pour la communication entre threads et le module multiprocessing comporte des implémentations similaires pour le multiprocessing.\nDans ce document, seule l’usage avec les threads est abordé mais le principe reste le même avec le multiprocessing.\nLe cas d’usage est le suivant :",
+    "crumbs": [
+      "Initiation au calcul distribué",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Le problème des producteurs et consommateurs</span>"
+    ]
+  },
+  {
+    "objectID": "parallelism/queues.html#illustration",
+    "href": "parallelism/queues.html#illustration",
+    "title": "17  Le problème des producteurs et consommateurs",
+    "section": "",
+    "text": "import threading\n1from queue import SimpleQueue\n\ndef producer(q):\n    for i in range(5):\n2        q.put(i)\n        print(f\"Produit : {i}\")\n4    q.put(None)\n\ndef consumer(q):\n    while True:\n3        item = q.get()\n        if item is None:\n            break\n        print(f\"Consommé : {item}\")\n\nq = SimpleQueue()\nt1 = threading.Thread(target=producer, args=(q,))\nt2 = threading.Thread(target=consumer, args=(q,))\n\nt1.start(); t2.start()\nt1.join(); t2.join()\n\n1\n\nNous utilisons ici l’objet SimpleQueue\n\n2\n\nq.put() ajoute un élément à la file\n\n3\n\nq.get() attends qu’un élément soit disponible\n\n4\n\nDéfinition d’une sentinelle pour signaler la fin",
+    "crumbs": [
+      "Initiation au calcul distribué",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Le problème des producteurs et consommateurs</span>"
+    ]
+  },
+  {
+    "objectID": "parallelism/queues.html#différents-types-de-files",
+    "href": "parallelism/queues.html#différents-types-de-files",
+    "title": "17  Le problème des producteurs et consommateurs",
+    "section": "17.2 Différents types de files",
+    "text": "17.2 Différents types de files\nLe module queue propose plusieurs implémentations.\nLa classe queue.Queue est la plus complète et permet de gérer la synchronisation avec .join() et une taille maximale. Ses méthodes usuelles sont :\n\n.empty() retourne vrai si la liste est vide\n.full() retourne vrai si la liste est pleine\n.get(block=True, timeout=None) retourne le prochain élément\n.put(item, block=True, timeout=None) ajoute un élément.\n.join() met en attente de tous les éléments de la liste.\n\nPour des cas plus simples, le module propose queue.SimpleQueue est une version allégée correspondant à la plupart des cas d’usage FIFO. Elle possède les méthodes précédentes sauf .join().",
+    "crumbs": [
+      "Initiation au calcul distribué",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Le problème des producteurs et consommateurs</span>"
+    ]
+  },
+  {
+    "objectID": "parallelism/queues.html#la-notion-de-sentinelle",
+    "href": "parallelism/queues.html#la-notion-de-sentinelle",
+    "title": "17  Le problème des producteurs et consommateurs",
+    "section": "17.3 La notion de sentinelle",
+    "text": "17.3 La notion de sentinelle\nLa méthode .get() est bloquante. Elle attends la prochaine valeur à traiter et toute valeur est traitée de la même manière. Il est alors convenu d’une valeur dite sentinelle qui sera transmise pour indiquer qu’il n’y a plus d’éléments.",
+    "crumbs": [
+      "Initiation au calcul distribué",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Le problème des producteurs et consommateurs</span>"
+    ]
+  },
+  {
+    "objectID": "parallelism/queues.html#queues-files-et-autres-implémentations",
+    "href": "parallelism/queues.html#queues-files-et-autres-implémentations",
+    "title": "17  Le problème des producteurs et consommateurs",
+    "section": "17.4 Queues, files et autres implémentations",
+    "text": "17.4 Queues, files et autres implémentations\nNotez qu’une queue en informatique représente un type de pile, les FIFO (First In First Out). Une pile de type LIFO (Last in First Out) est nommée une stack. L’objet Queue a bien le comportement qui correspond à son nom.\nLa bibliothèque propose d’autres types\n\nLifoQueue pour les stacks\nPriorityQueue pour sortir les éléments par ordre de priorité.\n\nLa priorité des éléments dans une PriorityQueue est définie par leur ordre naturel. Il n’est donc pas rare de créer une DataClass pour gérer les éléments de ce type de queue.\nCes deux classes possèdent les mêmes méthodes que Queue. Leur différence est dans l’ordre d’accès aux éléments.",
+    "crumbs": [
+      "Initiation au calcul distribué",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Le problème des producteurs et consommateurs</span>"
+    ]
+  },
+  {
+    "objectID": "parallelism/asyncio.html",
+    "href": "parallelism/asyncio.html",
+    "title": "18  Programmation parallèle avec Asyncio",
+    "section": "",
+    "text": "18.1 Déclaration d’une coroutine\nLe principe d’asyncio est de permettre à Python d’exécuter une autre tâche pendant que l’opération actuelle attends. Il s’agit de multitâche coopératif. Ceci signifie que c’est la tâche qui décide quand rendre la main et non le système.\nLe concept général est qu’un objet unique appelé la boucle d’évènements (event loop) contrôle quand et comment chaque tâche est exécutée. Cette boucle connait chaque tâche et leur état. On peut simplifier ces états en prêt à être exécuté ou en attente. La boucle connaissant les états replace une tâche qui a terminée dans la liste correspondant à son état et démarre la suivante en attente.\nLe point important est que c’est la tâche qui rend la main, ce qui signifie qu’elle ne sera pas interrompue en milieu d’exécution.\nLe cœur de asyncio est la coroutine. Ceci s’accompagne de deux mots-clef : async et await.\nOn déclare une coroutine avec les mots clef async def.\nExécuter cette fonction retourne un objet de type &lt;coroutine object my_coroutin at ...&gt;. Cet objet devra être exécuté dans la boucle d’évènements d’asyncio.",
+    "crumbs": [
+      "Initiation au calcul distribué",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Programmation parallèle avec Asyncio</span>"
+    ]
+  },
+  {
+    "objectID": "parallelism/asyncio.html#déclaration-dune-coroutine",
+    "href": "parallelism/asyncio.html#déclaration-dune-coroutine",
+    "title": "18  Programmation parallèle avec Asyncio",
+    "section": "",
+    "text": "async def my_coroutin():\n    print(\"Je suis une coroutine\")",
+    "crumbs": [
+      "Initiation au calcul distribué",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Programmation parallèle avec Asyncio</span>"
+    ]
+  },
+  {
+    "objectID": "parallelism/asyncio.html#rendre-la-main",
+    "href": "parallelism/asyncio.html#rendre-la-main",
+    "title": "18  Programmation parallèle avec Asyncio",
+    "section": "18.2 Rendre la main",
+    "text": "18.2 Rendre la main\nLa coroutine précédente n’est pas différente d’une fonction, asyncio l’exécutera dans son ensemble car elle ne rends pas la main. Pour cela, il faut déclarer que la coroutine attends le résultat d’une opération avec le mot clef await :\nimport asyncio\n\nasync def count(name:str):\n    print(f'{name} One')\n    await asyncio.sleep(1)\n    print(f'{name} Two')\n    return f'{name} done`\nNotez que l’on utilise asyncio.sleep() qui permet de suspendre la coroutine et non time.sleep()qui bloque le thread.",
+    "crumbs": [
+      "Initiation au calcul distribué",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Programmation parallèle avec Asyncio</span>"
+    ]
+  },
+  {
+    "objectID": "parallelism/asyncio.html#créer-des-tâches",
+    "href": "parallelism/asyncio.html#créer-des-tâches",
+    "title": "18  Programmation parallèle avec Asyncio",
+    "section": "18.3 Créer des tâches",
+    "text": "18.3 Créer des tâches\nUne seule coroutine ne permet pas des opérations en parallèle. Le contenu de la coroutine reste séquentiel. L’intérêt est lorsque la boucle d’évènements exécute plusieurs coroutines sous forme de tâches.\n\n18.3.1 Utiliser asyncio.create_task()\nasync def main():\n    c1 = asyncio.create_task(count(1, 3))\n    c2 = asyncio.create_task(count(2, 1))\n    c3 = asyncio.create_task(count(3, 2))\n\n    print(\"Les trois tâches sont lancées\")\n\n    r1 = await c1\n    r2 = await c2\n    r3 = await c3\n\n    print(r1, r2, r3)\n\n\nasyncio.run(main())\nLes trois tâches débuteront à peu près en même temps, cependant, l’ordre du second affichage ne sera pas forcément celui de lancement des tâches. Le temps d’exécution total sera de l’ordre de 3 secondes.\nNotez que asyncio.create_task() ne démarre pas de tâche, il la planifie pour plus tard et c’est les lignes 8 à 10 qui permettent leur exécution dans la boucle d’évènements.\n\n\n18.3.2 Utiliser asyncio.gather()\nL’usage précédent permet de référencer les tâches et les gérer individuellement. asyncio.gather() permet quand à lui d’attendre plusieurs opérations asynchrones comme un groupe.\nasync def main():\n    await asyncio.gather(count(), \n                         count(), \n                         count(),\n                        )\nasyncio.gather() retourne une données qui une liste des résultats.",
+    "crumbs": [
+      "Initiation au calcul distribué",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Programmation parallèle avec Asyncio</span>"
+    ]
+  },
+  {
+    "objectID": "data_science/intro.html",
+    "href": "data_science/intro.html",
+    "title": "Initiation à la Data Science",
+    "section": "",
+    "text": "Les supports liés à l’initiation aux Data Science et Machine Learning sont sous form de Notebooks Jupyter dans un projet dédié qui vous sera communiqué lors de la formation.",
+    "crumbs": [
+      "Initiation à la Data Science"
+    ]
+  },
+  {
+    "objectID": "packaging/environnement_standard.html",
+    "href": "packaging/environnement_standard.html",
+    "title": "19  Structure de projet Python",
+    "section": "",
+    "text": "19.1 Structure proposée par Kenneth Reitz\nDeux approches de référence pour organiser un projet Python selon son usage : la proposition de Kenneth Reitz (projets applicatifs) et la structure src-based (packaging et distribution).\nPopularisée par le guide The Hitchhiker’s Guide to Python, cette structure convient aux projets applicatifs, scripts, outils CLI et services web. Elle privilégie la lisibilité et la convention sur la configuration.",
+    "crumbs": [
+      "Environnement de travail et packaging",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Structure de projet Python</span>"
+    ]
+  },
+  {
+    "objectID": "packaging/environnement_standard.html#structure-proposée-par-kenneth-reitz",
+    "href": "packaging/environnement_standard.html#structure-proposée-par-kenneth-reitz",
+    "title": "19  Structure de projet Python",
+    "section": "",
+    "text": "mon_projet/\n1+-- mon_projet/\n|   +-- __init__.py\n2|   +-- __main__.py\n|   +-- core.py \n|   \\-- ...\n|\n3+-- tests/\n|   +-- __init__.py\n|   +-- test_core.py\n|   \\-- ...\n|\n4+-- docs/\n|   +-- conf.py\n|   \\-- index.rst\n|\n5+-- .env.example\n+-- .gitignore\n6+-- LICENSE\n7+-- Makefile\n8+-- README.md\n9+-- requirements.txt\n10+-- requirements-dev.txt\n11\\-- pyproject.toml\n\n1\n\nPackage principal, vous ne devez théoriquement avoir qu’un seul package pour votre projet principalement pour imposer un namespace.\n\n2\n\nPour rappel, un fichier __main__.py est le point d’entrée en exécutant le module (ici par un python -m mon_projet)\n\n3\n\nLe package de tests isolés du code métier.\n\n4\n\nDocumentation (Sphinx, MkDocs…).\n\n5\n\nOptionnel, variables d’environnement (modèle).\n\n6\n\nIl est recommandé de toujours préciser la licence d’utilisation.\n\n7\n\nSpécifique au monde Posix et à l’outil make pour automatiser les tâches courantes (test, lint, run…).\n\n8\n\nLe README.md doit présenter le projet et indiquer comment configurer l’environnement de dev.\n\n9\n\nDépendances runtime\n\n10\n\nDépendances de développement\n\n11\n\nOptionnel, norme récente pour centraliser les métadonnées (PEP 621)\n\n\n\n19.1.1 Principes clés\n\nLe package applicatif est à la racine du dépôt, directement importable après pip install -e .\ntests/ est un répertoire de premier niveau, séparé du package\nPas de sous-dossier src/ : le code est découvrable sans configuration supplémentaire\nAdapté aux projets Django, Flask, FastAPI, scripts de data science, outils internes\n\n\n\n19.1.2 Exemple d’import\n# Après pip install -e .\nfrom mon_projet.core import MaClasse",
+    "crumbs": [
+      "Environnement de travail et packaging",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Structure de projet Python</span>"
+    ]
+  },
+  {
+    "objectID": "packaging/environnement_standard.html#structure-src-based",
+    "href": "packaging/environnement_standard.html#structure-src-based",
+    "title": "19  Structure de projet Python",
+    "section": "19.2 Structure src-based",
+    "text": "19.2 Structure src-based\nRecommandée par PyPA et adoptée comme bonne pratique pour les bibliothèques distribuées sur PyPI. Elle isole le code source dans un répertoire src/ afin d’éviter les importations accidentelles depuis la racine du projet lors des tests.\nmon_projet/\n+-- src/\n1|   \\-- mon_projet/\n|       +-- __init__.py\n|       +-- __main__.py\n|       +-- core.py\n|       \\-- ...\n|\n2+-- tests/\n|   +-- conftest.py\n|   +-- test_core.py\n|   \\-- ...\n|\n+-- docs/\n|   \\-- ...\n|\n+-- .gitignore\n+-- LICENSE\n+-- README.md\n3+-- pyproject.toml\n4+-- requirements.txt\n\\-- requirements-dev.txt\n\n1\n\nPackage installable\n\n2\n\nTests à la racine, séparés du package source\n\n3\n\nConfiguration unique (build, deps, outils)\n\n4\n\nLa présence des requirements est destiné aux devs (de manière historique)\n\n\n\n19.2.1 pyproject.toml minimal\nÀ titre d’exemple, voici le contenu d’un fichier pyproject.toml minimal qui référence setuptools.\n[build-system]\nrequires = [\"setuptools &gt;= 77.0.3\"]\nbuild-backend = \"setuptools.build_meta\"\n\n[project]\nname = \"mon-projet\"\nversion = \"0.1.0\"\ndescription = \"Description courte du projet\"\nreadme = \"README.md\"\nrequires-python = \"&gt;=3.11\"\nlicense = { file = \"LICENSE\" }\ndependencies = [\n    \"httpx&gt;=0.27\",\n]\n\n[project.optional-dependencies]\ndev = [\n    \"pytest&gt;=8.0\",\n    \"ruff&gt;=0.4\",\n]\n\n\n19.2.2 Principes clés\n\nLe code dans src/ n’est pas importable sans installation préalable (pip install -e .), ce qui garantit que les tests exercent bien le package installé et non les fichiers locaux bruts\nUn seul fichier de configuration : pyproject.toml (remplace setup.py, setup.cfg, MANIFEST.in)\ntests/ reste en dehors de src/ pour ne pas être inclus dans la distribution\nAdapté à la publication sur PyPI, aux bibliothèques réutilisables, aux projets open source\n\n\n\n19.2.3 Installation en mode éditable\npip install -e \".[dev]\"",
+    "crumbs": [
+      "Environnement de travail et packaging",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Structure de projet Python</span>"
+    ]
+  },
+  {
+    "objectID": "packaging/environnement_standard.html#références",
+    "href": "packaging/environnement_standard.html#références",
+    "title": "19  Structure de projet Python",
+    "section": "19.3 Références",
+    "text": "19.3 Références\n\nThe Hitchhiker’s Guide to Python – Structuring Your Project\nPyPA – Packaging Python Projects\nPyPA – src layout vs flat layout\nHatch – Build backend moderne\nPEP 517 – Build system interface",
+    "crumbs": [
+      "Environnement de travail et packaging",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Structure de projet Python</span>"
+    ]
+  },
+  {
+    "objectID": "packaging/outils_standards.html",
+    "href": "packaging/outils_standards.html",
+    "title": "20  Les outils de développement",
+    "section": "",
+    "text": "20.1 Isoler les environnements : venv\nAfin de travailler dans un environnement stabilisé sans ambiguïté sur l’interpréteur utilisé et avec des dépendances maitrisées, Python propose d’isoler la configuration de l’environnement avec les environnements virtuels.",
+    "crumbs": [
+      "Environnement de travail et packaging",
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Les outils de développement</span>"
+    ]
+  },
+  {
+    "objectID": "packaging/outils_standards.html#création-dun-environnement-virtuel",
+    "href": "packaging/outils_standards.html#création-dun-environnement-virtuel",
+    "title": "20  Les outils de développement",
+    "section": "20.2 Création d’un environnement virtuel",
+    "text": "20.2 Création d’un environnement virtuel\npython -m venv .venv\n\npython : utiliser la version explicite de la version qui sera la version du venv (par exemple python3.14).\n-m venv : exécution de venv.\n.venv : chemin du répertoire de création du venv, ici .venv dans le répertoire courant.\n\nVous pouvez créer le répertoire contenant le venv n’importe où. Le créer dans le répertoire du projet permet d’avoir un venv dédié au projet et le nom .venv est convenu pour utiliser la propriété du fichier caché sous les environnements POSIX.",
+    "crumbs": [
+      "Environnement de travail et packaging",
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Les outils de développement</span>"
+    ]
+  },
+  {
+    "objectID": "packaging/outils_standards.html#usage-et-activation-de-lenvironnement-virtuel",
+    "href": "packaging/outils_standards.html#usage-et-activation-de-lenvironnement-virtuel",
+    "title": "20  Les outils de développement",
+    "section": "20.3 Usage et activation de l’environnement virtuel",
+    "text": "20.3 Usage et activation de l’environnement virtuel\nPrécisions : dans l’arborescence de l’environnement virtuel, les exécutables sont dans un sous-répertoire dépendant du système : bin sous Linux et MacOs, Scripts sous Windows.\nLes environnements virtuels sont destinés à être utilisés dans une invite de commande et configureront le process. Ils sont intégrés dans les principaux IDEs mais leur usage n’est pas couvert ici.\n\n20.3.1 Activation d’un environnement virtuel\nVoir la documentation\nSous Linux ou MacOs\nsource .venv/bin/activate\nSous windows, selon que l’on soit sous le PowerShell ou le cmd :\n.venv\\Scripts\\Activate.ps1\n.venv\\Scripts\\activate.bat\nSuite à cette activation, vous utiliser python et pip de l’environnement virtuel. ### Utilisation directe des exécutables\nPour un usage simple, vous pouvez utiliser directement les exécutables de l’environnement virtuel (pour Linux ou MacOs) :\n.venv/bin/pip list\n.venv/bin/python",
+    "crumbs": [
+      "Environnement de travail et packaging",
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Les outils de développement</span>"
+    ]
+  },
+  {
+    "objectID": "packaging/outils_standards.html#gérer-les-dépendances-pip",
+    "href": "packaging/outils_standards.html#gérer-les-dépendances-pip",
+    "title": "20  Les outils de développement",
+    "section": "20.4 Gérer les dépendances : pip",
+    "text": "20.4 Gérer les dépendances : pip\npip est l’outil standard de gestion des dépendances. Si vous travaillez avec un environnement virtuel (conseillé), vous devez l’activer auparavant.\nLes instructions principales sont :\n\n20.4.1 Lister les packages installés\npip list\n\n\n20.4.2 Créer une référence des dépendances\nLa commande pip freeze affiche les dépendances de l’environnement courant dans le terminal. Elle est utilisée pour créer le fichier informant des besoins de ce projet :\npip freeze &gt; requirements.txt\n\n\n20.4.3 Installer des dépendances\n1pip install my_package\n2pip install -r requirements.txt\n\n1\n\nInstalle le package en argument\n\n2\n\nUtiliser le fichier requirements.txt pour installer l’ensemble des dépendances nécessaires au projet.\n\n\npip permet de passer par un proxy, vous devez alors connaitre l’adresse du proxy et utiliser une syntaxe du type :\npython -m pip install --proxy user:pass@proxy.server:port my_package",
+    "crumbs": [
+      "Environnement de travail et packaging",
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Les outils de développement</span>"
+    ]
+  },
+  {
+    "objectID": "packaging/outils_standards.html#uv-gestionnaire-de-projet-python-moderne",
+    "href": "packaging/outils_standards.html#uv-gestionnaire-de-projet-python-moderne",
+    "title": "20  Les outils de développement",
+    "section": "20.5 uv, Gestionnaire de projet Python moderne",
+    "text": "20.5 uv, Gestionnaire de projet Python moderne\nuv est un outil écrit en Rust, développé par Astral (auteurs de Ruff).\nIl remplace en un seul binaire : pip, pip-tools, virtualenv, pyenv, pipx et partiellement poetry.\nL’installation ne sera pas abordée ici car spécifique des systèmes, voir la documentation",
+    "crumbs": [
+      "Environnement de travail et packaging",
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Les outils de développement</span>"
+    ]
+  },
+  {
+    "objectID": "packaging/outils_standards.html#créer-un-projet",
+    "href": "packaging/outils_standards.html#créer-un-projet",
+    "title": "20  Les outils de développement",
+    "section": "20.6 Créer un projet",
+    "text": "20.6 Créer un projet\nuv init mon_projet\ncd mon_projet\nStructure générée :\nmon_projet/\n├── .python-version\n├── pyproject.toml\n├── uv.lock\n├── README.md\n└── main.py\n\n1\n\nVersion Python épinglée\n\n2\n\nConfiguration du projet\n\n3\n\nlockfile généré automatiquement\n\n\nPour uv, la référence des dépendances est le uv.lock. Ce fichier est à ajouter au référentiel. il décrit la version exacte des dépendances utilisés et sera utilisé pour le partage du projet.\n\n20.6.1 Installer des dépendances\n\n20.6.1.1 Dépendances de production\nuv add requests\nuv add \"httpx&gt;=0.27\"\nuv add fastapi uvicorn\nuv met à jour le pyproject.toml :\n[project]\ndependencies = [\n    \"httpx&gt;=0.27\",\n    \"fastapi&gt;=0.110\",\n    \"uvicorn&gt;=0.29\",\n]\n\n\n20.6.1.2 Dépendances de développement\nuv add --dev pytest\nuv add --dev ruff mypy\nuv add --dev \"pytest-cov&gt;=5.0\"\nuv crée la section dans le pyproject.toml :\n[dependency-groups]\ndev = [\n    \"pytest&gt;=8.0\",\n    \"ruff&gt;=0.4\",\n    \"mypy&gt;=1.9\",\n    \"pytest-cov&gt;=5.0\",\n]\n\n\n20.6.1.3 Supprimer une dépendance\nuv remove requests\n\n\n\n20.6.2 Synchroniser l’environnement\nLors de la récupération d’un projet, on utiliser le fichier uv.lock pour configurer son environnement :\nuv sync           \nuv sync --no-dev  \nuv sync crée ou met à jour .venv/. L’option --no-dev permet de n’installer que les dépendances de prod.\n\n\n20.6.3 Lancer des commandes\nPas besoin d’activer le virtualenv :\nuv run python main.py\nuv run pytest\nuv run ruff check .\nuv run mypy src/\nuv run détecte automatiquement le .venv/ du projet.\n\n\n20.6.4 Le fichier uv.lock\nuv.lock est généré automatiquement. Il contient les versions exactes de toutes les dépendances (directes et transitives), garantissant la reproductibilité sur toutes les machines.\nuv lock\nÀ committer dans Git. Ne pas l’éditer manuellement.\n\n\n20.6.5 Compatibilité\nuv génère un pyproject.toml standard (PEP 621) : les projets restent compatibles avec pip et les autres outils de l’écosystème Python.\nSi vous souhaitez revenir vers l’usage de pip classique, vous pouvez exporter les requirements :\n# Exporter vers requirements.txt (CI, Docker…)\nuv export --format requirements-txt &gt; requirements.txt\nuv export --format requirements-txt --no-dev &gt; requirements.txt\n\n\n20.6.6 Pour le packaging\nVous pouvez utiliser uv pour le packaging. Il faut indiquer le build-system dans le pyproject.toml :\n[build-system]\nrequires = [\"uv_build &gt;= 0.11.7, &lt;0.12.0\"]\nbuild-backend = \"uv_build\"",
+    "crumbs": [
+      "Environnement de travail et packaging",
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Les outils de développement</span>"
+    ]
+  },
+  {
+    "objectID": "packaging/outils_standards.html#références",
+    "href": "packaging/outils_standards.html#références",
+    "title": "20  Les outils de développement",
+    "section": "20.7 Références",
+    "text": "20.7 Références\n\nDocumentation officielle uv\nGitHub astral-sh/uv\nPython Developer Tooling Handbook — uv",
+    "crumbs": [
+      "Environnement de travail et packaging",
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Les outils de développement</span>"
+    ]
+  },
+  {
+    "objectID": "packaging/package.html",
+    "href": "packaging/package.html",
+    "title": "21  Créer un package",
+    "section": "",
+    "text": "21.1 Utiliser setuptools\nPour créer un package, vous devez partir de la structure src-based et avoir un fichier pyproject.toml fonctionnel.\nsetuptools est l’outil historique. Une fois le fichier configuré, s’assurer de disposer des dépendances\nEt lancer\nCe qui créera un tar.gz et un .whl dans le répertoire dist.",
+    "crumbs": [
+      "Environnement de travail et packaging",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Créer un package</span>"
+    ]
+  },
+  {
+    "objectID": "packaging/package.html#utiliser-setuptools",
+    "href": "packaging/package.html#utiliser-setuptools",
+    "title": "21  Créer un package",
+    "section": "",
+    "text": "pip install --upgrade setuptools[core]\npip install --upgrade build\n\npython -m build",
+    "crumbs": [
+      "Environnement de travail et packaging",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Créer un package</span>"
+    ]
+  },
+  {
+    "objectID": "packaging/package.html#utiliser-uv",
+    "href": "packaging/package.html#utiliser-uv",
+    "title": "21  Créer un package",
+    "section": "21.2 Utiliser uv",
+    "text": "21.2 Utiliser uv\nuv veut rendre les choses plus faciles. Vous devez juste exécuter :\nuv build",
+    "crumbs": [
+      "Environnement de travail et packaging",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Créer un package</span>"
+    ]
+  }
+]

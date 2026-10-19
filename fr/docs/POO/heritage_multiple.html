@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>10&nbsp; L’héritage multiple – Python, Perfectionnement</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../POO/context_managers.html" rel="next">
+<link href="../POO/classes_abstraites.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-367522ac618891c39d4b2ae87ea7600e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Pas de résultats",
+    "search-matching-documents-text": "documents trouvés",
+    "search-copy-link-title": "Copier le lien vers la recherche",
+    "search-hide-matches-text": "Cacher les correspondances additionnelles",
+    "search-more-match-text": "correspondance de plus dans ce document",
+    "search-more-matches-text": "correspondances de plus dans ce document",
+    "search-clear-button-title": "Effacer",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Annuler",
+    "search-submit-button-title": "Envoyer",
+    "search-label": "Recherche"
+  }
+}</script>
+<script src="../site_libs/quarto-diagram/mermaid-postprocess-shim.js"></script>
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../POO/intro.html">Programmation Orientée Objet avancée</a></li><li class="breadcrumb-item"><a href="../POO/heritage_multiple.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">L’héritage multiple</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Recherche" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Python, Perfectionnement</a> 
+        <div class="sidebar-tools-main">
+    <a href="../python-perfectionnement-dstankovski.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Recherche"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Présentation de la formation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">L’environnement de travail</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Basculer la section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction/Workspace.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">L’environnement de travail</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../rappels/intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Rappels indispensables</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Basculer la section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../rappels/donnees_variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Données et variables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../rappels/operateurs_expressions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Opérateurs et expressions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Fonctions avancées</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Basculer la section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../func/closures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Notion de Closure</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../func/decorators.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Les décorateurs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../func/generateurs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Rappel sur les générateurs</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../POO/intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Programmation Orientée Objet avancée</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Basculer la section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../POO/rappels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Rappels</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../POO/properties.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Properties et descripteurs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../POO/classes_abstraites.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Les classes et méthodes abstraites</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../POO/heritage_multiple.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">L’héritage multiple</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../POO/context_managers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Les context managers</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../POO/iterateurs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Les itérateurs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../POO/metaclasses.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Les métaclasses</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../parallelism/intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Initiation au calcul distribué</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Basculer la section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../parallelism/threading.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Introduction à threading</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../parallelism/multiprocessing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Introduction au multiprocessing</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../parallelism/futures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Le module <code>concurrent.futures</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../parallelism/queues.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Le problème des producteurs et consommateurs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../parallelism/asyncio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Programmation parallèle avec Asyncio</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Initiation à la Data Science</span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Environnement de travail et packaging</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Basculer la section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../packaging/environnement_standard.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Structure de projet Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../packaging/outils_standards.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Les outils de développement</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../packaging/package.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Créer un package</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table des matières</h2>
+   
+  <ul>
+  <li><a href="#modèle-de-travail" id="toc-modèle-de-travail" class="nav-link active" data-scroll-target="#modèle-de-travail"><span class="header-section-number">10.1</span> Modèle de travail</a></li>
+  <li><a href="#lordre-de-résolution-des-méthodes" id="toc-lordre-de-résolution-des-méthodes" class="nav-link" data-scroll-target="#lordre-de-résolution-des-méthodes"><span class="header-section-number">10.2</span> L’ordre de résolution des méthodes</a></li>
+  <li><a href="#résolution-du-problème-des-paramètres" id="toc-résolution-du-problème-des-paramètres" class="nav-link" data-scroll-target="#résolution-du-problème-des-paramètres"><span class="header-section-number">10.3</span> Résolution du problème des paramètres</a></li>
+  <li><a href="#les-mixins" id="toc-les-mixins" class="nav-link" data-scroll-target="#les-mixins"><span class="header-section-number">10.4</span> Les mixins</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../POO/intro.html">Programmation Orientée Objet avancée</a></li><li class="breadcrumb-item"><a href="../POO/heritage_multiple.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">L’héritage multiple</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">L’héritage multiple</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Python est un des rares langages modernes qui permette l’héritage multiple. Cela signifie qu’une classe peut spécialiser plusieurs classes.</p>
+<p>Un grand principe de l’héritage multiple est… de l’éviter au maximum.</p>
+<p>L’héritage multiple s’est révélé problématique ce qui a conduit la plupart des langages à s’orienter vers de l’héritage simple et à ajouter le concept d’interfaces. Dans cette partie, nous allons voir les principaux problèmes que nous pouvons rencontrer.</p>
+<section id="modèle-de-travail" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="modèle-de-travail"><span class="header-section-number">10.1</span> Modèle de travail</h2>
+<p>Le modèle es la partie employés d’un centre de formation reprenant celui de la partie précédente. Nous avions nos objets représentant des salariés et des prestataires. Nous avons spécialisé les salariés en commerciaux (<code>SalesEmployee</code>) et formateurs (salariés) (<code>Coach</code>).</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<svg id="mermaid-figure-1" width="672" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" class="classDiagram" viewbox="0 0 531.234375 706" role="graphics-document document" aria-roledescription="class" height="480">
+<style>#mermaid-figure-1{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#333;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#mermaid-figure-1 .edge-animation-slow{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 50s linear infinite;stroke-linecap:round;}#mermaid-figure-1 .edge-animation-fast{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 20s linear infinite;stroke-linecap:round;}#mermaid-figure-1 .error-icon{fill:#552222;}#mermaid-figure-1 .error-text{fill:#552222;stroke:#552222;}#mermaid-figure-1 .edge-thickness-normal{stroke-width:1px;}#mermaid-figure-1 .edge-thickness-thick{stroke-width:3.5px;}#mermaid-figure-1 .edge-pattern-solid{stroke-dasharray:0;}#mermaid-figure-1 .edge-thickness-invisible{stroke-width:0;fill:none;}#mermaid-figure-1 .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-figure-1 .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-figure-1 .marker{fill:#333333;stroke:#333333;}#mermaid-figure-1 .marker.cross{stroke:#333333;}#mermaid-figure-1 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-figure-1 p{margin:0;}#mermaid-figure-1 g.classGroup text{fill:#9370DB;stroke:none;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:10px;}#mermaid-figure-1 g.classGroup text .title{font-weight:bolder;}#mermaid-figure-1 .nodeLabel,#mermaid-figure-1 .edgeLabel{color:#131300;}#mermaid-figure-1 .edgeLabel .label rect{fill:#ECECFF;}#mermaid-figure-1 .label text{fill:#131300;}#mermaid-figure-1 .labelBkg{background:#ECECFF;}#mermaid-figure-1 .edgeLabel .label span{background:#ECECFF;}#mermaid-figure-1 .classTitle{font-weight:bolder;}#mermaid-figure-1 .node rect,#mermaid-figure-1 .node circle,#mermaid-figure-1 .node ellipse,#mermaid-figure-1 .node polygon,#mermaid-figure-1 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaid-figure-1 .divider{stroke:#9370DB;stroke-width:1;}#mermaid-figure-1 g.clickable{cursor:pointer;}#mermaid-figure-1 g.classGroup rect{fill:#ECECFF;stroke:#9370DB;}#mermaid-figure-1 g.classGroup line{stroke:#9370DB;stroke-width:1;}#mermaid-figure-1 .classLabel .box{stroke:none;stroke-width:0;fill:#ECECFF;opacity:0.5;}#mermaid-figure-1 .classLabel .label{fill:#9370DB;font-size:10px;}#mermaid-figure-1 .relation{stroke:#333333;stroke-width:1;fill:none;}#mermaid-figure-1 .dashed-line{stroke-dasharray:3;}#mermaid-figure-1 .dotted-line{stroke-dasharray:1 2;}#mermaid-figure-1 #compositionStart,#mermaid-figure-1 .composition{fill:#333333!important;stroke:#333333!important;stroke-width:1;}#mermaid-figure-1 #compositionEnd,#mermaid-figure-1 .composition{fill:#333333!important;stroke:#333333!important;stroke-width:1;}#mermaid-figure-1 #dependencyStart,#mermaid-figure-1 .dependency{fill:#333333!important;stroke:#333333!important;stroke-width:1;}#mermaid-figure-1 #dependencyStart,#mermaid-figure-1 .dependency{fill:#333333!important;stroke:#333333!important;stroke-width:1;}#mermaid-figure-1 #extensionStart,#mermaid-figure-1 .extension{fill:transparent!important;stroke:#333333!important;stroke-width:1;}#mermaid-figure-1 #extensionEnd,#mermaid-figure-1 .extension{fill:transparent!important;stroke:#333333!important;stroke-width:1;}#mermaid-figure-1 #aggregationStart,#mermaid-figure-1 .aggregation{fill:transparent!important;stroke:#333333!important;stroke-width:1;}#mermaid-figure-1 #aggregationEnd,#mermaid-figure-1 .aggregation{fill:transparent!important;stroke:#333333!important;stroke-width:1;}#mermaid-figure-1 #lollipopStart,#mermaid-figure-1 .lollipop{fill:#ECECFF!important;stroke:#333333!important;stroke-width:1;}#mermaid-figure-1 #lollipopEnd,#mermaid-figure-1 .lollipop{fill:#ECECFF!important;stroke:#333333!important;stroke-width:1;}#mermaid-figure-1 .edgeTerminals{font-size:11px;line-height:initial;}#mermaid-figure-1 .classTitleText{text-anchor:middle;font-size:18px;fill:#333;}#mermaid-figure-1 .label-icon{display:inline-block;height:1em;overflow:visible;vertical-align:-0.125em;}#mermaid-figure-1 .node .label-icon path{fill:currentColor;stroke:revert;stroke-width:revert;}#mermaid-figure-1 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}</style>
+<g><defs><marker id="mermaid-figure-1-mermaid-1792427028404_class-aggregationStart" class="marker aggregation class" refx="18" refy="7" markerwidth="190" markerheight="240" orient="auto"><path d="M 18,7 L9,13 L1,7 L9,1 Z"></path></marker></defs><defs><marker id="mermaid-figure-1-mermaid-1792427028404_class-aggregationEnd" class="marker aggregation class" refx="1" refy="7" markerwidth="20" markerheight="28" orient="auto"><path d="M 18,7 L9,13 L1,7 L9,1 Z"></path></marker></defs><defs><marker id="mermaid-figure-1-mermaid-1792427028404_class-extensionStart" class="marker extension class" refx="18" refy="7" markerwidth="190" markerheight="240" orient="auto"><path d="M 1,7 L18,13 V 1 Z"></path></marker></defs><defs><marker id="mermaid-figure-1-mermaid-1792427028404_class-extensionEnd" class="marker extension class" refx="1" refy="7" markerwidth="20" markerheight="28" orient="auto"><path d="M 1,1 V 13 L18,7 Z"></path></marker></defs><defs><marker id="mermaid-figure-1-mermaid-1792427028404_class-compositionStart" class="marker composition class" refx="18" refy="7" markerwidth="190" markerheight="240" orient="auto"><path d="M 18,7 L9,13 L1,7 L9,1 Z"></path></marker></defs><defs><marker id="mermaid-figure-1-mermaid-1792427028404_class-compositionEnd" class="marker composition class" refx="1" refy="7" markerwidth="20" markerheight="28" orient="auto"><path d="M 18,7 L9,13 L1,7 L9,1 Z"></path></marker></defs><defs><marker id="mermaid-figure-1-mermaid-1792427028404_class-dependencyStart" class="marker dependency class" refx="6" refy="7" markerwidth="190" markerheight="240" orient="auto"><path d="M 5,7 L9,13 L1,7 L9,1 Z"></path></marker></defs><defs><marker id="mermaid-figure-1-mermaid-1792427028404_class-dependencyEnd" class="marker dependency class" refx="13" refy="7" markerwidth="20" markerheight="28" orient="auto"><path d="M 18,7 L9,13 L14,7 L9,1 Z"></path></marker></defs><defs><marker id="mermaid-figure-1-mermaid-1792427028404_class-lollipopStart" class="marker lollipop class" refx="13" refy="7" markerwidth="190" markerheight="240" orient="auto"><circle stroke="black" fill="transparent" cx="7" cy="7" r="6"></circle></marker></defs><defs><marker id="mermaid-figure-1-mermaid-1792427028404_class-lollipopEnd" class="marker lollipop class" refx="1" refy="7" markerwidth="190" markerheight="240" orient="auto"><circle stroke="black" fill="transparent" cx="7" cy="7" r="6"></circle></marker></defs><g class="root"><g class="clusters"></g><g class="edgePaths"><path d="M141.397,227.621L136.814,231.184C132.231,234.747,123.065,241.874,118.482,259.603C113.898,277.333,113.898,305.667,113.898,334C113.898,362.333,113.898,390.667,113.898,409C113.898,427.333,113.898,435.667,113.898,439.833L113.898,444" id="id_Employee_DailyEmployee_1" class="edge-thickness-normal edge-pattern-solid relation" style=";;;" data-edge="true" data-et="edge" data-id="id_Employee_DailyEmployee_1" data-points="W3sieCI6MTU1LjAxNTYyNSwieSI6MjE3LjAzMzEwOTU1ODM4N30seyJ4IjoxMTMuODk4NDM3NSwieSI6MjQ5fSx7IngiOjExMy44OTg0Mzc1LCJ5IjozMzR9LHsieCI6MTEzLjg5ODQzNzUsInkiOjQxOX0seyJ4IjoxMTMuODk4NDM3NSwieSI6NDQ0fV0=" marker-start="url(#mermaid-figure-1-mermaid-1792427028404_class-extensionStart)"></path><path d="M372.324,238.026L373.633,239.855C374.943,241.684,377.561,245.342,378.87,251.338C380.18,257.333,380.18,265.667,380.18,269.833L380.18,274" id="id_Employee_SalaryEmployee_2" class="edge-thickness-normal edge-pattern-solid relation" style=";;;" data-edge="true" data-et="edge" data-id="id_Employee_SalaryEmployee_2" data-points="W3sieCI6MzYyLjI4Mjg5NDczNjg0MjEsInkiOjIyNH0seyJ4IjozODAuMTc5Njg3NSwieSI6MjQ5fSx7IngiOjM4MC4xNzk2ODc1LCJ5IjoyNzR9XQ==" marker-start="url(#mermaid-figure-1-mermaid-1792427028404_class-extensionStart)"></path><path d="M315.146,406.87L313.342,408.892C311.537,410.913,307.929,414.957,306.125,424.145C304.32,433.333,304.32,447.667,304.32,454.833L304.32,462" id="id_SalaryEmployee_Coach_3" class="edge-thickness-normal edge-pattern-solid relation" style=";;;" data-edge="true" data-et="edge" data-id="id_SalaryEmployee_Coach_3" data-points="W3sieCI6MzI2LjYzMTg5MzM4MjM1MjksInkiOjM5NH0seyJ4IjozMDQuMzIwMzEyNSwieSI6NDE5fSx7IngiOjMwNC4zMjAzMTI1LCJ5Ijo0NjJ9XQ==" marker-start="url(#mermaid-figure-1-mermaid-1792427028404_class-extensionStart)"></path><path d="M445.213,406.87L447.018,408.892C448.822,410.913,452.431,414.957,454.235,424.145C456.039,433.333,456.039,447.667,456.039,454.833L456.039,462" id="id_SalaryEmployee_SalesEmployee_4" class="edge-thickness-normal edge-pattern-solid relation" style=";;;" data-edge="true" data-et="edge" data-id="id_SalaryEmployee_SalesEmployee_4" data-points="W3sieCI6NDMzLjcyNzQ4MTYxNzY0NzEsInkiOjM5NH0seyJ4Ijo0NTYuMDM5MDYyNSwieSI6NDE5fSx7IngiOjQ1Ni4wMzkwNjI1LCJ5Ijo0NjJ9XQ==" marker-start="url(#mermaid-figure-1-mermaid-1792427028404_class-extensionStart)"></path><path d="M113.898,581.25L113.898,582.542C113.898,583.833,113.898,586.417,120.944,592.666C127.99,598.916,142.081,608.832,149.126,613.79L156.172,618.748" id="id_DailyEmployee_DailyCoach_5" class="edge-thickness-normal edge-pattern-solid relation" style=";;;" data-edge="true" data-et="edge" data-id="id_DailyEmployee_DailyCoach_5" data-points="W3sieCI6MTEzLjg5ODQzNzUsInkiOjU2NH0seyJ4IjoxMTMuODk4NDM3NSwieSI6NTg5fSx7IngiOjE1Ni4xNzE4NzUsInkiOjYxOC43NDc4NDYwNjU0Nzk2fV0=" marker-start="url(#mermaid-figure-1-mermaid-1792427028404_class-extensionStart)"></path><path d="M304.32,563.25L304.32,567.542C304.32,571.833,304.32,580.417,297.275,589.666C290.229,598.916,276.138,608.832,269.092,613.79L262.047,618.748" id="id_Coach_DailyCoach_6" class="edge-thickness-normal edge-pattern-solid relation" style=";;;" data-edge="true" data-et="edge" data-id="id_Coach_DailyCoach_6" data-points="W3sieCI6MzA0LjMyMDMxMjUsInkiOjU0Nn0seyJ4IjozMDQuMzIwMzEyNSwieSI6NTg5fSx7IngiOjI2Mi4wNDY4NzUsInkiOjYxOC43NDc4NDYwNjU0Nzk2fV0=" marker-start="url(#mermaid-figure-1-mermaid-1792427028404_class-extensionStart)"></path></g><g class="edgeLabels"><g class="edgeLabel"><g class="label" data-id="id_Employee_DailyEmployee_1" transform="translate(0, 0)"><foreignobject width="0" height="0">
+<div class="labelBkg" data-xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;">
+<span class="edgeLabel"></span>
+</div>
+</foreignobject></g></g><g class="edgeLabel"><g class="label" data-id="id_Employee_SalaryEmployee_2" transform="translate(0, 0)"><foreignobject width="0" height="0">
+<div class="labelBkg" data-xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;">
+<span class="edgeLabel"></span>
+</div>
+</foreignobject></g></g><g class="edgeLabel"><g class="label" data-id="id_SalaryEmployee_Coach_3" transform="translate(0, 0)"><foreignobject width="0" height="0">
+<div class="labelBkg" data-xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;">
+<span class="edgeLabel"></span>
+</div>
+</foreignobject></g></g><g class="edgeLabel"><g class="label" data-id="id_SalaryEmployee_SalesEmployee_4" transform="translate(0, 0)"><foreignobject width="0" height="0">
+<div class="labelBkg" data-xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;">
+<span class="edgeLabel"></span>
+</div>
+</foreignobject></g></g><g class="edgeLabel"><g class="label" data-id="id_DailyEmployee_DailyCoach_5" transform="translate(0, 0)"><foreignobject width="0" height="0">
+<div class="labelBkg" data-xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;">
+<span class="edgeLabel"></span>
+</div>
+</foreignobject></g></g><g class="edgeLabel"><g class="label" data-id="id_Coach_DailyCoach_6" transform="translate(0, 0)"><foreignobject width="0" height="0">
+<div class="labelBkg" data-xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;">
+<span class="edgeLabel"></span>
+</div>
+</foreignobject></g></g></g><g class="nodes"><g class="node default" id="classId-Employee-0" transform="translate(284.96875, 116)"><g class="basic label-container"><path d="M-129.953125 -108 L129.953125 -108 L129.953125 108 L-129.953125 108" stroke="none" stroke-width="0" fill="#ECECFF" style=""></path><path d="M-129.953125 -108 C-46.4264561195332 -108, 37.1002127609336 -108, 129.953125 -108 M-129.953125 -108 C-29.7757340163419 -108, 70.4016569673162 -108, 129.953125 -108 M129.953125 -108 C129.953125 -32.12965065008636, 129.953125 43.74069869982728, 129.953125 108 M129.953125 -108 C129.953125 -63.99037499284483, 129.953125 -19.980749985689656, 129.953125 108 M129.953125 108 C50.494897472114346 108, -28.96333005577131 108, -129.953125 108 M129.953125 108 C47.87239627445763 108, -34.20833245108474 108, -129.953125 108 M-129.953125 108 C-129.953125 49.450378332663774, -129.953125 -9.099243334672451, -129.953125 -108 M-129.953125 108 C-129.953125 59.47399100531765, -129.953125 10.9479820106353, -129.953125 -108" stroke="#9370DB" stroke-width="1.3" fill="none" stroke-dasharray="0 0" style=""></path></g><g class="annotation-group text" transform="translate(-37.90625, -84)"><g class="label" style="" transform="translate(0,-12)"><foreignobject width="75.8125" height="24">
+<div data-xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 116px; text-align: center;">
+<span class="nodeLabel markdown-node-label" style="">
+<p>
+«abstract»
+</p>
+</span>
+</div>
+</foreignobject></g></g><g class="label-group text" transform="translate(-36.4375, -60)"><g class="label" style="font-weight: bolder" transform="translate(0,-12)"><foreignobject width="72.875" height="24">
+<div data-xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 115px; text-align: center;">
+<span class="nodeLabel markdown-node-label" style="">
+<p>
+Employee
+</p>
+</span>
+</div>
+</foreignobject></g></g><g class="members-group text" transform="translate(-117.953125, -12)"><g class="label" style="" transform="translate(0,-12)"><foreignobject width="142.5625" height="24">
+<div data-xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 183px; text-align: center;">
+<span class="nodeLabel markdown-node-label" style="">
+<p>
++first_name : String
+</p>
+</span>
+</div>
+</foreignobject></g><g class="label" style="" transform="translate(0,12)"><foreignobject width="139" height="24">
+<div data-xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 180px; text-align: center;">
+<span class="nodeLabel markdown-node-label" style="">
+<p>
++last_name : String
+</p>
+</span>
+</div>
+</foreignobject></g><g class="label" style="" transform="translate(0,36)"><foreignobject width="88.625" height="24">
+<div data-xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 134px; text-align: center;">
+<span class="nodeLabel markdown-node-label" style="">
+<p>
++id : Integer
+</p>
+</span>
+</div>
+</foreignobject></g></g><g class="methods-group text" transform="translate(-117.953125, 84)"><g class="label" style="font-style:italic;" transform="translate(0,-12)"><foreignobject width="198" height="24">
+<div data-xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 230px; text-align: center;">
+<span class="nodeLabel markdown-node-label" style="">
+<p>
++calculate_payroll() : Float
+</p>
+</span>
+</div>
+</foreignobject></g></g><g class="divider" style=""><path d="M-129.953125 -36 C-42.30074939433307 -36, 45.351626211333866 -36, 129.953125 -36 M-129.953125 -36 C-49.35918758178407 -36, 31.23474983643186 -36, 129.953125 -36" stroke="#9370DB" stroke-width="1.3" fill="none" stroke-dasharray="0 0" style=""></path></g><g class="divider" style=""><path d="M-129.953125 60 C-61.98940226943114 60, 5.974320461137722 60, 129.953125 60 M-129.953125 60 C-45.079566680366156 60, 39.79399163926769 60, 129.953125 60" stroke="#9370DB" stroke-width="1.3" fill="none" stroke-dasharray="0 0" style=""></path></g></g><g class="node default" id="classId-SalaryEmployee-1" transform="translate(380.1796875, 334)"><g class="basic label-container"><path d="M-130.33984375 -60 L130.33984375 -60 L130.33984375 60 L-130.33984375 60" stroke="none" stroke-width="0" fill="#ECECFF" style=""></path><path d="M-130.33984375 -60 C-51.077259431022 -60, 28.185324887956 -60, 130.33984375 -60 M-130.33984375 -60 C-33.26006580969876 -60, 63.81971213060248 -60, 130.33984375 -60 M130.33984375 -60 C130.33984375 -32.97426122397957, 130.33984375 -5.948522447959142, 130.33984375 60 M130.33984375 -60 C130.33984375 -15.550798104768695, 130.33984375 28.89840379046261, 130.33984375 60 M130.33984375 60 C31.553765308892366 60, -67.23231313221527 60, -130.33984375 60 M130.33984375 60 C74.99168576408712 60, 19.64352777817426 60, -130.33984375 60 M-130.33984375 60 C-130.33984375 18.755307476732632, -130.33984375 -22.489385046534736, -130.33984375 -60 M-130.33984375 60 C-130.33984375 28.66236427199134, -130.33984375 -2.6752714560173203, -130.33984375 -60" stroke="#9370DB" stroke-width="1.3" fill="none" stroke-dasharray="0 0" style=""></path></g><g class="annotation-group text" transform="translate(0, -36)"></g><g class="label-group text" transform="translate(-59.1015625, -36)"><g class="label" style="font-weight: bolder" transform="translate(0,-12)"><foreignobject width="118.203125" height="24">
+<div data-xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 156px; text-align: center;">
+<span class="nodeLabel markdown-node-label" style="">
+<p>
+SalaryEmployee
+</p>
+</span>
+</div>
+</foreignobject></g></g><g class="members-group text" transform="translate(-118.33984375, 12)"><g class="label" style="" transform="translate(0,-12)"><foreignobject width="177.578125" height="24">
+<div data-xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 215px; text-align: center;">
+<span class="nodeLabel markdown-node-label" style="">
+<p>
++monthly_salaray : Float
+</p>
+</span>
+</div>
+</foreignobject></g></g><g class="methods-group text" transform="translate(-118.33984375, 60)"></g><g class="divider" style=""><path d="M-130.33984375 -12 C-75.72121320252973 -12, -21.10258265505945 -12, 130.33984375 -12 M-130.33984375 -12 C-40.78271764814605 -12, 48.774408453707906 -12, 130.33984375 -12" stroke="#9370DB" stroke-width="1.3" fill="none" stroke-dasharray="0 0" style=""></path></g><g class="divider" style=""><path d="M-130.33984375 36 C-31.487501271585387 36, 67.36484120682923 36, 130.33984375 36 M-130.33984375 36 C-47.29864715815732 36, 35.742549433685355 36, 130.33984375 36" stroke="#9370DB" stroke-width="1.3" fill="none" stroke-dasharray="0 0" style=""></path></g></g><g class="node default" id="classId-DailyEmployee-2" transform="translate(113.8984375, 504)"><g class="basic label-container"><path d="M-105.8984375 -60 L105.8984375 -60 L105.8984375 60 L-105.8984375 60" stroke="none" stroke-width="0" fill="#ECECFF" style=""></path><path d="M-105.8984375 -60 C-63.51038497343621 -60, -21.12233244687242 -60, 105.8984375 -60 M-105.8984375 -60 C-59.40840565782996 -60, -12.918373815659919 -60, 105.8984375 -60 M105.8984375 -60 C105.8984375 -21.418945311867425, 105.8984375 17.16210937626515, 105.8984375 60 M105.8984375 -60 C105.8984375 -32.24426970551751, 105.8984375 -4.4885394110350205, 105.8984375 60 M105.8984375 60 C33.45292916340571 60, -38.992579173188574 60, -105.8984375 60 M105.8984375 60 C61.131585913990534 60, 16.36473432798107 60, -105.8984375 60 M-105.8984375 60 C-105.8984375 31.97661955076561, -105.8984375 3.953239101531217, -105.8984375 -60 M-105.8984375 60 C-105.8984375 33.70128095823146, -105.8984375 7.402561916462915, -105.8984375 -60" stroke="#9370DB" stroke-width="1.3" fill="none" stroke-dasharray="0 0" style=""></path></g><g class="annotation-group text" transform="translate(0, -36)"></g><g class="label-group text" transform="translate(-54.859375, -36)"><g class="label" style="font-weight: bolder" transform="translate(0,-12)"><foreignobject width="109.71875" height="24">
+<div data-xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 150px; text-align: center;">
+<span class="nodeLabel markdown-node-label" style="">
+<p>
+DailyEmployee
+</p>
+</span>
+</div>
+</foreignobject></g></g><g class="members-group text" transform="translate(-93.8984375, 12)"><g class="label" style="" transform="translate(0,-12)"><foreignobject width="132.9375" height="24">
+<div data-xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 173px; text-align: center;">
+<span class="nodeLabel markdown-node-label" style="">
+<p>
++daily_rate : Float
+</p>
+</span>
+</div>
+</foreignobject></g></g><g class="methods-group text" transform="translate(-93.8984375, 60)"></g><g class="divider" style=""><path d="M-105.8984375 -12 C-30.089818223011605 -12, 45.71880105397679 -12, 105.8984375 -12 M-105.8984375 -12 C-56.21871297730574 -12, -6.538988454611484 -12, 105.8984375 -12" stroke="#9370DB" stroke-width="1.3" fill="none" stroke-dasharray="0 0" style=""></path></g><g class="divider" style=""><path d="M-105.8984375 36 C-56.16023413167549 36, -6.422030763350975 36, 105.8984375 36 M-105.8984375 36 C-57.471257085924556 36, -9.044076671849112 36, 105.8984375 36" stroke="#9370DB" stroke-width="1.3" fill="none" stroke-dasharray="0 0" style=""></path></g></g><g class="node default" id="classId-Coach-3" transform="translate(304.3203125, 504)"><g class="basic label-container"><path d="M-34.5234375 -42 L34.5234375 -42 L34.5234375 42 L-34.5234375 42" stroke="none" stroke-width="0" fill="#ECECFF" style=""></path><path d="M-34.5234375 -42 C-12.429339195512814 -42, 9.664759108974373 -42, 34.5234375 -42 M-34.5234375 -42 C-15.815398170072154 -42, 2.8926411598556925 -42, 34.5234375 -42 M34.5234375 -42 C34.5234375 -13.197733438752177, 34.5234375 15.604533122495646, 34.5234375 42 M34.5234375 -42 C34.5234375 -16.867751282059523, 34.5234375 8.264497435880955, 34.5234375 42 M34.5234375 42 C10.065049284959546 42, -14.393338930080908 42, -34.5234375 42 M34.5234375 42 C10.663865292465822 42, -13.195706915068357 42, -34.5234375 42 M-34.5234375 42 C-34.5234375 19.464209139798477, -34.5234375 -3.071581720403046, -34.5234375 -42 M-34.5234375 42 C-34.5234375 10.509535249814679, -34.5234375 -20.980929500370642, -34.5234375 -42" stroke="#9370DB" stroke-width="1.3" fill="none" stroke-dasharray="0 0" style=""></path></g><g class="annotation-group text" transform="translate(0, -18)"></g><g class="label-group text" transform="translate(-22.5234375, -18)"><g class="label" style="font-weight: bolder" transform="translate(0,-12)"><foreignobject width="45.046875" height="24">
+<div data-xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 91px; text-align: center;">
+<span class="nodeLabel markdown-node-label" style="">
+<p>
+Coach
+</p>
+</span>
+</div>
+</foreignobject></g></g><g class="members-group text" transform="translate(-22.5234375, 30)"></g><g class="methods-group text" transform="translate(-22.5234375, 60)"></g><g class="divider" style=""><path d="M-34.5234375 6 C-8.651017862611393 6, 17.221401774777213 6, 34.5234375 6 M-34.5234375 6 C-18.478747942649903 6, -2.4340583852998066 6, 34.5234375 6" stroke="#9370DB" stroke-width="1.3" fill="none" stroke-dasharray="0 0" style=""></path></g><g class="divider" style=""><path d="M-34.5234375 24 C-11.789794015678964 24, 10.943849468642071 24, 34.5234375 24 M-34.5234375 24 C-12.505470006623462 24, 9.512497486753077 24, 34.5234375 24" stroke="#9370DB" stroke-width="1.3" fill="none" stroke-dasharray="0 0" style=""></path></g></g><g class="node default" id="classId-SalesEmployee-4" transform="translate(456.0390625, 504)"><g class="basic label-container"><path d="M-67.1953125 -42 L67.1953125 -42 L67.1953125 42 L-67.1953125 42" stroke="none" stroke-width="0" fill="#ECECFF" style=""></path><path d="M-67.1953125 -42 C-15.765427810897329 -42, 35.66445687820534 -42, 67.1953125 -42 M-67.1953125 -42 C-30.031027462850666 -42, 7.133257574298668 -42, 67.1953125 -42 M67.1953125 -42 C67.1953125 -16.068867229365562, 67.1953125 9.862265541268876, 67.1953125 42 M67.1953125 -42 C67.1953125 -9.455773376720614, 67.1953125 23.08845324655877, 67.1953125 42 M67.1953125 42 C27.903948738613323 42, -11.387415022773354 42, -67.1953125 42 M67.1953125 42 C27.855882754800064 42, -11.483546990399873 42, -67.1953125 42 M-67.1953125 42 C-67.1953125 23.750223550316036, -67.1953125 5.500447100632073, -67.1953125 -42 M-67.1953125 42 C-67.1953125 19.604130292847337, -67.1953125 -2.791739414305326, -67.1953125 -42" stroke="#9370DB" stroke-width="1.3" fill="none" stroke-dasharray="0 0" style=""></path></g><g class="annotation-group text" transform="translate(0, -18)"></g><g class="label-group text" transform="translate(-55.1953125, -18)"><g class="label" style="font-weight: bolder" transform="translate(0,-12)"><foreignobject width="110.390625" height="24">
+<div data-xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 149px; text-align: center;">
+<span class="nodeLabel markdown-node-label" style="">
+<p>
+SalesEmployee
+</p>
+</span>
+</div>
+</foreignobject></g></g><g class="members-group text" transform="translate(-55.1953125, 30)"></g><g class="methods-group text" transform="translate(-55.1953125, 60)"></g><g class="divider" style=""><path d="M-67.1953125 6 C-14.09655640728677 6, 39.00219968542646 6, 67.1953125 6 M-67.1953125 6 C-24.741521421964826 6, 17.712269656070347 6, 67.1953125 6" stroke="#9370DB" stroke-width="1.3" fill="none" stroke-dasharray="0 0" style=""></path></g><g class="divider" style=""><path d="M-67.1953125 24 C-33.080533981955064 24, 1.0342445360898722 24, 67.1953125 24 M-67.1953125 24 C-22.149966326971033 24, 22.895379846057935 24, 67.1953125 24" stroke="#9370DB" stroke-width="1.3" fill="none" stroke-dasharray="0 0" style=""></path></g></g><g class="node default" id="classId-DailyCoach-5" transform="translate(209.109375, 656)"><g class="basic label-container"><path d="M-52.9375 -42 L52.9375 -42 L52.9375 42 L-52.9375 42" stroke="none" stroke-width="0" fill="#ECECFF" style=""></path><path d="M-52.9375 -42 C-11.251097873168874 -42, 30.435304253662252 -42, 52.9375 -42 M-52.9375 -42 C-13.89391977858778 -42, 25.14966044282444 -42, 52.9375 -42 M52.9375 -42 C52.9375 -15.965394956634736, 52.9375 10.069210086730529, 52.9375 42 M52.9375 -42 C52.9375 -23.215668583780005, 52.9375 -4.4313371675600095, 52.9375 42 M52.9375 42 C21.595777279694758 42, -9.745945440610484 42, -52.9375 42 M52.9375 42 C16.860640726186034 42, -19.216218547627932 42, -52.9375 42 M-52.9375 42 C-52.9375 10.482838977334413, -52.9375 -21.034322045331173, -52.9375 -42 M-52.9375 42 C-52.9375 14.676918707438563, -52.9375 -12.646162585122873, -52.9375 -42" stroke="#9370DB" stroke-width="1.3" fill="none" stroke-dasharray="0 0" style=""></path></g><g class="annotation-group text" transform="translate(0, -18)"></g><g class="label-group text" transform="translate(-40.9375, -18)"><g class="label" style="font-weight: bolder" transform="translate(0,-12)"><foreignobject width="81.875" height="24">
+<div data-xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 126px; text-align: center;">
+<span class="nodeLabel markdown-node-label" style="">
+<p>
+DailyCoach
+</p>
+</span>
+</div>
+</foreignobject></g></g><g class="members-group text" transform="translate(-40.9375, 30)"></g><g class="methods-group text" transform="translate(-40.9375, 60)"></g><g class="divider" style=""><path d="M-52.9375 6 C-21.703686937358437 6, 9.530126125283125 6, 52.9375 6 M-52.9375 6 C-14.788866879410008 6, 23.359766241179983 6, 52.9375 6" stroke="#9370DB" stroke-width="1.3" fill="none" stroke-dasharray="0 0" style=""></path></g><g class="divider" style=""><path d="M-52.9375 24 C-29.23180573832583 24, -5.526111476651657 24, 52.9375 24 M-52.9375 24 C-24.91744841267451 24, 3.10260317465098 24, 52.9375 24" stroke="#9370DB" stroke-width="1.3" fill="none" stroke-dasharray="0 0" style=""></path></g></g></g></g></g>
+</svg>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>L’implémentation des <code>SalaryEmployee</code> et <code>DailyEmployee</code> est la suivante :</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="annotated-cell-1"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> SalaryEmployee(Employee):</span>
+<span id="annotated-cell-1-2"><a href="#annotated-cell-1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, first_name: <span class="bu">str</span>, last_name: <span class="bu">str</span>,</span>
+<span id="annotated-cell-1-3"><a href="#annotated-cell-1-3" aria-hidden="true" tabindex="-1"></a>                 <span class="bu">id</span>: <span class="bu">int</span>, monthly_salaray: <span class="bu">float</span>):</span>
+<span id="annotated-cell-1-4"><a href="#annotated-cell-1-4" aria-hidden="true" tabindex="-1"></a>                 </span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-1-5" class="code-annotation-target"><a href="#annotated-cell-1-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>(first_name, last_name, <span class="bu">id</span>)</span>
+<span id="annotated-cell-1-6"><a href="#annotated-cell-1-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.monthly_salaray <span class="op">=</span> monthly_salaray</span>
+<span id="annotated-cell-1-7"><a href="#annotated-cell-1-7" aria-hidden="true" tabindex="-1"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-1-8" class="code-annotation-target"><a href="#annotated-cell-1-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> calculate_payroll(<span class="va">self</span>):</span>
+<span id="annotated-cell-1-9"><a href="#annotated-cell-1-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.monthly_salaray</span>
+<span id="annotated-cell-1-10"><a href="#annotated-cell-1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-1-11"><a href="#annotated-cell-1-11" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> DailyEmployee(Employee):</span>
+<span id="annotated-cell-1-12"><a href="#annotated-cell-1-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, first_name: <span class="bu">str</span>, last_name: <span class="bu">str</span>,</span>
+<span id="annotated-cell-1-13"><a href="#annotated-cell-1-13" aria-hidden="true" tabindex="-1"></a>                 <span class="bu">id</span>: <span class="bu">int</span>, daily_rate: <span class="bu">float</span>):</span>
+<span id="annotated-cell-1-14"><a href="#annotated-cell-1-14" aria-hidden="true" tabindex="-1"></a>                 </span>
+<span id="annotated-cell-1-15"><a href="#annotated-cell-1-15" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>(first_name, last_name, <span class="bu">id</span>)</span>
+<span id="annotated-cell-1-16"><a href="#annotated-cell-1-16" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.daily_rate <span class="op">=</span> daily_rate</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-1-17" class="code-annotation-target"><a href="#annotated-cell-1-17" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.days <span class="op">=</span> <span class="dv">0</span></span>
+<span id="annotated-cell-1-18"><a href="#annotated-cell-1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-1-19"><a href="#annotated-cell-1-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> calculate_payroll(<span class="va">self</span>):</span>
+<span id="annotated-cell-1-20"><a href="#annotated-cell-1-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.days <span class="op">*</span> <span class="va">self</span>.daily_rate</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="5,15" data-code-annotation="1">La création de base de la classe est déléguée à <code>Employee</code>.</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="8,19" data-code-annotation="2">Chaque classe a sa propre implémentation concrète de <code>calculate_payroll()</code>.</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="17" data-code-annotation="3">Permet de calculer le salaire, son évolution n’est pas montrée dans cet extrait de code.</span>
+</dd>
+</dl>
+<p>Dans notre diagramme, nous avons une classe <code>Coach</code> qui spécialise <code>SalaryEmployee</code>. Elle n’est pas détaillée ici.</p>
+<p>Nous aurons ensuite besoin de représenter un intervenant externe (<code>DailyCoach</code>). Ce <code>DailyCoach</code> est un <code>Coach</code> mais aussi un <code>DailyEmployee</code>. Dans la logique, il spécialise ces deux classes.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> DailyCoach(Coach, DailyEmployee):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Et là, nous allons commencer à avoir une série de problèmes résultant de la présence de mêmes fonctions dans les deux généralisations. Notez que le diagramme UML représente le modèle complet mettant en évidence le cas classique conduisant à ce type de problème : le <a href="https://en.wikipedia.org/wiki/Multiple_inheritance#The_diamond_problem">Diamond Problem</a>. En effet, nous ne voyons pas dans les classes au premier niveau que ces deux classes ont en fait un ancêtre commun.</p>
+</section>
+<section id="lordre-de-résolution-des-méthodes" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="lordre-de-résolution-des-méthodes"><span class="header-section-number">10.2</span> L’ordre de résolution des méthodes</h2>
+<p>Lorsque qu’une méthode ou un attribut d’une classe est accédé, Python utilise son MRO (<a href="https://www.python.org/download/releases/2.3/mro/">Method Resolution Order</a>) pour le retrouver.</p>
+<p>Une classe possède l’attribut spécial <code>__mro__</code> qui va retourner l’ordre dans lequel Python recherchera les attributs. Cet ordre est celui qui est respecté lorsque vous appelez la fonction <code>super()</code>. Dans le cas de <code>DailyCoach</code>, l’attribut retourne le résultat suivant.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>In [<span class="dv">1</span>]: DailyCoach.__mro__</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>Out[<span class="dv">1</span>]: </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>(pyacademy.people.DailyCoach,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a> pyacademy.people.Coach,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a> pyacademy.people.SalaryEmployee,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a> pyacademy.people.DailyEmployee,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a> pyacademy.people.Employee,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a> abc.ABC,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a> <span class="bu">object</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Lorsque nous créons une nouvelle instance, la méthode <code>__init__()</code> de <code>DailyCoach</code> est appelée ensuite celle de <code>Coach</code> puis celle de <code>SalaryEmployee</code> puis <code>DailyEmployee</code> et ainsi de suite.</p>
+</section>
+<section id="résolution-du-problème-des-paramètres" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="résolution-du-problème-des-paramètres"><span class="header-section-number">10.3</span> Résolution du problème des paramètres</h2>
+<p>Si dans certains cas, appeler l’ensemble des méthodes sera ce que vous souhaitez, dans d’autres, vous ne le souhaiterez pas.</p>
+<p>Dans nos exemples, le constructeur est un premier problème qui peut être résolu en appelant spécifiquement la méthode du parent souhaité.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> DailyCoach(Coach, DailyEmployee):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, first_name: <span class="bu">str</span>, last_name: <span class="bu">str</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                 <span class="bu">id</span>: <span class="bu">int</span>, daily_rate: <span class="bu">float</span>):</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                 </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        DailyEmployee.<span class="fu">__init__</span>(<span class="va">self</span>, first_name, last_name,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                               <span class="bu">id</span>, daily_rate)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Cependant, nous aurons à nouveau le problème lors de l’appel à .calculate_payroll(). Dans notre cas, il faudra à nouveau faire appel à l’implémentation spécifique.</p>
+</section>
+<section id="les-mixins" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="les-mixins"><span class="header-section-number">10.4</span> Les mixins</h2>
+<p>Les mixins sont un moyen d’exploiter l’héritage multiple pour proposer un code réutilisable à la frontière entre les interfaces et les classes abstraites sans forcer à une hiérarchie rigide.</p>
+<p>Une mixin est une classe qui va répondre à certaines conventions :</p>
+<ul>
+<li>Un nom destiné à éviter toute ambiguïté.</li>
+<li>Ce sont des classes <em>simples</em> qui réalisent un comportement. Elles n’ont pas de généralisation.</li>
+<li>Elles n’ont qu’une seule responsabilité</li>
+<li>Elles n’ont pas d’état donc rarement un constructeur ou des attributs d’instance;</li>
+<li>Elles sont destinées à étendre le comportement d’autres classes et n’ont aucun sens par elles-même.</li>
+</ul>
+<p>Un exemple de mixin peut être :</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> SerializableMixin:</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> serialize(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="bu">dict</span>:</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">hasattr</span>(<span class="va">self</span>, <span class="st">"__slots__"</span>):</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> {</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                name: <span class="bu">getattr</span>(<span class="va">self</span>, name)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> name <span class="kw">in</span> <span class="va">self</span>.<span class="va">__slots__</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>            }</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="bu">vars</span>(<span class="va">self</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Django utilise intensivement les mixins pour étendre les comportements. Vous pouvez voir un exemple pour la validation du login : https://docs.djangoproject.com/en/5.2/topics/auth/default/#the-loginrequiredmixin-mixin ## Héritage multiple, conclusion</p>
+<p>L’héritage multiple est source de nombreux problèmes, il est donc fortement déconseillé de l’utiliser. De manière générale, l’héritage est déconseillé en faveur de la composition. Il y a cependant une différence d’interprétation. L’héritage signifie <strong>est un</strong> alors que la composition signifie <strong>contient/comporte un</strong>. Nous pouvons le voir avec la modélisation d’une formation et plus spécifiquement une session de formation qui a lieu à une certaine date et à un certain lieu avec des stagiaires. Une formation (au sens sujet et contenu) n’est pas une liste, ce n’est pas non plus un lieu. Une session n’est pas non plus une formation (au sens sujet et contenu) ni un lieu. Par contre, une session comporte un sujet et un lieu.</p>
+<p>Cependant, dans un langage déclaratif, il faut associer un type à nos classes pour informer le langage de ce que peut faire l’objet. Ces langages ont ajouté la notion <strong>d’interfaces</strong>. Une interface est un contrat déclarant ce que peut faire l’objet (c’est une <em>liste</em> de méthodes).</p>
+<p>En Python, les interfaces sont inutiles. Les méthodes sont implémentés en fonction du besoin et les programmes n’ont pas besoin de connaitre ce que sont les objets (leur type) mais ce qu’ils peuvent faire (leurs méthodes).</p>
+<p>Pour aller plus loin, n’hésitez pas à consulter ce post de Raymond Hettinger, <em>Python’s super() considered super!</em> : <a href="https://rhettinger.wordpress.com/2011/05/26/super-considered-super/">https://rhettinger.wordpress.com/2011/05/26/super-considered-super/</a>&nbsp;</p>
+<p>Ainsi que celui de Guido Van Rossum sur Python History : <a href="http://python-history.blogspot.com/2010/06/method-resolution-order.html">http://python-history.blogspot.com/2010/06/method-resolution-order.html</a>.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copié");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copié");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../POO/classes_abstraites.html" class="pagination-link" aria-label="Les classes et méthodes abstraites">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Les classes et méthodes abstraites</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../POO/context_managers.html" class="pagination-link" aria-label="Les context managers">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Les context managers</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Darko Stankovski CC-BY-NC-ND</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
