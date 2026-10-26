@@ -1,20 +1,20 @@
 # Notifications en parallèle
 
-Cet exercice reprend [l'exercice sur le pattern registery des décorateurs](../decorators/decorators_4.md).
+Cet exercice reprend [l'exercice sur le pattern registery des décorateurs](../decorators/decorators_4.md). 
+Vous pouvez donc gérer cet exercice soit comme vous l'avez découvert à l'aide de fonctions soit à 
+l'aide d'un objet de gestion de notifications.
 
 **Important** : Consultez [la page d'index](index.md) pour une information sur les logs.
 
 ## Contexte
 
-Vous allez commencer par modifier les fonctions de *notification*. Vous avez à disposition un module 
-qui simule un service de notification : `pylib.utils.notifiers`. Ce service contient une fonction 
+Pour cet exercice, nous allons utiliser des fonctions de *notification*. Vous avez à disposition un 
+module qui simule un service de notification : `pylib.utils.notifiers`. Ce service contient une fonction 
 `make_notify(service_name:str)` qui retourne une fonction. Cette fonction va simuler de manière plus 
 réaliste l'envoi d'une notification en *prenant du temps*.
 
-Commencez par modifier les fonctions "notify" en remplaçant l'affichage par un appel à cette 
-fonction. Utiliser en paramètre un texte décrivant le type de service (mail, SMS…).
- 
-Vos fonctions doivent ressembler à :
+Pour cela, utilisez les fonctions "notify" suivantes. Utilisez en paramètre un texte décrivant le 
+type de service (mail, SMS…). Et ajoutez en évidemment d'autres.
 
 ```python
 import pylib.utils.notifiers as nf
@@ -23,12 +23,12 @@ import pylib.utils.notifiers as nf
 def notify_mail():
     nf.make_notify("mail")()
 
-
+    
 def notify_sms():
     nf.make_notify("SMS")()
 ```
 
-Et elles sont évidemment décorées.
+Comme pour l'exercice précédent, vous devrez décorer ces fonctions.
 
 ## Exercice
 

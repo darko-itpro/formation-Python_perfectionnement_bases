@@ -22,12 +22,11 @@ layout.split(
     Layout(name="main"),
 )
 
-layout["main"].split_row(Layout(name="task"), Layout(name="pipe", ratio=2))
+layout["main"].split_row(Layout(name="task"), Layout(name="pipe"))
 
 q = queue.Queue(4)
 
 def worker():
-
     while True:
         item = q.get()
         time.sleep(1)
