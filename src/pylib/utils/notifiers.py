@@ -5,6 +5,15 @@ import asyncio
 import pylib.settings
 
 
+class NotificationService:
+    def __init__(self):
+        self._services = []
+
+    def send_notifications(self):
+        for service in self._services:
+            service()
+
+
 def make_notify(service_name: str, min_delay: float = 1, max_delay: float = 5):
     def notify():
         delay = random.uniform(min_delay, max_delay)
